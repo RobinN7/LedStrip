@@ -3,13 +3,14 @@
 
 # Led Strip Control
 #
+# Color wheel : Red Yellow Green Cyan Blue Magenta Red
 #
 # Author: Robin 
 
 # Serial communication library
 import serial
 # Time manager
-from time import sleep
+from time import *
 # Thread manager
 from threading import Thread 
 # Random integers
@@ -40,7 +41,6 @@ except Exception:
 	Label(ErrorScreen, text="Arduino non détecté").grid(padx=30, pady=10)
 	ErrorScreen.mainloop() 
 	raise SystemExit
-
 ################################################
 ####		   GLOBAL VARIABLES				####
 ################################################
@@ -52,66 +52,147 @@ stopThread = 0
 ################################################
 
 def mainThread():
+	# Beat in seconds
+	global beat
+	global lastTime
+	# Colors values
 	valR=10
 	valV=10
 	valB=10
-	signR=1
-	signV=1
-	signB=1
 	global stopThread
 
 	while stopThread==0:
+		if time()-lastTime>beat/128:
+			lastTime=time()
+			###########################
+			# Color wheel acquisition #
+			###########################
 
-		valR=scaleR.get()
-		valV=scaleV.get()
-		valB=scaleB.get()
+			# R -> Y
+			if colorWheelValue.get()<256:
+				valR=255
+				valV=colorWheelValue.get()
+				valB=0
+			# Y -> G
+			elif colorWheelValue.get()<512:	
+				valR=511-colorWheelValue.get()
+				valV=255
+				valB=0
+			# G -> C
+			elif colorWheelValue.get()<768:
+				valR=0
+				valV=255
+				valB=colorWheelValue.get()-512
+			# C -> B
+			elif colorWheelValue.get()<1024:
+				valR=0
+				valV=1023-colorWheelValue.get()
+				valB=255
+			# B -> M
+			elif colorWheelValue.get()<1280:
+				valR=colorWheelValue.get()-1024
+				valV=0
+				valB=255
+			# M -> R
+			else:
+				valR=255
+				valV=0
+				valB=1535-colorWheelValue.get()
 
-		string = "{0}f{1}f{2}f".format(valR+256,valV+512,valB+768)
-		ser.write(string.encode())
-		sleep(0.05)
+			# Color bars acquisition
+			#elif mode==colorBars:
+			#valR=scaleR.get()
+			#valV=scaleV.get()
+			#valB=scaleB.get()
+			if colorWheelValue.get()<1535:
+				colorWheelValue.set(colorWheelValue.get()+4)
+			else:
+				colorWheelValue.set(0)
 
-################################################
-####			  	TK WINDOW				####
-################################################
+			string = "{0}f{1}f{2}f".format(valR+256,valV+512,valB+768)
+			ser.write(string.encode())
 
-Mafenetre = Tk()
-Mafenetre.title('Led Strip Controller')
+def Key(event):
+	#############
+	# Beat keys #
+	#############
+
+	if (event.keysym=='k'):
+		global lastBeat
+		global beat
+		beat=time()-lastBeat
+		lastBeat=time()
+		colorWheelValue.set(256)
+	if (event.keysym=='l'):
+		global lastBeat
+		global beat
+		beat=time()-lastBeat
+		lastBeat=time()
+		colorWheelValue.set(768)
+	if (event.keysym=='m'):
+		global lastBeat
+		global beat
+		beat=time()-lastBeat
+		lastBeat=time()
+		colorWheelValue.set(1280)
 
 
-scaleR = Scale(Mafenetre,from_=255,to=0,resolution=1,orient=VERTICAL,\
-length=256,width=20, label="R")
-scaleR.grid(row=0, column=0, padx=6)
+if __name__ == "__main__":
 
-scaleV = Scale(Mafenetre,from_=255,to=0,resolution=1,orient=VERTICAL,\
-length=256,width=20, label="V")
-scaleV.grid(row=0, column=1, padx=6)
 
-scaleB = Scale(Mafenetre,from_=255,to=0,resolution=1,orient=VERTICAL,\
-length=256,width=20, label="B")
-scaleB.grid(row=0, column=2, padx=6)
+	################################################
+	####			  	TK WINDOW				####
+	################################################
 
-"""
-Label(Mafenetre, text="Rouge =").grid(row=0)
-valR_field= Entry(Mafenetre, width=9)
-valR_field.grid(row=0, column=1, pady=5)
+	Mafenetre = Tk()
+	Mafenetre.title('Led Strip Controller')
+	# Time initialisation
+	lastTime=time()
+	# Beat initialisation
+	lastBeat=time()
+	beat=1
+	# Bind keyboard to the window
+	Mafenetre.bind('<Key>', Key)
 
-Label(Mafenetre, text="Vert =").grid(row=1)
-valV_field= Entry(Mafenetre, width=9)
-valV_field.grid(row=1, column=1, pady=5)
 
-Label(Mafenetre, text="Bleu =").grid(row=2)
-valB_field= Entry(Mafenetre, width=9)
-valB_field.grid(row=2, column=1, pady=5)
-"""
+	# Color wheel bar
+	colorWheelValue = Scale(Mafenetre,from_=0,to=1535,resolution=1,\
+	orient=HORIZONTAL,length=256,width=30, label="Color Wheel")
+	colorWheelValue.grid(row=5, column=0, columnspan=3, padx=6, pady=20)
 
-# Thread start
-Thread(None, mainThread).start()
 
-# Tk window inifinite loop
-Mafenetre.mainloop() 
+	"""
+	# Individual colors bars
+	scaleR = Scale(Mafenetre,from_=255,to=0,resolution=1,orient=VERTICAL,\
+	length=256,width=30, label="R")
+	scaleR.grid(row=0, column=0, padx=6)
+	scaleV = Scale(Mafenetre,from_=255,to=0,resolution=1,orient=VERTICAL,\
+	length=256,width=30, label="V")
+	scaleV.grid(row=0, column=1, padx=6)
+	scaleB = Scale(Mafenetre,from_=255,to=0,resolution=1,orient=VERTICAL,\
+	length=256,width=30, label="B")
+	scaleB.grid(row=0, column=2, padx=6)
 
-# Exit everything on window closing
-stopThread = 1
-Thread(None, mainThread)._stop() 
-raise SystemExit
+	# Individual colors fields
+	Label(Mafenetre, text="Rouge =").grid(row=0)
+	valR_field= Entry(Mafenetre, width=9)
+	valR_field.grid(row=0, column=1, pady=5)
+	Label(Mafenetre, text="Vert =").grid(row=1)
+	valV_field= Entry(Mafenetre, width=9)
+	valV_field.grid(row=1, column=1, pady=5)
+	Label(Mafenetre, text="Bleu =").grid(row=2)
+	valB_field= Entry(Mafenetre, width=9)
+	valB_field.grid(row=2, column=1, pady=5)
+	"""
+
+	# Thread start
+	Thread(None, mainThread).start()
+
+	# Tk window inifinite loop
+	Mafenetre.mainloop() 
+
+	# Exit everything on window closing
+	stopThread = 1
+	Thread(None, mainThread)._stop() 
+	raise SystemExit
 
