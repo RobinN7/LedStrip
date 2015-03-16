@@ -23,24 +23,34 @@ try:
 except ImportError:
 	# for Python3
 	from tkinter import *
-	
+
 ################################################
 ####			SERIAL CONNECTION			####
 ################################################
-try:
-	ser = serial.Serial(
-    port='/dev/ttyACM0',
-    baudrate=115200,
-    #parity=serial.PARITY_ODD,
-    #stopbits=serial.STOPBITS_TWO,
-    #bytesize=serial.SEVENBITS
-)
-except Exception:	
-	ErrorScreen = Tk()
-	ErrorScreen.title('Erreur')
-	Label(ErrorScreen, text="Arduino non détecté").grid(padx=30, pady=10)
-	ErrorScreen.mainloop() 
-	raise SystemExit
+
+done=-1
+for i in range(11):
+	if done==-1 and i<10:
+		try:
+			ser = serial.Serial(
+			port='/dev/ttyACM{0}'.format(i),
+			baudrate=115200,
+			)
+			done=i
+
+		except Exception:
+			print("ttyACM{0} port erroné, test du suivant.".format(i))
+	elif i==10:	
+		ErrorScreen = Tk()
+		ErrorScreen.title('Erreur')
+		Label(ErrorScreen, text="Arduino non détecté").grid(padx=30, pady=10)
+		ErrorScreen.mainloop() 
+		raise SystemExit
+	else:
+		print("ttyACM{0} port connecté.".format(done+1))
+		break
+
+
 ################################################
 ####		   GLOBAL VARIABLES				####
 ################################################
@@ -104,12 +114,14 @@ def mainThread():
 			#valR=scaleR.get()
 			#valV=scaleV.get()
 			#valB=scaleB.get()
-			if colorWheelValue.get()<1535:
-				colorWheelValue.set(colorWheelValue.get()+4)
-			else:
-				colorWheelValue.set(0)
-
-			string = "{0}f{1}f{2}f".format(valR+256,valV+512,valB+768)
+			
+			if StopScale.get()==0:
+				if colorWheelValue.get()<1535:
+					colorWheelValue.set(colorWheelValue.get()+4)
+				else:
+					colorWheelValue.set(0)
+			
+			string = "{0}f{1}f{2}f".format(valR//(dimming.get()+1)+256,valV//(dimming.get()+1)+512,valB//(dimming.get()+1)+768)
 			ser.write(string.encode())
 
 def Key(event):
@@ -154,12 +166,20 @@ if __name__ == "__main__":
 	# Bind keyboard to the window
 	Mafenetre.bind('<Key>', Key)
 
+	# StopThread
+	StopScale = Scale(Mafenetre,from_=0,to=1,resolution=1,\
+	orient=HORIZONTAL,length=60,width=30, label="Pause")
+	StopScale.grid(row=0, column=0, padx=6, pady=20)
+
+	# Dimming bar
+	dimming = Scale(Mafenetre,from_=0,to=100,resolution=1,\
+	orient=HORIZONTAL,length=256,width=20, label="Dimming")
+	dimming.grid(row=1, column=0, padx=6, pady=20)
 
 	# Color wheel bar
 	colorWheelValue = Scale(Mafenetre,from_=0,to=1535,resolution=1,\
 	orient=HORIZONTAL,length=256,width=30, label="Color Wheel")
-	colorWheelValue.grid(row=5, column=0, columnspan=3, padx=6, pady=20)
-
+	colorWheelValue.grid(row=2, column=0, padx=6, pady=20)
 
 	"""
 	# Individual colors bars
