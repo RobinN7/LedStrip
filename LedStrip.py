@@ -24,6 +24,9 @@ except ImportError:
 	# for Python3
 	from tkinter import *
 
+
+
+
 ################################################
 ####			SERIAL CONNECTION			####
 ################################################
@@ -47,7 +50,7 @@ for i in range(11):
 		ErrorScreen.mainloop() 
 		raise SystemExit
 	else:
-		print("ttyACM{0} port connecté.".format(done+1))
+		print("ttyACM{0} port connecté.".format(done))
 		break
 
 
@@ -55,24 +58,26 @@ for i in range(11):
 ####		   GLOBAL VARIABLES				####
 ################################################
 
-stopThread = 0
+stopWheelThread = 0
+stopSendThread = 0
+valR=10
+valV=10
+valB=10
 
 ################################################
-####			  MAIN THREAD				####
+####			  	Threads					####
 ################################################
 
-def mainThread():
+def wheelThread():
 	# Beat in seconds
 	global beat
 	global lastTime
 	# Colors values
-	valR=10
-	valV=10
-	valB=10
-	global stopThread
+	global valR, valV, valB
+	global stopWheelThread
 
-	while stopThread==0:
-		if time()-lastTime>beat/128:
+	while stopWheelThread==0:
+		if time()-lastTime>beat/512:
 			lastTime=time()
 			###########################
 			# Color wheel acquisition #
@@ -117,11 +122,21 @@ def mainThread():
 			
 			if StopScale.get()==0:
 				if colorWheelValue.get()<1535:
-					colorWheelValue.set(colorWheelValue.get()+4)
+					colorWheelValue.set(colorWheelValue.get()+1)
 				else:
 					colorWheelValue.set(0)
-			
-			string = "{0}f{1}f{2}f".format(valR//(dimming.get()+1)+256,valV//(dimming.get()+1)+512,valB//(dimming.get()+1)+768)
+
+def sendThread():
+	# Colors values
+	global valR, valV, valB
+	global stopSendThread
+
+	while stopSendThread==0:	
+
+			string = "{0}f{1}f{2}f".format(\
+									valR//(dimming.get()*dimming.get()/39+1)+256,\
+									valV//(dimming.get()*dimming.get()/39+1)+512,\
+									valB//(dimming.get()*dimming.get()/39+1)+768)
 			ser.write(string.encode())
 
 def Key(event):
@@ -162,23 +177,24 @@ if __name__ == "__main__":
 	lastTime=time()
 	# Beat initialisation
 	lastBeat=time()
-	beat=1
+	beat=5
 	# Bind keyboard to the window
 	Mafenetre.bind('<Key>', Key)
 
-	# StopThread
+	# Pause
 	StopScale = Scale(Mafenetre,from_=0,to=1,resolution=1,\
 	orient=HORIZONTAL,length=60,width=30, label="Pause")
+	StopScale.set(1)
 	StopScale.grid(row=0, column=0, padx=6, pady=20)
 
 	# Dimming bar
 	dimming = Scale(Mafenetre,from_=0,to=100,resolution=1,\
-	orient=HORIZONTAL,length=256,width=20, label="Dimming")
+	orient=HORIZONTAL,length=512,width=20, label="Dimming")
 	dimming.grid(row=1, column=0, padx=6, pady=20)
 
 	# Color wheel bar
 	colorWheelValue = Scale(Mafenetre,from_=0,to=1535,resolution=1,\
-	orient=HORIZONTAL,length=256,width=30, label="Color Wheel")
+	orient=HORIZONTAL,length=512,width=30, label="Color Wheel")
 	colorWheelValue.grid(row=2, column=0, padx=6, pady=20)
 
 	"""
@@ -205,14 +221,19 @@ if __name__ == "__main__":
 	valB_field.grid(row=2, column=1, pady=5)
 	"""
 
-	# Thread start
-	Thread(None, mainThread).start()
+	# Threads start
+	Thread(None, wheelThread).start()
+	Thread(None, sendThread).start()	
 
 	# Tk window inifinite loop
 	Mafenetre.mainloop() 
 
 	# Exit everything on window closing
-	stopThread = 1
-	Thread(None, mainThread)._stop() 
+	stopWheelThread = 1
+	Thread(None, wheelThread)._stop() 
+	stopSendThread = 1
+	Thread(None, sendThread)._stop() 
+	ser.close()	
+
 	raise SystemExit
 
