@@ -10,21 +10,21 @@ int bp = 7;
 int pot = A0;
 
 
-unsigned int valR;
-unsigned int valV;
-unsigned int valB;
-unsigned int choix;
-unsigned int valeur;
-unsigned int s;
+unsigned int valR=0;
+unsigned int valV=0;
+unsigned int valB=0;
+unsigned int choix=0;
+unsigned int valeur=0;
+unsigned int s=0;
 int mode = 0;
 int nouveauMode = 0;
 
-double teinte;
-int    k;
-int    x;
-unsigned int valR_potMode;
-unsigned int valV_potMode;
-unsigned int valB_potMode;
+double teinte=0;
+int    k=0;
+int    x=0;
+unsigned int valR_potMode=0;
+unsigned int valV_potMode=0;
+unsigned int valB_potMode=0;
 
 void setup() {                
   pinMode(ledR, OUTPUT);  
@@ -49,7 +49,7 @@ void setup() {
 
 void loop(){
   
-  nouveauMode = digitalRead( sw ) == HIGH ? 1 : 0;
+  nouveauMode = digitalRead( sw ); // == HIGH ? 1 : 0;
   
   if( mode != nouveauMode )
   {
