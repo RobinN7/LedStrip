@@ -90,21 +90,21 @@ void loop(){
         //Serial.print( "rouge" );
         //Serial.println( valeur );
         valR = valeur;
-        analogWrite( ledR , valR );
+        analogWrite( ledR , (int)( floor( valR * (double)analogRead(pot) / 1023.0 ) ) );
       }
       else if( choix == 2 )
       {
         //Serial.print( "vert" );
         //Serial.println( valeur );
         valV = valeur;
-        analogWrite( ledV , valV );
+        analogWrite( ledV , (int)( floor( valV * (double)analogRead(pot) / 1023.0 ) ) );
       }
       else if( choix == 3 )
       {
         //Serial.print( "bleu" );
         //Serial.println( valeur );
         valB = valeur;
-        analogWrite( ledB , valB );
+        analogWrite( ledB , (int)( floor( valB * (double)analogRead(pot) / 1023.0 ) ) );
       }
     }
   }

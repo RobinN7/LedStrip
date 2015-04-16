@@ -1,0 +1,13 @@
+i2_segments: CODE, 1316 0 228
+_initialisation: CODE, 1544 0 98
+i2_rafraichissement: CODE, 796 0 292
+i2___lwdiv: CODE, 1724 0 82
+_segments: CODE, 1088 0 228
+_main: CODE, 172 0 332
+i2___lwmod: CODE, 1872 0 66
+__initialization: CODE, 1938 0 30
+___lwdiv: CODE, 1642 0 82
+_rafraichissement: CODE, 504 0 292
+___lwmod: CODE, 1806 0 66
+_low_interrupt: CODE, 8 0 160
+Total: 1956
