@@ -3,8 +3,11 @@
 [d edition pro ]
 [d chip 18F25K80 ]
 [d frameptr 4065 ]
+"5 /opt/microchip/xc8/v1.34/sources/common/atoi.c
+[v _atoi atoi `(i  1 e 2 0 ]
 "8 /opt/microchip/xc8/v1.34/sources/common/awdiv.c
 [v ___awdiv __awdiv `(i  1 e 2 0 ]
+[v i2___awdiv __awdiv `(i  1 e 2 0 ]
 "63 /opt/microchip/xc8/v1.34/sources/common/double.c
 [v ___flpack __flpack `(d  1 e 3 0 ]
 "88 /opt/microchip/xc8/v1.34/sources/common/fladd.c
@@ -25,20 +28,25 @@
 [v ___ftmul __ftmul `(f  1 e 3 0 ]
 "20 /opt/microchip/xc8/v1.34/sources/common/ftsub.c
 [v ___ftsub __ftsub `(f  1 e 3 0 ]
+"8 /opt/microchip/xc8/v1.34/sources/common/isdigit.c
+[v _isdigit isdigit `(b  1 e 0 0 ]
+"15 /opt/microchip/xc8/v1.34/sources/common/Umul16.c
+[v ___wmul __wmul `(ui  1 e 2 0 ]
 "15 /opt/microchip/xc8/v1.34/sources/common/Umul32.c
 [v ___lmul __lmul `(ul  1 e 4 0 ]
 "8 /home/robin/7Robot/LedStrip/LedStrip.X/converter.c
 [v _pwm pwm `(v  1 e 0 0 ]
-"107 /home/robin/7Robot/LedStrip/LedStrip.X/main.c
+[v i2_pwm pwm `(v  1 e 0 0 ]
+"117 /home/robin/7Robot/LedStrip/LedStrip.X/main.c
+[v _low_interrupt low_interrupt `II(v  1 e 0 0 ]
+"170
 [v _main main `(i  1 e 2 0 ]
-"130
+"190
 [v _initialisation initialisation `(v  1 e 0 0 ]
-"143
-[v _initPWM initPWM `(v  1 e 0 0 ]
-"184
-[v _initComms initComms `(v  1 e 0 0 ]
 "203
-[v _writeStringToUART writeStringToUART `(v  1 e 0 0 ]
+[v _initPWM initPWM `(v  1 e 0 0 ]
+"245
+[v _initComms initComms `(v  1 e 0 0 ]
 "28420 /opt/microchip/xc8/v1.34/include/pic18f25k80.h
 [v _CCPR4L CCPR4L `VEuc  1 e 1 @3915 ]
 "28542
@@ -47,11 +55,13 @@
 [v _CCPR2L CCPR2L `VEuc  1 e 1 @3921 ]
 "32263
 [v _TXREG2 TXREG2 `VEuc  1 e 1 @3961 ]
+"32282
+[v _RCREG2 RCREG2 `VEuc  1 e 1 @3962 ]
 "32301
 [v _SPBRG2 SPBRG2 `VEuc  1 e 1 @3963 ]
 "32320
 [v _SPBRGH2 SPBRGH2 `VEuc  1 e 1 @3964 ]
-[s S64 . 1 `uc 1 TRISB0 1 0 :1:0 
+[s S66 . 1 `uc 1 TRISB0 1 0 :1:0 
 `uc 1 TRISB1 1 0 :1:1 
 `uc 1 TRISB2 1 0 :1:2 
 `uc 1 TRISB3 1 0 :1:3 
@@ -61,13 +71,49 @@
 `uc 1 TRISB7 1 0 :1:7 
 ]
 "33569
-[u S73 . 1 `S64 1 . 1 0 ]
+[u S75 . 1 `S66 1 . 1 0 ]
 "33569
 "33569
-[v _TRISBbits TRISBbits `VES73  1 e 1 @3987 ]
+[v _TRISBbits TRISBbits `VES75  1 e 1 @3987 ]
 "33613
 [v _TRISC TRISC `VEuc  1 e 1 @3988 ]
-[s S199 . 1 `uc 1 . 1 0 :1:0 
+[s S354 . 1 `uc 1 . 1 0 :1:0 
+`uc 1 CCP1IE 1 0 :1:1 
+`uc 1 CCP2IE 1 0 :1:2 
+`uc 1 CTMUIE 1 0 :1:3 
+`uc 1 TX2IE 1 0 :1:4 
+`uc 1 RC2IE 1 0 :1:5 
+]
+"34323
+[s S361 . 1 `uc 1 . 1 0 :1:0 
+`uc 1 RXB1IE 1 0 :1:1 
+]
+"34323
+[s S364 . 1 `uc 1 . 1 0 :1:0 
+`uc 1 RXBNIE 1 0 :1:1 
+]
+"34323
+[s S367 . 1 `uc 1 . 1 0 :2:0 
+`uc 1 TXB0IE 1 0 :1:2 
+]
+"34323
+[s S370 . 1 `uc 1 . 1 0 :3:0 
+`uc 1 TXB1IE 1 0 :1:3 
+]
+"34323
+[s S373 . 1 `uc 1 . 1 0 :4:0 
+`uc 1 TXB2IE 1 0 :1:4 
+]
+"34323
+[s S376 . 1 `uc 1 . 1 0 :4:0 
+`uc 1 TXBNIE 1 0 :1:4 
+]
+"34323
+[u S379 . 1 `S354 1 . 1 0 `S361 1 . 1 0 `S364 1 . 1 0 `S367 1 . 1 0 `S370 1 . 1 0 `S373 1 . 1 0 `S376 1 . 1 0 ]
+"34323
+"34323
+[v _PIE3bits PIE3bits `VES379  1 e 1 @4003 ]
+[s S413 . 1 `uc 1 . 1 0 :1:0 
 `uc 1 CCP1IF 1 0 :1:1 
 `uc 1 CCP2IF 1 0 :1:2 
 `uc 1 CTMUIF 1 0 :1:3 
@@ -75,19 +121,19 @@
 `uc 1 RC2IF 1 0 :1:5 
 ]
 "34405
-[s S206 . 1 `uc 1 . 1 0 :1:0 
+[s S420 . 1 `uc 1 . 1 0 :1:0 
 `uc 1 RXBNIF 1 0 :1:1 
 ]
 "34405
-[s S209 . 1 `uc 1 . 1 0 :4:0 
+[s S423 . 1 `uc 1 . 1 0 :4:0 
 `uc 1 TXBNIF 1 0 :1:4 
 ]
 "34405
-[u S212 . 1 `S199 1 . 1 0 `S206 1 . 1 0 `S209 1 . 1 0 ]
+[u S426 . 1 `S413 1 . 1 0 `S420 1 . 1 0 `S423 1 . 1 0 ]
 "34405
 "34405
-[v _PIR3bits PIR3bits `VES212  1 e 1 @4004 ]
-[s S140 . 1 `uc 1 RX9D 1 0 :1:0 
+[v _PIR3bits PIR3bits `VES426  1 e 1 @4004 ]
+[s S142 . 1 `uc 1 RX9D 1 0 :1:0 
 `uc 1 OERR 1 0 :1:1 
 `uc 1 FERR 1 0 :1:2 
 `uc 1 ADDEN 1 0 :1:3 
@@ -97,7 +143,7 @@
 `uc 1 SPEN 1 0 :1:7 
 ]
 "34544
-[s S149 . 1 `uc 1 RX9D2 1 0 :1:0 
+[s S151 . 1 `uc 1 RX9D2 1 0 :1:0 
 `uc 1 OERR2 1 0 :1:1 
 `uc 1 FERR2 1 0 :1:2 
 `uc 1 ADDEN2 1 0 :1:3 
@@ -107,24 +153,24 @@
 `uc 1 SPEN2 1 0 :1:7 
 ]
 "34544
-[s S158 . 1 `uc 1 . 1 0 :6:0 
+[s S160 . 1 `uc 1 . 1 0 :6:0 
 `uc 1 RC8_92 1 0 :1:6 
 ]
 "34544
-[s S161 . 1 `uc 1 . 1 0 :6:0 
+[s S163 . 1 `uc 1 . 1 0 :6:0 
 `uc 1 RC92 1 0 :1:6 
 ]
 "34544
-[s S164 . 1 `uc 1 RCD82 1 0 :1:0 
+[s S166 . 1 `uc 1 RCD82 1 0 :1:0 
 ]
 "34544
-[u S166 . 1 `S140 1 . 1 0 `S149 1 . 1 0 `S158 1 . 1 0 `S161 1 . 1 0 `S164 1 . 1 0 ]
+[u S168 . 1 `S142 1 . 1 0 `S151 1 . 1 0 `S160 1 . 1 0 `S163 1 . 1 0 `S166 1 . 1 0 ]
 "34544
 "34544
-[v _RCSTA2bits RCSTA2bits `VES166  1 e 1 @4006 ]
+[v _RCSTA2bits RCSTA2bits `VES168  1 e 1 @4006 ]
 "36359
 [v _BAUDCON2 BAUDCON2 `VEuc  1 e 1 @4025 ]
-[s S85 . 1 `uc 1 TX9D 1 0 :1:0 
+[s S87 . 1 `uc 1 TX9D 1 0 :1:0 
 `uc 1 TRMT 1 0 :1:1 
 `uc 1 BRGH 1 0 :1:2 
 `uc 1 SENDB 1 0 :1:3 
@@ -134,7 +180,7 @@
 `uc 1 CSRC 1 0 :1:7 
 ]
 "36547
-[s S94 . 1 `uc 1 TX9D2 1 0 :1:0 
+[s S96 . 1 `uc 1 TX9D2 1 0 :1:0 
 `uc 1 TRMT2 1 0 :1:1 
 `uc 1 BRGH2 1 0 :1:2 
 `uc 1 SENDB2 1 0 :1:3 
@@ -144,20 +190,95 @@
 `uc 1 CSRC2 1 0 :1:7 
 ]
 "36547
-[s S103 . 1 `uc 1 . 1 0 :6:0 
+[s S105 . 1 `uc 1 . 1 0 :6:0 
 `uc 1 TX8_92 1 0 :1:6 
 ]
 "36547
-[s S106 . 1 `uc 1 TXD82 1 0 :1:0 
+[s S108 . 1 `uc 1 TXD82 1 0 :1:0 
 ]
 "36547
-[u S108 . 1 `S85 1 . 1 0 `S94 1 . 1 0 `S103 1 . 1 0 `S106 1 . 1 0 ]
+[u S110 . 1 `S87 1 . 1 0 `S96 1 . 1 0 `S105 1 . 1 0 `S108 1 . 1 0 ]
 "36547
 "36547
-[v _TXSTA2bits TXSTA2bits `VES108  1 e 1 @4026 ]
+[v _TXSTA2bits TXSTA2bits `VES110  1 e 1 @4026 ]
 "38004
 [v _PR2 PR2 `VEuc  1 e 1 @4043 ]
-"41729
+[s S201 . 1 `uc 1 NOT_BOR 1 0 :1:0 
+]
+"38343
+[s S203 . 1 `uc 1 . 1 0 :1:0 
+`uc 1 NOT_POR 1 0 :1:1 
+]
+"38343
+[s S206 . 1 `uc 1 . 1 0 :2:0 
+`uc 1 NOT_PD 1 0 :1:2 
+]
+"38343
+[s S209 . 1 `uc 1 . 1 0 :3:0 
+`uc 1 NOT_TO 1 0 :1:3 
+]
+"38343
+[s S212 . 1 `uc 1 . 1 0 :4:0 
+`uc 1 NOT_RI 1 0 :1:4 
+]
+"38343
+[s S215 . 1 `uc 1 . 1 0 :5:0 
+`uc 1 NOT_CM 1 0 :1:5 
+]
+"38343
+[s S218 . 1 `uc 1 nBOR 1 0 :1:0 
+`uc 1 nPOR 1 0 :1:1 
+`uc 1 nPD 1 0 :1:2 
+`uc 1 nTO 1 0 :1:3 
+`uc 1 nRI 1 0 :1:4 
+`uc 1 nCM 1 0 :1:5 
+`uc 1 SBOREN 1 0 :1:6 
+`uc 1 IPEN 1 0 :1:7 
+]
+"38343
+[s S227 . 1 `uc 1 BOR 1 0 :1:0 
+`uc 1 POR 1 0 :1:1 
+`uc 1 PD 1 0 :1:2 
+`uc 1 TO 1 0 :1:3 
+`uc 1 RI 1 0 :1:4 
+`uc 1 CM 1 0 :1:5 
+]
+"38343
+[u S234 . 1 `S201 1 . 1 0 `S203 1 . 1 0 `S206 1 . 1 0 `S209 1 . 1 0 `S212 1 . 1 0 `S215 1 . 1 0 `S218 1 . 1 0 `S227 1 . 1 0 ]
+"38343
+"38343
+[v _RCONbits RCONbits `VES234  1 e 1 @4048 ]
+[s S277 . 1 `uc 1 RBIF 1 0 :1:0 
+`uc 1 INT0IF 1 0 :1:1 
+`uc 1 TMR0IF 1 0 :1:2 
+`uc 1 RBIE 1 0 :1:3 
+`uc 1 INT0IE 1 0 :1:4 
+`uc 1 TMR0IE 1 0 :1:5 
+`uc 1 PEIE_GIEL 1 0 :1:6 
+`uc 1 GIE_GIEH 1 0 :1:7 
+]
+"39554
+[s S286 . 1 `uc 1 . 1 0 :1:0 
+`uc 1 INT0F 1 0 :1:1 
+`uc 1 T0IF 1 0 :1:2 
+`uc 1 . 1 0 :1:3 
+`uc 1 INT0E 1 0 :1:4 
+`uc 1 T0IE 1 0 :1:5 
+`uc 1 PEIE 1 0 :1:6 
+`uc 1 GIE 1 0 :1:7 
+]
+"39554
+[s S295 . 1 `uc 1 . 1 0 :6:0 
+`uc 1 GIEL 1 0 :1:6 
+`uc 1 GIEH 1 0 :1:7 
+]
+"39554
+"39554
+"39554
+[u S312 . 1 `S277 1 . 1 0 `S286 1 . 1 0 `S295 1 . 1 0 `S286 1 . 1 0 `S295 1 . 1 0 ]
+"39554
+"39554
+[v _INTCONbits INTCONbits `VES312  1 e 1 @4082 ]
 "41729
 [v _CCP2M2 CCP2M2 `VEb  1 e 0 @31362 ]
 "41731
@@ -182,35 +303,38 @@
 [v _DC4B0 DC4B0 `VEb  1 e 0 @31316 ]
 "41953
 [v _DC4B1 DC4B1 `VEb  1 e 0 @31317 ]
+"42775
+[v _RC2IF RC2IF `VEb  1 e 0 @32037 ]
 "44667
 [v _T2CKPS0 T2CKPS0 `VEb  1 e 0 @32336 ]
 "44669
 [v _T2CKPS1 T2CKPS1 `VEb  1 e 0 @32337 ]
 "44773
 [v _TMR2ON TMR2ON `VEb  1 e 0 @32338 ]
-"107 /home/robin/7Robot/LedStrip/LedStrip.X/main.c
+"88 /home/robin/7Robot/LedStrip/LedStrip.X/main.c
+[v _compteur compteur `uc  1 e 1 0 ]
+"89
+[v _buffer buffer `[16]uc  1 e 16 0 ]
+"90
+[v _beginR beginR `uc  1 e 1 0 ]
+"91
+[v _beginG beginG `uc  1 e 1 0 ]
+"92
+[v _beginB beginB `uc  1 e 1 0 ]
+"170
 [v _main main `(i  1 e 2 0 ]
 {
-"110
-[v main@msg1 msg1 `[80]uc  1 a 80 0 ]
-"109
-[v main@i i `i  1 a 2 80 ]
-[v main@F19146 F19146 `[80]uc  1 s 80 F19146 ]
-"127
-} 0
-"203
-[v _writeStringToUART writeStringToUART `(v  1 e 0 0 ]
-{
-[v writeStringToUART@msg msg `*.25Cuc  1 p 2 0 ]
-"209
+"173
+[v main@delay delay `i  1 a 2 13 ]
+"187
 } 0
 "8 /home/robin/7Robot/LedStrip/LedStrip.X/converter.c
 [v _pwm pwm `(v  1 e 0 0 ]
 {
 [v pwm@color color `uc  1 a 1 wreg ]
 [v pwm@color color `uc  1 a 1 wreg ]
-[v pwm@dutycycle dutycycle `i  1 p 2 8 ]
-[v pwm@color color `uc  1 a 1 10 ]
+[v pwm@dutycycle dutycycle `i  1 p 2 32 ]
+[v pwm@color color `uc  1 a 1 34 ]
 "27
 } 0
 "8 /opt/microchip/xc8/v1.34/sources/common/awdiv.c
@@ -226,18 +350,76 @@
 [v ___awdiv@divisor divisor `i  1 p 2 2 ]
 "42
 } 0
-"130 /home/robin/7Robot/LedStrip/LedStrip.X/main.c
+"190 /home/robin/7Robot/LedStrip/LedStrip.X/main.c
 [v _initialisation initialisation `(v  1 e 0 0 ]
 {
-"140
+"200
 } 0
-"143
+"203
 [v _initPWM initPWM `(v  1 e 0 0 ]
 {
-"181
+"242
 } 0
-"184
+"245
 [v _initComms initComms `(v  1 e 0 0 ]
 {
-"201
+"271
+} 0
+"117
+[v _low_interrupt low_interrupt `II(v  1 e 0 0 ]
+{
+"119
+[v low_interrupt@input input `[2]uc  1 a 2 30 ]
+"117
+[v low_interrupt@F19153 F19153 `[2]uc  1 s 2 F19153 ]
+"167
+} 0
+"8 /home/robin/7Robot/LedStrip/LedStrip.X/converter.c
+[v i2_pwm pwm `(v  1 e 0 0 ]
+{
+[v i2pwm@color color `uc  1 a 1 wreg ]
+[v i2pwm@color color `uc  1 a 1 wreg ]
+[v i2pwm@dutycycle dutycycle `i  1 p 2 13 ]
+[v i2pwm@color color `uc  1 a 1 15 ]
+"27
+} 0
+"8 /opt/microchip/xc8/v1.34/sources/common/awdiv.c
+[v i2___awdiv __awdiv `(i  1 e 2 0 ]
+{
+[v i2___awdiv@quotient __awdiv `i  1 a 2 6 ]
+[v i2___awdiv@sign __awdiv `uc  1 a 1 5 ]
+[v i2___awdiv@counter __awdiv `uc  1 a 1 4 ]
+[v i2___awdiv@dividend dividend `i  1 p 2 0 ]
+[v i2___awdiv@divisor divisor `i  1 p 2 2 ]
+"42
+} 0
+"5 /opt/microchip/xc8/v1.34/sources/common/atoi.c
+[v _atoi atoi `(i  1 e 2 0 ]
+{
+"7
+[v atoi@a a `i  1 a 2 11 ]
+"8
+[v atoi@sign sign `uc  1 a 1 10 ]
+"5
+[v atoi@s s `*.39Cuc  1 p 2 6 ]
+"24
+} 0
+"8 /opt/microchip/xc8/v1.34/sources/common/isdigit.c
+[v _isdigit isdigit `(b  1 e 0 0 ]
+{
+[v isdigit@c c `uc  1 a 1 wreg ]
+[v isdigit@c c `uc  1 a 1 wreg ]
+"14
+[v isdigit@c c `uc  1 a 1 2 ]
+"15
+} 0
+"15 /opt/microchip/xc8/v1.34/sources/common/Umul16.c
+[v ___wmul __wmul `(ui  1 e 2 0 ]
+{
+"17
+[v ___wmul@product product `ui  1 a 2 4 ]
+"15
+[v ___wmul@multiplier multiplier `ui  1 p 2 0 ]
+[v ___wmul@multiplicand multiplicand `ui  1 p 2 2 ]
+"53
 } 0

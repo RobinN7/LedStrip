@@ -83,6 +83,16 @@
 #include "main.h"
 #include "converter.h"
 
+//////////////////////////////// GLOBAL VARS ///////////////////////////////////
+
+char compteur=0;
+char buffer[16]="";
+char beginR=0;
+char beginG=0;
+char beginB=0;
+int R=100;
+int G=100;
+int B=100;
 
 /*
 //Main Interrupt Service Routine (ISR)
@@ -104,23 +114,73 @@ void interrupt low_interrupt() {
     }
 }*/
 
+void interrupt low_interrupt(void) {
+
+    char input[2] = "";
+    input[0] = RCREG2;    // lecture UART
+
+    if (beginR==1 | beginG==1 | beginB==1)
+    {
+        buffer[compteur]=input[0];
+        compteur+=1;
+    }
+
+    if (compteur==4)    // fin d'une trame
+    {
+        if (beginR==1)  // fin de trame rouge
+            pwm('R',atoi(buffer));
+            beginR=0;
+        if (beginG==1)  // fin de trame vert
+            pwm('G',atoi(buffer));
+            beginG=0;
+        if (beginB==1)  // fin de trame bleu
+            pwm('B',atoi(buffer));
+            beginB=0;
+
+        compteur=0;
+    }
+
+
+    if (input[0]=='R')  // Debut trame rouge
+        beginR=1;
+    if (input[0]=='G')  // Debut trame vert
+        beginG=1;
+    if (input[0]=='B')  // Debut trame bleu
+        beginB=1;
+
+    RC2IF = 0;              // On baisse le FLAG
+
+    /*
+    if (input == 'X') {     // début de la trame
+        begin = 1;
+    }
+    else if ( input =='$') {// fin de la trame
+        compteur=0;
+        begin = 0;
+        done = 1;
+    }
+
+    if (begin  == 1 ) {
+        buffer[compteur]=input;
+        compteur=compteur+1;
+    }*/
+}
+
+
 int main(int argc, char** argv) {
 
-    int i=0;
 
+    int delay=0;
     initialisation();
+    pwm('R',10);
+    pwm('G',10);
+    pwm('B',10);
 
     while (1) {
-        i++;
-        if (i==1024)
-        {
-            i=0;
-            writeStringToUART ("test");
-        }
-        pwm('R',i);
-        pwm('G',i);
-        pwm('B',i);
-
+        /*
+        sprintf(msg, "%d\n\r", i);
+        writeStringToUART(msg);
+        */
     }
 
     return (EXIT_SUCCESS);
@@ -142,7 +202,8 @@ void initialisation(void) {
 
 void initPWM()
 {
-    // Set 39.06 kHz PWM frequency
+    // FOSC = 8 MHz
+    // Set 7812.5 Hz PWM frequency
     // PWM Period = [(PR2) + 1] * 4 * T OSC * (TMR2 Prescale Value)
     PR2=0xFF;
 
@@ -190,7 +251,7 @@ void initComms()
     TXSTA2bits.BRGH = 1;            //High speed Baudrate
     TXSTA2bits.SYNC = 0;            //Asynchronous
     SPBRGH2 = 0;
-    SPBRG2 = 25;                    //((FCY/16)/BAUD) - 1; // set baud to 9600  FCY=4000000
+    SPBRG2 = 207;                    //((FCY/16)/BAUD) - 1; // set baud to 9600  FCY=32000000
     BAUDCON2 = 0x08;                //BRGH16 = 1
 
 
@@ -198,6 +259,15 @@ void initComms()
     TXSTA2bits.TXEN = 1;            //Enables transmitter
     RCSTA2bits.CREN = 1;            //Enables receiver
     RCSTA2bits.SPEN = 1;            //Enable UART
+
+    // USART interrupts configuration
+    RCONbits.IPEN   = 1;    // ENABLE interrupt priority
+    INTCONbits.GIE  = 1;    // ENABLE interrupts
+    INTCONbits.PEIE = 1;    // ENABLE peripheral interrupts.
+    PIE3bits.RC2IE   = 1;   // ENABLE USART receive interrupt
+    PIE3bits.TX2IE   = 0;   // DISABLE USART TX interrupt
+
+    RC2IF = 0;              // Clear flag
 }
 
 void writeStringToUART (const char *msg)

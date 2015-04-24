@@ -21970,24 +21970,69 @@ void writeStringToUART (const char* msg);
 # 12 "converter.h"
 void pwm(char,int);
 
-# 107 "main.c"
+# 88 "main.c"
+char compteur=0;
+char buffer[16]="";
+char beginR=0;
+char beginG=0;
+char beginB=0;
+int R=100;
+int G=100;
+int B=100;
+
+# 117
+void interrupt low_interrupt(void) {
+
+char input[2] = "";
+input[0] = RCREG2;
+
+if (beginR==1 | beginG==1 | beginB==1)
+{
+buffer[compteur]=input[0];
+compteur+=1;
+}
+
+if (compteur==4)
+{
+if (beginR==1)
+pwm('R',atoi(buffer));
+beginR=0;
+if (beginG==1)
+pwm('G',atoi(buffer));
+beginG=0;
+if (beginB==1)
+pwm('B',atoi(buffer));
+beginB=0;
+
+compteur=0;
+}
+
+
+if (input[0]=='R')
+beginR=1;
+if (input[0]=='G')
+beginG=1;
+if (input[0]=='B')
+beginB=1;
+
+RC2IF = 0;
+
+# 167
+}
+
+
 int main(int argc, char** argv) {
 
-int i=0;
-char msg1[80] = "This works\n";
+
+int delay=0;
 initialisation();
+pwm('R',10);
+pwm('G',10);
+pwm('B',10);
 
 while (1) {
-i++;
-if (i==1024)
-{
-i=0;
-writeStringToUART ("test");
-}
-pwm('R',i);
-pwm('G',i);
-pwm('B',i);
 
+# 184
 }
 
 return (0);
@@ -22011,6 +22056,7 @@ void initPWM()
 {
 
 
+
 PR2=0xFF;
 
 
@@ -22025,7 +22071,7 @@ DC3B0=0;
 DC4B1=0;
 DC4B0=0;
 
-# 165
+# 226
 TRISC=TRISC & 0b00111011;
 
 
@@ -22054,7 +22100,7 @@ TRISBbits.TRISB6 = 0;
 TXSTA2bits.BRGH = 1;
 TXSTA2bits.SYNC = 0;
 SPBRGH2 = 0;
-SPBRG2 = 25;
+SPBRG2 = 207;
 BAUDCON2 = 0x08;
 
 
@@ -22062,6 +22108,15 @@ BAUDCON2 = 0x08;
 TXSTA2bits.TXEN = 1;
 RCSTA2bits.CREN = 1;
 RCSTA2bits.SPEN = 1;
+
+
+RCONbits.IPEN = 1;
+INTCONbits.GIE = 1;
+INTCONbits.PEIE = 1;
+PIE3bits.RC2IE = 1;
+PIE3bits.TX2IE = 0;
+
+RC2IF = 0;
 }
 
 void writeStringToUART (const char *msg)

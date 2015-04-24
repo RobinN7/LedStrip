@@ -17413,7 +17413,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 "9
 [e $U 2641  ]
 {
-[; ;converter.c: 10: case 'R':
+[; ;converter.c: 10: case 'B':
 "10
 [e :U 2642 ]
 [; ;converter.c: 11: CCPR2L=dutycycle/4;
@@ -17428,7 +17428,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;converter.c: 14: break;
 "14
 [e $U 2640  ]
-[; ;converter.c: 15: case 'G':
+[; ;converter.c: 15: case 'R':
 "15
 [e :U 2643 ]
 [; ;converter.c: 16: CCPR3L=dutycycle/4;
@@ -17443,7 +17443,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;converter.c: 19: break;
 "19
 [e $U 2640  ]
-[; ;converter.c: 20: case 'B':
+[; ;converter.c: 20: case 'G':
 "20
 [e :U 2644 ]
 [; ;converter.c: 21: CCPR4L=dutycycle/4;
@@ -17464,9 +17464,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e $U 2640  ]
 "9
 [e :U 2641 ]
-[e [\ _color , $ -> -> 82 `ui `uc 2642
- , $ -> -> 71 `ui `uc 2643
- , $ -> -> 66 `ui `uc 2644
+[e [\ _color , $ -> -> 66 `ui `uc 2642
+ , $ -> -> 82 `ui `uc 2643
+ , $ -> -> 71 `ui `uc 2644
  2640 ]
 "25
 [e :U 2640 ]
