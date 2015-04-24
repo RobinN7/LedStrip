@@ -21973,26 +21973,31 @@ void pwm(char,int);
 # 88 "main.c"
 char compteur=0;
 char buffer[16]="";
+char buffer1[16]="";
 char beginR=0;
 char beginG=0;
 char beginB=0;
-int R=100;
-int G=100;
-int B=100;
+int R=10;
+int G=10;
+int B=10;
 
-# 117
-void interrupt low_interrupt(void) {
+# 118
+void interrupt high_priority high_isr(void) {
+RC2IF = 0;
+
 
 char input[2] = "";
 input[0] = RCREG2;
 
 if (beginR==1 | beginG==1 | beginB==1)
 {
+if (input[0]!='R' & input[0]!='G' & input[0]!='B')
+{
 buffer[compteur]=input[0];
 compteur+=1;
 }
 
-if (compteur==4)
+else
 {
 if (beginR==1)
 pwm('R',atoi(buffer));
@@ -22004,9 +22009,14 @@ if (beginB==1)
 pwm('B',atoi(buffer));
 beginB=0;
 
-compteur=0;
-}
 
+compteur=0;
+buffer[3]='\0';
+buffer[2]='\0';
+buffer[1]='\0';
+buffer[0]='\0';
+}
+}
 
 if (input[0]=='R')
 beginR=1;
@@ -22015,24 +22025,20 @@ beginG=1;
 if (input[0]=='B')
 beginB=1;
 
-RC2IF = 0;
-
-# 167
+# 177
 }
 
 
 int main(int argc, char** argv) {
 
 
-int delay=0;
+
 initialisation();
-pwm('R',10);
-pwm('G',10);
-pwm('B',10);
+
 
 while (1) {
 
-# 184
+# 193
 }
 
 return (0);
@@ -22071,7 +22077,7 @@ DC3B0=0;
 DC4B1=0;
 DC4B0=0;
 
-# 226
+# 235
 TRISC=TRISC & 0b00111011;
 
 
@@ -22100,7 +22106,7 @@ TRISBbits.TRISB6 = 0;
 TXSTA2bits.BRGH = 1;
 TXSTA2bits.SYNC = 0;
 SPBRGH2 = 0;
-SPBRG2 = 207;
+SPBRG2 = 51;
 BAUDCON2 = 0x08;
 
 

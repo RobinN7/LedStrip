@@ -60,10 +60,10 @@ def colorize(hlgen):
 	hlgen = rolling_scale(hlgen, 0.999)
 
 	for hue, lum in hlgen:
-		yield hls_to_rgb(hue, lum, 0.6)
+		yield hls_to_rgb(hue, lum, 0.95)
 
 ftdi_file = "/dev/ttyUSB0"
-ftdi = serial.Serial(ftdi_file, 9600)
+ftdi = serial.Serial(ftdi_file, 38400)
 
 
 if __name__ == '__main__':
@@ -76,23 +76,6 @@ if __name__ == '__main__':
 	for c in colors:
 		c = list(map(lambda x: int(x * 1024), c))
 
-		string=""
-
-		for i in range (3):
-			if i==0:
-				string+="R"
-			elif i==1:
-				string+="G"
-			else :
-				string+="B"
-
-			if c[i] < 10 :
-				string += '000' + str(c[i])
-			elif c[i] < 100 :
-				string += '00' + str(c[i])
-			elif c[i] < 1000 :
-				string += '0' + str(c[i])
-			else :
-				string += str(c[i])
+		string = "R{0}G{1}B{2}".format(c[0],c[1],c[2])
 
 		ftdi.write(string.encode())

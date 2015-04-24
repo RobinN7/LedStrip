@@ -87,12 +87,13 @@
 
 char compteur=0;
 char buffer[16]="";
+char buffer1[16]="";
 char beginR=0;
 char beginG=0;
 char beginB=0;
-int R=100;
-int G=100;
-int B=100;
+int R=10;
+int G=10;
+int B=10;
 
 /*
 //Main Interrupt Service Routine (ISR)
@@ -114,32 +115,41 @@ void interrupt low_interrupt() {
     }
 }*/
 
-void interrupt low_interrupt(void) {
+void interrupt high_priority high_isr(void) {
+    RC2IF = 0;              // On baisse le FLAG
+
 
     char input[2] = "";
     input[0] = RCREG2;    // lecture UART
 
     if (beginR==1 | beginG==1 | beginB==1)
     {
-        buffer[compteur]=input[0];
-        compteur+=1;
+        if (input[0]!='R' & input[0]!='G' & input[0]!='B')  // trame en cours
+        {
+            buffer[compteur]=input[0];
+            compteur+=1;
+        }
+
+        else                                                // fin d'une trame
+        {
+            if (beginR==1)  // fin de trame rouge
+                pwm('R',atoi(buffer));
+                beginR=0;
+            if (beginG==1)  // fin de trame vert
+                pwm('G',atoi(buffer));
+                beginG=0;
+            if (beginB==1)  // fin de trame bleu
+                pwm('B',atoi(buffer));
+                beginB=0;
+
+
+            compteur=0;
+            buffer[3]='\0';
+            buffer[2]='\0';
+            buffer[1]='\0';
+            buffer[0]='\0';
+        }
     }
-
-    if (compteur==4)    // fin d'une trame
-    {
-        if (beginR==1)  // fin de trame rouge
-            pwm('R',atoi(buffer));
-            beginR=0;
-        if (beginG==1)  // fin de trame vert
-            pwm('G',atoi(buffer));
-            beginG=0;
-        if (beginB==1)  // fin de trame bleu
-            pwm('B',atoi(buffer));
-            beginB=0;
-
-        compteur=0;
-    }
-
 
     if (input[0]=='R')  // Debut trame rouge
         beginR=1;
@@ -148,7 +158,7 @@ void interrupt low_interrupt(void) {
     if (input[0]=='B')  // Debut trame bleu
         beginB=1;
 
-    RC2IF = 0;              // On baisse le FLAG
+
 
     /*
     if (input == 'X') {     // début de la trame
@@ -170,17 +180,16 @@ void interrupt low_interrupt(void) {
 int main(int argc, char** argv) {
 
 
-    int delay=0;
+    //int delay=0;
     initialisation();
-    pwm('R',10);
-    pwm('G',10);
-    pwm('B',10);
+
 
     while (1) {
         /*
         sprintf(msg, "%d\n\r", i);
         writeStringToUART(msg);
         */
+        //writeStringToUART("abc");
     }
 
     return (EXIT_SUCCESS);
@@ -251,7 +260,7 @@ void initComms()
     TXSTA2bits.BRGH = 1;            //High speed Baudrate
     TXSTA2bits.SYNC = 0;            //Asynchronous
     SPBRGH2 = 0;
-    SPBRG2 = 207;                    //((FCY/16)/BAUD) - 1; // set baud to 9600  FCY=32000000
+    SPBRG2 = 51;                    //((FCY/16)/BAUD) - 1; // set baud to 38400  FCY=32000000
     BAUDCON2 = 0x08;                //BRGH16 = 1
 
 
