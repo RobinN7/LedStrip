@@ -6,6 +6,7 @@
                    projectFiles="true">
       <itemPath>converter.h</itemPath>
       <itemPath>main.h</itemPath>
+      <itemPath>init.h</itemPath>
     </logicalFolder>
     <logicalFolder name="LinkerScript"
                    displayName="Linker Files"
@@ -16,6 +17,7 @@
                    projectFiles="true">
       <itemPath>main.c</itemPath>
       <itemPath>converter.c</itemPath>
+      <itemPath>init.c</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"

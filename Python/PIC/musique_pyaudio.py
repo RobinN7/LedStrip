@@ -57,10 +57,10 @@ def rolling_scale(vals, falloff):
 			yield val
 
 def colorize(hlgen):
-	hlgen = rolling_scale(hlgen, 0.999)
+	hlgen = rolling_scale(hlgen, 1)
 
 	for hue, lum in hlgen:
-		yield hls_to_rgb(hue, lum, 0.95)
+		yield hls_to_rgb(hue, lum, 1)
 
 ftdi_file = "/dev/ttyUSB0"
 ftdi = serial.Serial(ftdi_file, 38400)

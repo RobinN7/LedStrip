@@ -8,11 +8,6 @@
 #ifndef MAIN_H
 #define	MAIN_H
 
-void initialisation(void);
-void initComms(void);
-void initPWM(void);
-void initADC(void);
-
 void writeStringToUART (const char* msg);
 unsigned int readADC(char);
 

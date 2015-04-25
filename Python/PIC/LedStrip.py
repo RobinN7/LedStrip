@@ -134,11 +134,6 @@ def sendThread():
 	while stopSendThread==0:	
 
 			string = "R{0}G{1}B{2}".format(valR,valV,valB)
-			"""
-									valR//(dimming.get()*dimming.get()/39+1),\
-									valV//(dimming.get()*dimming.get()/39+1),\
-									valB//(dimming.get()*dimming.get()/39+1))
-			"""
 			print(string)
 			ser.write(string.encode())
 
@@ -189,15 +184,15 @@ if __name__ == "__main__":
 	orient=HORIZONTAL,length=60,width=30, label="Pause")
 	StopScale.set(1)
 	StopScale.grid(row=0, column=0, padx=6, pady=20)
-
+	"""
 	# Dimming bar
 	dimming = Scale(Mafenetre,from_=0,to=100,resolution=1,\
 	orient=HORIZONTAL,length=512,width=20, label="Dimming")
 	dimming.grid(row=1, column=0, padx=6, pady=20)
-
+	"""
 	# Color wheel bar
 	colorWheelValue = Scale(Mafenetre,from_=0,to=6143,resolution=1,\
-	orient=HORIZONTAL,length=512,width=30, label="Color Wheel")
+	orient=HORIZONTAL,length=1024,width=30, label="Color Wheel")
 	colorWheelValue.grid(row=2, column=0, padx=6, pady=20)
 
 	"""
