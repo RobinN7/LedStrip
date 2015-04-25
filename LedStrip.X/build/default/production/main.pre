@@ -206,7 +206,7 @@ extern char * ftoa(float f, int * status);
 # 26 "/opt/microchip/xc8/v1.34/include/htc.h"
 extern const char __xc8_OPTIM_SPEED;
 
-# 49 "/opt/microchip/xc8/v1.34/include/pic18f25k80.h"
+# 49 "/opt/microchip/xc8/v1.34/include/pic18f26k80.h"
 extern volatile unsigned char RXERRCNT @ 0xE41;
 
 asm("RXERRCNT equ 0E41h");
@@ -21965,7 +21965,10 @@ extern __nonreentrant void _delay3(unsigned char);
 void initialisation(void);
 void initComms(void);
 void initPWM(void);
+void initADC(void);
+
 void writeStringToUART (const char* msg);
+unsigned int readADC(char);
 
 # 12 "converter.h"
 void pwm(char,int);
@@ -22024,21 +22027,37 @@ if (input[0]=='G')
 beginG=1;
 if (input[0]=='B')
 beginB=1;
-
-# 177
 }
 
 
 int main(int argc, char** argv) {
 
-
-
+long int delay=0;
 initialisation();
+char msg[32]="";
 
-
+# 176
 while (1) {
 
-# 193
+
+for(delay=0;delay<60000;delay++);
+
+
+
+sprintf(msg, "%u\n\r", readADC(1));
+writeStringToUART(msg);
+
+readADC(2);
+
+sprintf(msg, "%u\n\r", readADC(2));
+writeStringToUART(msg);
+
+readADC(3);
+
+sprintf(msg, "%u\n\r", readADC(3));
+writeStringToUART(msg);
+
+writeStringToUART("\n\r");
 }
 
 return (0);
@@ -22054,6 +22073,10 @@ initPWM();
 
 
 initComms();
+
+
+
+initADC();
 
 }
 
@@ -22077,7 +22100,7 @@ DC3B0=0;
 DC4B1=0;
 DC4B0=0;
 
-# 235
+# 243
 TRISC=TRISC & 0b00111011;
 
 
@@ -22119,10 +22142,30 @@ RCSTA2bits.SPEN = 1;
 RCONbits.IPEN = 1;
 INTCONbits.GIE = 1;
 INTCONbits.PEIE = 1;
-PIE3bits.RC2IE = 1;
+PIE3bits.RC2IE = 0;
 PIE3bits.TX2IE = 0;
 
 RC2IF = 0;
+}
+
+void initADC(void)
+{
+TRIGSEL1=0;
+TRIGSEL0=0;
+
+VCFG1=0;
+VCFG0=0;
+VNCFG=0;
+
+
+
+ANSEL3=1;
+ANSEL2=1;
+ANSEL1=1;
+
+ADON=1;
+
+CHS0=1;
 }
 
 void writeStringToUART (const char *msg)
@@ -22131,4 +22174,35 @@ while(*msg) {
 while(PIR3bits.TX2IF == 0) {}
 TXREG2 = *msg++;
 }
+}
+
+unsigned int readADC(char channel)
+{
+char tempo=0;
+switch (channel)
+{
+case 1:
+{
+CHS1=0;
+CHS0=1;
+break;
+}
+case 2:
+{
+CHS1=1;
+CHS0=0;
+break;
+}
+case 3:
+{
+CHS1=1;
+CHS0=1;
+break;
+}
+}
+for(tempo=0;tempo<100;tempo++);
+GO_nDONE = 1;
+while(GO_nDONE);
+
+return ((ADRESH<<8)+ADRESL);
 }

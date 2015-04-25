@@ -144,7 +144,7 @@ extern char * ftoa(float f, int * status);
 # 26 "/opt/microchip/xc8/v1.34/include/htc.h"
 extern const char __xc8_OPTIM_SPEED;
 
-# 49 "/opt/microchip/xc8/v1.34/include/pic18f25k80.h"
+# 49 "/opt/microchip/xc8/v1.34/include/pic18f26k80.h"
 extern volatile unsigned char RXERRCNT @ 0xE41;
 
 asm("RXERRCNT equ 0E41h");

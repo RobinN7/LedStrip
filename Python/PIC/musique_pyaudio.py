@@ -74,7 +74,7 @@ if __name__ == '__main__':
 	colors = colorize(hl)
 
 	for c in colors:
-		c = list(map(lambda x: int(x * 1024), c))
+		c = list(map(lambda x: int(x * 1023), c))
 
 		string = "R{0}G{1}B{2}".format(c[0],c[1],c[2])
 

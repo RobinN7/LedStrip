@@ -120,29 +120,29 @@ void interrupt high_priority high_isr(void) {
 
 
     char input[2] = "";
-    input[0] = RCREG2;    // lecture UART
+    input[0] = RCREG2;    // Lecture UART
 
-    if (beginR==1 | beginG==1 | beginB==1)
+    if (beginR==1 | beginG==1 | beginB==1)  // Trame lancee precedemment
     {
-        if (input[0]!='R' & input[0]!='G' & input[0]!='B')  // trame en cours
+        if (input[0]!='R' & input[0]!='G' & input[0]!='B')  // Trame en cours
         {
             buffer[compteur]=input[0];
             compteur+=1;
         }
 
-        else                                                // fin d'une trame
+        else                                                // Fin d'une trame
         {
-            if (beginR==1)  // fin de trame rouge
+            if (beginR==1)  // Fin de trame rouge
                 pwm('R',atoi(buffer));
                 beginR=0;
-            if (beginG==1)  // fin de trame vert
+            if (beginG==1)  // Fin de trame vert
                 pwm('G',atoi(buffer));
                 beginG=0;
-            if (beginB==1)  // fin de trame bleu
+            if (beginB==1)  // Fin de trame bleu
                 pwm('B',atoi(buffer));
                 beginB=0;
 
-
+            // RAZ compteur et buffer
             compteur=0;
             buffer[3]='\0';
             buffer[2]='\0';
@@ -157,39 +157,43 @@ void interrupt high_priority high_isr(void) {
         beginG=1;
     if (input[0]=='B')  // Debut trame bleu
         beginB=1;
-
-
-
-    /*
-    if (input == 'X') {     // début de la trame
-        begin = 1;
-    }
-    else if ( input =='$') {// fin de la trame
-        compteur=0;
-        begin = 0;
-        done = 1;
-    }
-
-    if (begin  == 1 ) {
-        buffer[compteur]=input;
-        compteur=compteur+1;
-    }*/
 }
 
 
 int main(int argc, char** argv) {
 
-
-    //int delay=0;
+    long int delay=0;
     initialisation();
+    char msg[32]="";
 
+    /*
+    sprintf(msg, "%d\n\r", i);
+    writeStringToUART(msg);
+    */
+
+    // ATTENTION RX UART DESACTIVÉ
 
     while (1) {
-        /*
-        sprintf(msg, "%d\n\r", i);
+
+        
+        for(delay=0;delay<60000;delay++);
+
+
+
+        sprintf(msg, "%u\n\r", readADC(1));
         writeStringToUART(msg);
-        */
-        //writeStringToUART("abc");
+
+        readADC(2);
+
+        sprintf(msg, "%u\n\r", readADC(2));
+        writeStringToUART(msg);
+
+        readADC(3);
+
+        sprintf(msg, "%u\n\r", readADC(3));
+        writeStringToUART(msg);
+
+        writeStringToUART("\n\r");
     }
 
     return (EXIT_SUCCESS);
@@ -205,6 +209,10 @@ void initialisation(void) {
     //////////////////////////////// UART //////////////////////////////////////
 
     initComms();
+
+    //////////////////////////////// ADC ///////////////////////////////////////
+
+    initADC();
 
 }
 
@@ -273,10 +281,30 @@ void initComms()
     RCONbits.IPEN   = 1;    // ENABLE interrupt priority
     INTCONbits.GIE  = 1;    // ENABLE interrupts
     INTCONbits.PEIE = 1;    // ENABLE peripheral interrupts.
-    PIE3bits.RC2IE   = 1;   // ENABLE USART receive interrupt
+    PIE3bits.RC2IE   = 0;   // ENABLE USART receive interrupt
     PIE3bits.TX2IE   = 0;   // DISABLE USART TX interrupt
 
     RC2IF = 0;              // Clear flag
+}
+
+void initADC(void)
+{
+    TRIGSEL1=0;             // Special trigger from ECCP1
+    TRIGSEL0=0;             //
+
+    VCFG1=0;                // VREF+ = AVDD
+    VCFG0=0;                //
+    VNCFG=0;                // VREF+ = AVSS
+
+                            // CHSN<2:0> = 000 => Analog Neg Chann = AVSS
+
+    ANSEL3=1;               //
+    ANSEL2=1;               //  AN1, AN2, AN3 as analog inputs
+    ANSEL1=1;               //
+        
+    ADON=1;                 // Turn ON ADC
+
+    CHS0=1;                 // Init ADC channel on AN1
 }
 
 void writeStringToUART (const char *msg)
@@ -285,4 +313,35 @@ void writeStringToUART (const char *msg)
         while(PIR3bits.TX2IF == 0) {}
         TXREG2 = *msg++;
     }
+}
+
+unsigned int readADC(char channel)
+{
+    char tempo=0;
+    switch (channel)
+    {
+        case 1:
+        {
+            CHS1=0;
+            CHS0=1;
+            break;
+        }
+        case 2:
+        {
+            CHS1=1;
+            CHS0=0;
+            break;
+        }
+        case 3:
+        {
+            CHS1=1;
+            CHS0=1;
+            break;
+        }
+    }
+    for(tempo=0;tempo<100;tempo++);  // Capa charging
+    GO_nDONE = 1; //Initializes A/D Conversion
+    while(GO_nDONE); //Wait for A/D Conversion to complete
+
+    return ((ADRESH<<8)+ADRESL);
 }
