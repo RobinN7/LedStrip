@@ -176,24 +176,11 @@ int main(int argc, char** argv) {
     while (1) {
 
         
-        for(delay=0;delay<60000;delay++);
+        for(delay=0;delay<1000;delay++);
 
-
-
-        sprintf(msg, "%u\n\r", readADC(1));
-        writeStringToUART(msg);
-
-        readADC(2);
-
-        sprintf(msg, "%u\n\r", readADC(2));
-        writeStringToUART(msg);
-
-        readADC(3);
-
-        sprintf(msg, "%u\n\r", readADC(3));
-        writeStringToUART(msg);
-
-        writeStringToUART("\n\r");
+        pwm('R',(int)(1023*(float)readADC(1)/65520.));
+        pwm('G',(int)(1023*(float)readADC(2)/65520.));
+        pwm('B',(int)(1023*(float)readADC(3)/65520.));
     }
 
     return (EXIT_SUCCESS);
