@@ -95,25 +95,17 @@ unsigned int R[100]=0;
 unsigned int G[100]=0;
 unsigned int B[100]=0;
 
-/*
-//Main Interrupt Service Routine (ISR)
 void interrupt low_interrupt() {
     //Check if it is TMR0 Overflow ISR
     if (TMR0IE && TMR0IF) {
         //TMR0 Overflow ISR
         TMR0 = 14; ///offset
 
-        if (balayage == 4) {
-            balayage = 0;
-        } else {
-            balayage++; //Increment Over Flow Counter
-        }
-        rafraichissement(balayage);
-        time++;
+
         //Clear Flag
         TMR0IF = 0;
     }
-}*/
+}
 
 void interrupt high_priority high_isr(void) {
     RC2IF = 0;              // On baisse le FLAG
