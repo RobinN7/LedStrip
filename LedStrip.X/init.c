@@ -19,7 +19,7 @@ void initialisation(void) {
 
     ////////////////////////////// TIMER0 //////////////////////////////////////
 
-    initTimer0();
+    //initTimer0();
 
 }
 

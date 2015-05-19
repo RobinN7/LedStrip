@@ -95,22 +95,21 @@ unsigned int R[100]=0;
 unsigned int G[100]=0;
 unsigned int B[100]=0;
 
+/*
 void interrupt low_interrupt() {
     //Check if it is TMR0 Overflow ISR
     if (TMR0IE && TMR0IF) {
         //TMR0 Overflow ISR
         TMR0 = 14; ///offset
 
-
         //Clear Flag
         TMR0IF = 0;
     }
 }
-
+*/
 void interrupt high_priority high_isr(void) {
     RC2IF = 0;              // On baisse le FLAG
-
-
+    
     char input[2] = "";
     input[0] = RCREG2;    // Lecture UART
 
@@ -154,22 +153,48 @@ void interrupt high_priority high_isr(void) {
 
 int main(int argc, char** argv) {
 
-    int delay=0;
+    long int delay=0;
+    for(delay=0;delay<100000;delay++);
     initialisation();
     char msg[15]="";
-    /*
-    sprintf(msg, "%d\n\r", i);
-    writeStringToUART(msg);
-    */
+ 
+    char mode=0;
+    char old_SWITCH1=0;
+    
+    //sprintf(msg, "%d\n\r", i);
+    //writeStringToUART(msg);
+   
 
-    unsigned int amplitude=0;
+    unsigned int amplitude1=0;
+    unsigned int amplitude2=0;
+    unsigned int amplitude3=0;
 
     while (1) {
         for(delay=0;delay<100;delay++);
-        amplitude=readADC(1);
-        pwm('R',(int)( (float)R[0] * (float)amplitude/65520.));
-        pwm('G',(int)( (float)G[0] * (float)amplitude/65520.));
-        pwm('B',(int)( (float)B[0] * (float)amplitude/65520.));
+        
+        amplitude1=readADC(1);
+        amplitude2=readADC(2);
+        amplitude3=readADC(3);
+
+        // Detection de front montant sur le bouton du premier potentiometre
+        if (SWITCH1==0 && old_SWITCH1==1) 
+        {
+            mode=!mode;
+        }
+        old_SWITCH1=SWITCH1;
+
+        if (mode==1)
+        {
+            pwm('R',(int)( (float)R[0] * (float)amplitude1/65520.));
+            pwm('G',(int)( (float)G[0] * (float)amplitude2/65520.));
+            pwm('B',(int)( (float)B[0] * (float)amplitude3/65520.));
+        }
+        else
+        {
+            pwm('R',(int)( 1023 * (float)amplitude1/65520.));
+            pwm('G',(int)( 1023 * (float)amplitude2/65520.));
+            pwm('B',(int)( 1023 * (float)amplitude3/65520.));
+        }
     }
 
     return (EXIT_SUCCESS);

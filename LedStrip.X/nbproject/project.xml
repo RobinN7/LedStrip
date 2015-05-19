@@ -3,7 +3,7 @@
     <configuration>
         <data xmlns="http://www.netbeans.org/ns/make-project/1">
             <name>LedStrip</name>
-            <creation-uuid>83eba993-3e0a-4460-afc2-6873d2650a14</creation-uuid>
+            <creation-uuid>ce3458f9-706c-4ba3-9a36-a5e20a7e1b72</creation-uuid>
             <make-project-type>0</make-project-type>
             <c-extensions>c</c-extensions>
             <cpp-extensions/>

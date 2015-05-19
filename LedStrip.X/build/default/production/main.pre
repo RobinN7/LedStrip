@@ -21961,7 +21961,7 @@ extern __nonreentrant void _delaywdt(unsigned long);
 #pragma intrinsic(_delay3)
 extern __nonreentrant void _delay3(unsigned char);
 
-# 11 "main.h"
+# 15 "main.h"
 void writeStringToUART (const char* msg);
 unsigned int readADC(char);
 
@@ -21973,6 +21973,7 @@ void initialisation(void);
 void initComms(void);
 void initPWM(void);
 void initADC(void);
+void initTimer0(void);
 
 # 89 "main.c"
 char compteur=0;
@@ -21984,10 +21985,9 @@ unsigned int R[100]=0;
 unsigned int G[100]=0;
 unsigned int B[100]=0;
 
-# 118
+# 110
 void interrupt high_priority high_isr(void) {
 RC2IF = 0;
-
 
 char input[2] = "";
 input[0] = RCREG2;
@@ -22032,19 +22032,45 @@ beginB=1;
 
 int main(int argc, char** argv) {
 
-int delay=0;
+long int delay=0;
+for(delay=0;delay<100000;delay++);
 initialisation();
 char msg[15]="";
 
-# 173
-unsigned int amplitude=0;
+char mode=0;
+char old_SWITCH1=0;
+
+# 168
+unsigned int amplitude1=0;
+unsigned int amplitude2=0;
+unsigned int amplitude3=0;
 
 while (1) {
 for(delay=0;delay<100;delay++);
-amplitude=readADC(1);
-pwm('R',(int)( (float)R[0] * (float)amplitude/65520.));
-pwm('G',(int)( (float)G[0] * (float)amplitude/65520.));
-pwm('B',(int)( (float)B[0] * (float)amplitude/65520.));
+
+amplitude1=readADC(1);
+amplitude2=readADC(2);
+amplitude3=readADC(3);
+
+
+if (RC0==0 && old_SWITCH1==1)
+{
+mode=!mode;
+}
+old_SWITCH1=RC0;
+
+if (mode==1)
+{
+pwm('R',(int)( (float)R[0] * (float)amplitude1/65520.));
+pwm('G',(int)( (float)G[0] * (float)amplitude2/65520.));
+pwm('B',(int)( (float)B[0] * (float)amplitude3/65520.));
+}
+else
+{
+pwm('R',(int)( 1023 * (float)amplitude1/65520.));
+pwm('G',(int)( 1023 * (float)amplitude2/65520.));
+pwm('B',(int)( 1023 * (float)amplitude3/65520.));
+}
 }
 
 return (0);

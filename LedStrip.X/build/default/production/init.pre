@@ -21904,6 +21904,7 @@ void initialisation(void);
 void initComms(void);
 void initPWM(void);
 void initADC(void);
+void initTimer0(void);
 
 # 6 "init.c"
 void initialisation(void) {
@@ -21920,6 +21921,7 @@ initComms();
 
 initADC();
 
+# 24
 }
 
 
@@ -21942,7 +21944,7 @@ DC3B0=0;
 DC4B1=0;
 DC4B0=0;
 
-# 46
+# 50
 TRISC=TRISC & 0b00111011;
 
 
@@ -22008,4 +22010,18 @@ ANSEL1=1;
 ADON=1;
 
 CHS0=1;
+}
+
+void initTimer0(void)
+{
+
+T0PS0 = 0;
+T0PS1 = 1;
+T0PS2 = 0;
+PSA = 0;
+T0CS = 0;
+T08BIT = 1;
+TMR0IE = 1;
+PEIE = 1;
+GIE = 1;
 }
