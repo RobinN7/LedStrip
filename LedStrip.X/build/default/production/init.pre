@@ -21921,7 +21921,10 @@ initComms();
 
 initADC();
 
-# 24
+
+
+initTimer0();
+
 }
 
 
@@ -22016,12 +22019,15 @@ void initTimer0(void)
 {
 
 T0PS0 = 0;
-T0PS1 = 1;
+T0PS1 = 0;
 T0PS2 = 0;
 PSA = 0;
 T0CS = 0;
 T08BIT = 1;
+TMR0IP = 0;
 TMR0IE = 1;
 PEIE = 1;
 GIE = 1;
+
+
 }

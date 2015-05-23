@@ -19,7 +19,7 @@ void initialisation(void) {
 
     ////////////////////////////// TIMER0 //////////////////////////////////////
 
-    //initTimer0();
+    initTimer0();
 
 }
 
@@ -117,13 +117,16 @@ void initADC(void)
 void initTimer0(void)
 {
     //Setup Timer0
-    T0PS0 = 0; //Prescaler is divide by 256
-    T0PS1 = 1;
+    T0PS0 = 0; //Prescaler is divide by 2
+    T0PS1 = 0;
     T0PS2 = 0;
     PSA = 0; //Timer Clock Source is from Prescaler
     T0CS = 0; //Prescaler gets clock from FCPU
     T08BIT = 1; //8 BIT MODE
+    TMR0IP = 0; //Low priority on Timer0 interrupt
     TMR0IE = 1; //Enable TIMER0 Interrupt
     PEIE = 1; //Enable Peripheral Interrupt
     GIE = 1; //Enable INTs globally
+
+
 }

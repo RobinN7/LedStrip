@@ -86,8 +86,6 @@
 
 //////////////////////////////// GLOBAL VARS ///////////////////////////////////
 
-char compteur=0;
-char buffer[16]="";
 char beginR=0;
 char beginG=0;
 char beginB=0;
@@ -95,21 +93,26 @@ unsigned int R[100]=0;
 unsigned int G[100]=0;
 unsigned int B[100]=0;
 
-/*
-void interrupt low_interrupt() {
-    //Check if it is TMR0 Overflow ISR
-    if (TMR0IE && TMR0IF) {
-        //TMR0 Overflow ISR
-        TMR0 = 14; ///offset
+unsigned char millis=0;
+////////////////////////////// TIMER0 INTERRUPT ////////////////////////////////
 
-        //Clear Flag
-        TMR0IF = 0;
+void interrupt low_priority Timer0_ISR(void)
+{
+    //static unsigned char millis=0;
+    if (T0IE && T0IF)
+    {
+        T0IF=0; //TMR0 interrupt flag must be cleared in software
+        //to allow subsequent interrupts
+        millis++; //increment the counter variable by 1
     }
 }
-*/
-void interrupt high_priority high_isr(void) {
+
+void interrupt high_priority RX2_ISR(void) {
     RC2IF = 0;              // On baisse le FLAG
-    
+
+    static char compteur=0;
+    static char buffer[16]="";
+
     char input[2] = "";
     input[0] = RCREG2;    // Lecture UART
 
@@ -191,9 +194,9 @@ int main(int argc, char** argv) {
         }
         else
         {
-            pwm('R',(int)( 1023 * (float)amplitude1/65520.));
-            pwm('G',(int)( 1023 * (float)amplitude2/65520.));
-            pwm('B',(int)( 1023 * (float)amplitude3/65520.));
+            pwm('R',(int)( millis * (float)amplitude1/65520.));
+            pwm('G',(int)( millis * (float)amplitude2/65520.));
+            pwm('B',(int)( millis * (float)amplitude3/65520.));
         }
     }
 

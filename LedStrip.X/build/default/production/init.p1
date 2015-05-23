@@ -5,6 +5,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _initComms `(v ~T0 @X0 0 ef ]
 "14
 [v _initADC `(v ~T0 @X0 0 ef ]
+"15
+[v _initTimer0 `(v ~T0 @X0 0 ef ]
 "38004 /opt/microchip/xc8/v1.34/include/pic18f26k80.h
 [v _PR2 `Vuc ~T0 @X0 0 e@4043 ]
 "28741
@@ -205,6 +207,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _T0CS `Vb ~T0 @X0 0 e@32429 ]
 "44623
 [v _T08BIT `Vb ~T0 @X0 0 e@32430 ]
+"44737
+[v _TMR0IP `Vb ~T0 @X0 0 e@32650 ]
 "44733
 [v _TMR0IE `Vb ~T0 @X0 0 e@32661 ]
 "42691
@@ -17614,6 +17618,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;init.c: 18: initADC();
 "18
 [e ( _initADC ..  ]
+[; ;init.c: 22: initTimer0();
+"22
+[e ( _initTimer0 ..  ]
 [; ;init.c: 24: }
 "24
 [e :UE 2639 ]
@@ -17803,9 +17810,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;init.c: 120: T0PS0 = 0;
 "120
 [e = _T0PS0 -> -> 0 `i `b ]
-[; ;init.c: 121: T0PS1 = 1;
+[; ;init.c: 121: T0PS1 = 0;
 "121
-[e = _T0PS1 -> -> 1 `i `b ]
+[e = _T0PS1 -> -> 0 `i `b ]
 [; ;init.c: 122: T0PS2 = 0;
 "122
 [e = _T0PS2 -> -> 0 `i `b ]
@@ -17818,16 +17825,19 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;init.c: 125: T08BIT = 1;
 "125
 [e = _T08BIT -> -> 1 `i `b ]
-[; ;init.c: 126: TMR0IE = 1;
+[; ;init.c: 126: TMR0IP = 0;
 "126
-[e = _TMR0IE -> -> 1 `i `b ]
-[; ;init.c: 127: PEIE = 1;
+[e = _TMR0IP -> -> 0 `i `b ]
+[; ;init.c: 127: TMR0IE = 1;
 "127
-[e = _PEIE -> -> 1 `i `b ]
-[; ;init.c: 128: GIE = 1;
+[e = _TMR0IE -> -> 1 `i `b ]
+[; ;init.c: 128: PEIE = 1;
 "128
-[e = _GIE -> -> 1 `i `b ]
-[; ;init.c: 129: }
+[e = _PEIE -> -> 1 `i `b ]
+[; ;init.c: 129: GIE = 1;
 "129
+[e = _GIE -> -> 1 `i `b ]
+[; ;init.c: 132: }
+"132
 [e :UE 2643 ]
 }
