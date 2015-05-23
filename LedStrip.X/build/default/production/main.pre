@@ -21993,6 +21993,8 @@ if (T0IE && T0IF)
 {
 T0IF=0;
 
+TMR0=15;
+
 millis++;
 if (millis==1000)
 {
@@ -22065,7 +22067,7 @@ char msg[15]="";
 char mode=0;
 char old_SWITCH1=0;
 
-# 182
+# 184
 unsigned int amplitude1=0;
 unsigned int amplitude2=0;
 unsigned int amplitude3=0;

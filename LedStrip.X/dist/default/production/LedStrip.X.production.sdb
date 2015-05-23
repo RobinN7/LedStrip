@@ -53,11 +53,11 @@
 [v _initTimer0 initTimer0 `(v  1 e 0 0 ]
 "99 /home/robin/7Robot/LedStrip/LedStrip.X/main.c
 [v _Timer0_ISR Timer0_ISR `IIL(v  1 e 0 0 ]
-"121
+"123
 [v _RX2_ISR RX2_ISR `IIH(v  1 e 0 0 ]
-"168
+"170
 [v _main main `(i  1 e 2 0 ]
-"228
+"230
 [v _readADC readADC `(ui  1 e 2 0 ]
 "28420 /opt/microchip/xc8/v1.34/include/pic18f26k80.h
 [v _CCPR4L CCPR4L `VEuc  1 e 1 @3915 ]
@@ -125,7 +125,7 @@
 "34323
 "34323
 [v _PIE3bits PIE3bits `VES382  1 e 1 @4003 ]
-[s S505 . 1 `uc 1 . 1 0 :1:0 
+[s S506 . 1 `uc 1 . 1 0 :1:0 
 `uc 1 CCP1IF 1 0 :1:1 
 `uc 1 CCP2IF 1 0 :1:2 
 `uc 1 CTMUIF 1 0 :1:3 
@@ -133,18 +133,18 @@
 `uc 1 RC2IF 1 0 :1:5 
 ]
 "34405
-[s S512 . 1 `uc 1 . 1 0 :1:0 
+[s S513 . 1 `uc 1 . 1 0 :1:0 
 `uc 1 RXBNIF 1 0 :1:1 
 ]
 "34405
-[s S515 . 1 `uc 1 . 1 0 :4:0 
+[s S516 . 1 `uc 1 . 1 0 :4:0 
 `uc 1 TXBNIF 1 0 :1:4 
 ]
 "34405
-[u S518 . 1 `S505 1 . 1 0 `S512 1 . 1 0 `S515 1 . 1 0 ]
+[u S519 . 1 `S506 1 . 1 0 `S513 1 . 1 0 `S516 1 . 1 0 ]
 "34405
 "34405
-[v _PIR3bits PIR3bits `VES518  1 e 1 @4004 ]
+[v _PIR3bits PIR3bits `VES519  1 e 1 @4004 ]
 [s S145 . 1 `uc 1 RX9D 1 0 :1:0 
 `uc 1 OERR 1 0 :1:1 
 `uc 1 FERR 1 0 :1:2 
@@ -264,6 +264,9 @@
 "38343
 "38343
 [v _RCONbits RCONbits `VES237  1 e 1 @4048 ]
+"38722
+"38722
+[v _TMR0 TMR0 `VEus  1 e 2 @4054 ]
 [s S280 . 1 `uc 1 RBIF 1 0 :1:0 
 `uc 1 INT0IF 1 0 :1:1 
 `uc 1 TMR0IF 1 0 :1:2 
@@ -391,38 +394,38 @@
 [v _B B `[100]ui  1 e 200 0 ]
 "96
 [v _millis millis `ui  1 e 2 0 ]
-"168
+"170
 [v _main main `(i  1 e 2 0 ]
 {
-"173
-[v main@msg msg `[15]uc  1 a 15 81 ]
-"170
-[v main@delay delay `l  1 a 4 104 ]
-"184
-[v main@amplitude3 amplitude3 `ui  1 a 2 100 ]
-"183
-[v main@amplitude2 amplitude2 `ui  1 a 2 98 ]
-"182
-[v main@amplitude1 amplitude1 `ui  1 a 2 96 ]
 "175
-[v main@mode mode `uc  1 a 1 103 ]
-"176
-[v main@old_SWITCH1 old_SWITCH1 `uc  1 a 1 102 ]
+[v main@msg msg `[15]uc  1 a 15 81 ]
 "172
+[v main@delay delay `l  1 a 4 104 ]
+"186
+[v main@amplitude3 amplitude3 `ui  1 a 2 100 ]
+"185
+[v main@amplitude2 amplitude2 `ui  1 a 2 98 ]
+"184
+[v main@amplitude1 amplitude1 `ui  1 a 2 96 ]
+"177
+[v main@mode mode `uc  1 a 1 103 ]
+"178
+[v main@old_SWITCH1 old_SWITCH1 `uc  1 a 1 102 ]
+"174
 [v main@F19169 F19169 `[15]uc  1 s 15 F19169 ]
-"215
+"217
 } 0
-"228
+"230
 [v _readADC readADC `(ui  1 e 2 0 ]
 {
 [v readADC@channel channel `uc  1 a 1 wreg ]
-"230
+"232
 [v readADC@tempo tempo `uc  1 a 1 22 ]
-"228
-[v readADC@channel channel `uc  1 a 1 wreg ]
 "230
+[v readADC@channel channel `uc  1 a 1 wreg ]
+"232
 [v readADC@channel channel `uc  1 a 1 21 ]
-"257
+"259
 } 0
 "8 /home/robin/7Robot/LedStrip/LedStrip.X/converter.c
 [v _pwm pwm `(v  1 e 0 0 ]
@@ -528,7 +531,7 @@
 "99 /home/robin/7Robot/LedStrip/LedStrip.X/main.c
 [v _Timer0_ISR Timer0_ISR `IIL(v  1 e 0 0 ]
 {
-"119
+"121
 } 0
 "8 /home/robin/7Robot/LedStrip/LedStrip.X/converter.c
 [v i1_pwm pwm `(v  1 e 0 0 ]
@@ -549,17 +552,17 @@
 [v i1___awdiv@divisor divisor `i  1 p 2 31 ]
 "42
 } 0
-"121 /home/robin/7Robot/LedStrip/LedStrip.X/main.c
+"123 /home/robin/7Robot/LedStrip/LedStrip.X/main.c
 [v _RX2_ISR RX2_ISR `IIH(v  1 e 0 0 ]
 {
-"127
+"129
 [v RX2_ISR@input input `[2]uc  1 a 2 27 ]
-"124
+"126
 [v RX2_ISR@compteur compteur `uc  1 s 1 compteur ]
-"125
+"127
 [v RX2_ISR@buffer buffer `[16]uc  1 s 16 buffer ]
 [v RX2_ISR@F19163 F19163 `[2]uc  1 s 2 F19163 ]
-"165
+"167
 } 0
 "5 /opt/microchip/xc8/v1.34/sources/common/atoi.c
 [v _atoi atoi `(i  1 e 2 0 ]

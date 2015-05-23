@@ -102,7 +102,9 @@ void interrupt low_priority Timer0_ISR(void)
     if (T0IE && T0IF)
     {
         T0IF=0; //TMR0 interrupt flag must be cleared in software
-        //to allow subsequent interrupts
+                //to allow subsequent interrupts
+        TMR0=15; // Offset pour avoir des ticks toutes les millisecondes
+
         millis++; //increment the counter variable by 1
         if (millis==1000)
         {
