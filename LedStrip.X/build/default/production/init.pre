@@ -22018,9 +22018,9 @@ CHS0=1;
 void initTimer0(void)
 {
 
-T0PS0 = 0;
-T0PS1 = 0;
 T0PS2 = 0;
+T0PS1 = 1;
+T0PS0 = 0;
 PSA = 0;
 T0CS = 0;
 T08BIT = 1;

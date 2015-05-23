@@ -93,7 +93,7 @@ unsigned int R[100]=0;
 unsigned int G[100]=0;
 unsigned int B[100]=0;
 
-unsigned char millis=0;
+unsigned int millis=0;
 ////////////////////////////// TIMER0 INTERRUPT ////////////////////////////////
 
 void interrupt low_priority Timer0_ISR(void)
@@ -104,7 +104,18 @@ void interrupt low_priority Timer0_ISR(void)
         T0IF=0; //TMR0 interrupt flag must be cleared in software
         //to allow subsequent interrupts
         millis++; //increment the counter variable by 1
+        if (millis==1000)
+        {
+            millis=0;
+            pwm('R',1023);
+            pwm('G',1023);
+            pwm('B',1023);
+            pwm('R',0);
+            pwm('G',0);
+            pwm('B',0);
+        }
     }
+
 }
 
 void interrupt high_priority RX2_ISR(void) {
@@ -194,9 +205,9 @@ int main(int argc, char** argv) {
         }
         else
         {
-            pwm('R',(int)( millis * (float)amplitude1/65520.));
-            pwm('G',(int)( millis * (float)amplitude2/65520.));
-            pwm('B',(int)( millis * (float)amplitude3/65520.));
+            //pwm('R',(int)( 1023 * (float)amplitude1/65520.));
+            //pwm('G',(int)( 1023 * (float)amplitude2/65520.));
+            //pwm('B',(int)( 1023 * (float)amplitude3/65520.));
         }
     }
 

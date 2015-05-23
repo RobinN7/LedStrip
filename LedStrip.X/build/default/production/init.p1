@@ -195,12 +195,12 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _ADON `Vb ~T0 @X0 0 e@32272 ]
 "41819
 [v _CHS0 `Vb ~T0 @X0 0 e@32274 ]
-"44633
-[v _T0PS0 `Vb ~T0 @X0 0 e@32424 ]
-"44635
-[v _T0PS1 `Vb ~T0 @X0 0 e@32425 ]
 "44637
 [v _T0PS2 `Vb ~T0 @X0 0 e@32426 ]
+"44635
+[v _T0PS1 `Vb ~T0 @X0 0 e@32425 ]
+"44633
+[v _T0PS0 `Vb ~T0 @X0 0 e@32424 ]
 "42709
 [v _PSA `Vb ~T0 @X0 0 e@32427 ]
 "44625
@@ -17807,15 +17807,15 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;init.c: 118: {
 [e :U _initTimer0 ]
 [f ]
-[; ;init.c: 120: T0PS0 = 0;
+[; ;init.c: 120: T0PS2 = 0;
 "120
-[e = _T0PS0 -> -> 0 `i `b ]
-[; ;init.c: 121: T0PS1 = 0;
-"121
-[e = _T0PS1 -> -> 0 `i `b ]
-[; ;init.c: 122: T0PS2 = 0;
-"122
 [e = _T0PS2 -> -> 0 `i `b ]
+[; ;init.c: 121: T0PS1 = 1;
+"121
+[e = _T0PS1 -> -> 1 `i `b ]
+[; ;init.c: 122: T0PS0 = 0;
+"122
+[e = _T0PS0 -> -> 0 `i `b ]
 [; ;init.c: 123: PSA = 0;
 "123
 [e = _PSA -> -> 0 `i `b ]

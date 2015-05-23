@@ -21983,7 +21983,7 @@ unsigned int R[100]=0;
 unsigned int G[100]=0;
 unsigned int B[100]=0;
 
-unsigned char millis=0;
+unsigned int millis=0;
 
 
 void interrupt low_priority Timer0_ISR(void)
@@ -21994,7 +21994,18 @@ if (T0IE && T0IF)
 T0IF=0;
 
 millis++;
+if (millis==1000)
+{
+millis=0;
+pwm('R',1023);
+pwm('G',1023);
+pwm('B',1023);
+pwm('R',0);
+pwm('G',0);
+pwm('B',0);
 }
+}
+
 }
 
 void interrupt high_priority RX2_ISR(void) {
@@ -22054,7 +22065,7 @@ char msg[15]="";
 char mode=0;
 char old_SWITCH1=0;
 
-# 171
+# 182
 unsigned int amplitude1=0;
 unsigned int amplitude2=0;
 unsigned int amplitude3=0;
@@ -22081,9 +22092,9 @@ pwm('B',(int)( (float)B[0] * (float)amplitude3/65520.));
 }
 else
 {
-pwm('R',(int)( millis * (float)amplitude1/65520.));
-pwm('G',(int)( millis * (float)amplitude2/65520.));
-pwm('B',(int)( millis * (float)amplitude3/65520.));
+
+
+
 }
 }
 
