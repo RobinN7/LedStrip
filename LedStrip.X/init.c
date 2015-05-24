@@ -1,7 +1,4 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <p18f25k80.h>
-#include "init.h"
+#include "main.h"
 
 void initialisation(void) {
 

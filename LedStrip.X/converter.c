@@ -1,8 +1,4 @@
-
-#include <stdio.h>
-#include <stdlib.h>
-#include <p18f25k80.h>
-#include "converter.h"
+#include "main.h"
 
 // color = R V ou B, dutycycle entre 0 et 1023
 void pwm(char color, int dutycycle) {

@@ -3,121 +3,14 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _T0IE `Vb ~T0 @X0 0 e@32661 ]
 "44629
 [v _T0IF `Vb ~T0 @X0 0 e@32658 ]
+"38722
+[v _TMR0 `Vus ~T0 @X0 0 e@4054 ]
 "42775
 [v _RC2IF `Vb ~T0 @X0 0 e@32037 ]
 "32282
 [v _RCREG2 `Vuc ~T0 @X0 0 e@3962 ]
 "67 /opt/microchip/xc8/v1.34/include/stdlib.h
 [v _atoi `(i ~T0 @X0 0 ef1`*Cuc ]
-[p mainexit ]
-"11 init.h
-[v _initialisation `(v ~T0 @X0 0 ef ]
-"16 main.h
-[v _readADC `(ui ~T0 @X0 0 ef1`uc ]
-"42761 /opt/microchip/xc8/v1.34/include/pic18f26k80.h
-[v _RC0 `Vb ~T0 @X0 0 e@31760 ]
-"12 converter.h
-[v _pwm `(v ~T0 @X0 0 ef2`uc`i ]
-"34388 /opt/microchip/xc8/v1.34/include/pic18f26k80.h
-[s S2243 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S2243 . . CCP1IF CCP2IF CTMUIF TX2IF RC2IF ]
-"34396
-[s S2244 :1 `uc 1 :1 `uc 1 ]
-[n S2244 . . RXBNIF ]
-"34400
-[s S2245 :4 `uc 1 :1 `uc 1 ]
-[n S2245 . . TXBNIF ]
-"34387
-[u S2242 `S2243 1 `S2244 1 `S2245 1 ]
-[n S2242 . . . . ]
-"34405
-[v _PIR3bits `VS2242 ~T0 @X0 0 e@4004 ]
-"32263
-[v _TXREG2 `Vuc ~T0 @X0 0 e@3961 ]
-"41821
-[v _CHS1 `Vb ~T0 @X0 0 e@32275 ]
-"41819
-[v _CHS0 `Vb ~T0 @X0 0 e@32274 ]
-"42309
-[v _GO_nDONE `Vb ~T0 @X0 0 e@32273 ]
-"37422
-[v _ADRESH `Vuc ~T0 @X0 0 e@4036 ]
-"37403
-[v _ADRESL `Vuc ~T0 @X0 0 e@4035 ]
-"15 main.c
-[p x RETEN=OFF ]
-"16
-[p x INTOSCSEL=HIGH ]
-"17
-[p x SOSCSEL=DIG ]
-"18
-[p x XINST=OFF ]
-"21
-[p x FOSC=INTIO2 ]
-"22
-[p x PLLCFG=OFF ]
-"23
-[p x FCMEN=OFF ]
-"24
-[p x IESO=OFF ]
-"27
-[p x PWRTEN=OFF ]
-"28
-[p x BOREN=SBORDIS ]
-"29
-[p x BORV=3 ]
-"30
-[p x BORPWR=ZPBORMV ]
-"33
-[p x WDTEN=OFF ]
-"34
-[p x WDTPS=1048576 ]
-"37
-[p x CANMX=PORTB ]
-"38
-[p x MSSPMSK=MSK7 ]
-"39
-[p x MCLRE=OFF ]
-"42
-[p x STVREN=ON ]
-"43
-[p x BBSIZ=BB2K ]
-"46
-[p x CP0=OFF ]
-"47
-[p x CP1=OFF ]
-"48
-[p x CP2=OFF ]
-"49
-[p x CP3=OFF ]
-"52
-[p x CPB=OFF ]
-"53
-[p x CPD=OFF ]
-"56
-[p x WRT0=OFF ]
-"57
-[p x WRT1=OFF ]
-"58
-[p x WRT2=OFF ]
-"59
-[p x WRT3=OFF ]
-"62
-[p x WRTC=OFF ]
-"63
-[p x WRTB=OFF ]
-"64
-[p x WRTD=OFF ]
-"67
-[p x EBTR0=OFF ]
-"68
-[p x EBTR1=OFF ]
-"69
-[p x EBTR2=OFF ]
-"70
-[p x EBTR3=OFF ]
-"73
-[p x EBTRB=OFF ]
 [; ;stdio.h: 8: typedef int ptrdiff_t;
 [; ;stdio.h: 9: typedef unsigned size_t;
 [; ;stdio.h: 10: typedef unsigned short wchar_t;
@@ -17501,535 +17394,222 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;pic18.h: 161: extern __nonreentrant void _delay(unsigned long);
 [; ;pic18.h: 163: extern __nonreentrant void _delaywdt(unsigned long);
 [; ;pic18.h: 165: extern __nonreentrant void _delay3(unsigned char);
-[; ;main.h: 15: void writeStringToUART (const char* msg);
-[; ;main.h: 16: unsigned int readADC(char);
-[; ;converter.h: 12: void pwm(char,int);
 [; ;init.h: 11: void initialisation(void);
 [; ;init.h: 12: void initComms(void);
 [; ;init.h: 13: void initPWM(void);
 [; ;init.h: 14: void initADC(void);
 [; ;init.h: 15: void initTimer0(void);
-"89 main.c
-[v _beginR `uc ~T0 @X0 1 e ]
-[i _beginR
--> -> 0 `i `uc
-]
-[; ;main.c: 89: char beginR=0;
-"90
-[v _beginG `uc ~T0 @X0 1 e ]
-[i _beginG
--> -> 0 `i `uc
-]
-[; ;main.c: 90: char beginG=0;
-"91
-[v _beginB `uc ~T0 @X0 1 e ]
-[i _beginB
--> -> 0 `i `uc
-]
-[; ;main.c: 91: char beginB=0;
-"92
-[v _R `ui ~T0 @X0 -> 100 `i e ]
-[i _R
-:U ..
--> -> 0 `i `ui
-..
-]
-[; ;main.c: 92: unsigned int R[100]=0;
-"93
-[v _G `ui ~T0 @X0 -> 100 `i e ]
-[i _G
-:U ..
--> -> 0 `i `ui
-..
-]
-[; ;main.c: 93: unsigned int G[100]=0;
-"94
-[v _B `ui ~T0 @X0 -> 100 `i e ]
-[i _B
-:U ..
--> -> 0 `i `ui
-..
-]
-[; ;main.c: 94: unsigned int B[100]=0;
-"96
-[v _millis `uc ~T0 @X0 1 e ]
+[; ;converter.h: 12: void pwm(char,int);
+[; ;functions.h: 11: void setRGB(int, int, int);
+[; ;functions.h: 12: void strobe(void);
+[; ;main.h: 23: void writeStringToUART (const char* msg);
+[; ;main.h: 24: unsigned int readADC(char);
+[; ;main.h: 25: void changeModeDetect(void);
+"5 interrupts.c
+[v _millis `l ~T0 @X0 1 e ]
 [i _millis
--> -> 0 `i `uc
+-> -> 0 `i `l
 ]
-[; ;main.c: 96: unsigned char millis=0;
-[v F19156 `(v ~T0 @X0 1 tf ]
-"99
-[v _Timer0_ISR `ILF19156 ~T0 @X0 1 e ]
-"100
+[; ;interrupts.c: 5: long millis=0;
+[v F19158 `(v ~T0 @X0 1 tf ]
+"7
+[v _Timer0_ISR `ILF19158 ~T0 @X0 1 e ]
+"8
 {
-[; ;main.c: 99: void interrupt low_priority Timer0_ISR(void)
-[; ;main.c: 100: {
+[; ;interrupts.c: 7: void interrupt low_priority Timer0_ISR(void)
+[; ;interrupts.c: 8: {
 [e :U _Timer0_ISR ]
 [f ]
-[; ;main.c: 102: if (T0IE && T0IF)
-"102
+[; ;interrupts.c: 12: if (T0IE && T0IF)
+"12
 [e $ ! && _T0IE _T0IF 2640  ]
-[; ;main.c: 103: {
-"103
+[; ;interrupts.c: 13: {
+"13
 {
-[; ;main.c: 104: T0IF=0;
-"104
+[; ;interrupts.c: 14: T0IF=0;
+"14
 [e = _T0IF -> -> 0 `i `b ]
-[; ;main.c: 106: millis++;
-"106
-[e ++ _millis -> -> 1 `i `uc ]
-"107
+[; ;interrupts.c: 16: TMR0=15;
+"16
+[e = _TMR0 -> -> 15 `i `us ]
+[; ;interrupts.c: 18: millis++;
+"18
+[e ++ _millis -> -> 1 `i `l ]
+"19
 }
 [e :U 2640 ]
-[; ;main.c: 107: }
-[; ;main.c: 108: }
-"108
+[; ;interrupts.c: 19: }
+[; ;interrupts.c: 21: }
+"21
 [e :UE 2639 ]
 }
-[v F19159 `(v ~T0 @X0 1 tf ]
-"110
-[v _RX2_ISR `IHF19159 ~T0 @X0 1 e ]
+[v F19161 `(v ~T0 @X0 1 tf ]
+"25
+[v _RX2_ISR `IHF19161 ~T0 @X0 1 e ]
 {
-[; ;main.c: 110: void interrupt high_priority RX2_ISR(void) {
+[; ;interrupts.c: 25: void interrupt high_priority RX2_ISR(void) {
 [e :U _RX2_ISR ]
 [f ]
-[; ;main.c: 111: RC2IF = 0;
-"111
+[; ;interrupts.c: 26: RC2IF = 0;
+"26
 [e = _RC2IF -> -> 0 `i `b ]
-"113
-[v F19160 `uc ~T0 @X0 1 s compteur ]
-[i F19160
+"28
+[v _R `ui ~T0 @X0 -> 0 `x e ]
+"29
+[v _G `ui ~T0 @X0 -> 0 `x e ]
+"30
+[v _B `ui ~T0 @X0 -> 0 `x e ]
+"32
+[v F19165 `uc ~T0 @X0 1 s compteur ]
+[i F19165
 -> -> 0 `i `uc
 ]
-"114
-[v F19161 `uc ~T0 @X0 -> 16 `i s buffer ]
-[i F19161
+"33
+[v F19166 `uc ~T0 @X0 -> 16 `i s buffer ]
+[i F19166
 :U ..
 -> 0 `c
 ..
 ]
-[v F19163 `uc ~T0 @X0 -> 2 `i s ]
-[i F19163
+"34
+[v F19167 `uc ~T0 @X0 1 s beginR ]
+[i F19167
+-> -> 0 `i `uc
+]
+"35
+[v F19168 `uc ~T0 @X0 1 s beginG ]
+[i F19168
+-> -> 0 `i `uc
+]
+"36
+[v F19169 `uc ~T0 @X0 1 s beginB ]
+[i F19169
+-> -> 0 `i `uc
+]
+[v F19171 `uc ~T0 @X0 -> 2 `i s ]
+[i F19171
 :U ..
 -> 0 `c
 ..
 ]
-"116
+"38
 [v _input `uc ~T0 @X0 -> 2 `i a ]
-[; ;main.c: 113: static char compteur=0;
-[; ;main.c: 114: static char buffer[16]="";
-[; ;main.c: 116: char input[2] = "";
-[e = _input F19163 ]
-[; ;main.c: 117: input[0] = RCREG2;
-"117
+[; ;interrupts.c: 28: extern unsigned int R[100];
+[; ;interrupts.c: 29: extern unsigned int G[100];
+[; ;interrupts.c: 30: extern unsigned int B[100];
+[; ;interrupts.c: 32: static char compteur=0;
+[; ;interrupts.c: 33: static char buffer[16]="";
+[; ;interrupts.c: 34: static char beginR=0;
+[; ;interrupts.c: 35: static char beginG=0;
+[; ;interrupts.c: 36: static char beginB=0;
+[; ;interrupts.c: 38: char input[2] = "";
+[e = _input F19171 ]
+[; ;interrupts.c: 39: input[0] = RCREG2;
+"39
 [e = *U + &U _input * -> -> -> 0 `i `ui `ux -> -> # *U &U _input `ui `ux _RCREG2 ]
-[; ;main.c: 119: if (beginR==1 | beginG==1 | beginB==1)
-"119
-[e $ ! | | == -> _beginR `i -> 1 `i == -> _beginG `i -> 1 `i == -> _beginB `i -> 1 `i 2642  ]
-[; ;main.c: 120: {
-"120
+[; ;interrupts.c: 41: if (beginR==1 | beginG==1 | beginB==1)
+"41
+[e $ ! | | == -> F19167 `i -> 1 `i == -> F19168 `i -> 1 `i == -> F19169 `i -> 1 `i 2642  ]
+[; ;interrupts.c: 42: {
+"42
 {
-[; ;main.c: 121: if (input[0]!='R' & input[0]!='G' & input[0]!='B')
-"121
+[; ;interrupts.c: 43: if (input[0]!='R' & input[0]!='G' & input[0]!='B')
+"43
 [e $ ! & & != -> *U + &U _input * -> -> -> 0 `i `ui `ux -> -> # *U &U _input `ui `ux `ui -> 82 `ui != -> *U + &U _input * -> -> -> 0 `i `ui `ux -> -> # *U &U _input `ui `ux `ui -> 71 `ui != -> *U + &U _input * -> -> -> 0 `i `ui `ux -> -> # *U &U _input `ui `ux `ui -> 66 `ui 2643  ]
-[; ;main.c: 122: {
-"122
+[; ;interrupts.c: 44: {
+"44
 {
-[; ;main.c: 123: buffer[compteur]=input[0];
-"123
-[e = *U + &U F19161 * -> F19160 `ux -> -> # *U &U F19161 `ui `ux *U + &U _input * -> -> -> 0 `i `ui `ux -> -> # *U &U _input `ui `ux ]
-[; ;main.c: 124: compteur+=1;
-"124
-[e =+ F19160 -> -> 1 `i `uc ]
-"125
+[; ;interrupts.c: 45: buffer[compteur]=input[0];
+"45
+[e = *U + &U F19166 * -> F19165 `ux -> -> # *U &U F19166 `ui `ux *U + &U _input * -> -> -> 0 `i `ui `ux -> -> # *U &U _input `ui `ux ]
+[; ;interrupts.c: 46: compteur+=1;
+"46
+[e =+ F19165 -> -> 1 `i `uc ]
+"47
 }
-[; ;main.c: 125: }
+[; ;interrupts.c: 47: }
 [e $U 2644  ]
-"127
+"49
 [e :U 2643 ]
-[; ;main.c: 127: else
-[; ;main.c: 128: {
-"128
+[; ;interrupts.c: 49: else
+[; ;interrupts.c: 50: {
+"50
 {
-[; ;main.c: 129: if (beginR==1)
-"129
-[e $ ! == -> _beginR `i -> 1 `i 2645  ]
-[; ;main.c: 130: R[0]=atoi(buffer);
-"130
-[e = *U + &U _R * -> -> -> 0 `i `ui `ux -> -> # *U &U _R `ui `ux -> ( _atoi (1 -> &U F19161 `*Cuc `ui ]
+[; ;interrupts.c: 51: if (beginR==1)
+"51
+[e $ ! == -> F19167 `i -> 1 `i 2645  ]
+[; ;interrupts.c: 52: R[0]=atoi(buffer);
+"52
+[e = *U + &U _R * -> -> -> 0 `i `ui `ux -> -> # *U &U _R `ui `ux -> ( _atoi (1 -> &U F19166 `*Cuc `ui ]
 [e :U 2645 ]
-[; ;main.c: 131: beginR=0;
-"131
-[e = _beginR -> -> 0 `i `uc ]
-[; ;main.c: 132: if (beginG==1)
-"132
-[e $ ! == -> _beginG `i -> 1 `i 2646  ]
-[; ;main.c: 133: G[0]=atoi(buffer);
-"133
-[e = *U + &U _G * -> -> -> 0 `i `ui `ux -> -> # *U &U _G `ui `ux -> ( _atoi (1 -> &U F19161 `*Cuc `ui ]
+[; ;interrupts.c: 53: beginR=0;
+"53
+[e = F19167 -> -> 0 `i `uc ]
+[; ;interrupts.c: 54: if (beginG==1)
+"54
+[e $ ! == -> F19168 `i -> 1 `i 2646  ]
+[; ;interrupts.c: 55: G[0]=atoi(buffer);
+"55
+[e = *U + &U _G * -> -> -> 0 `i `ui `ux -> -> # *U &U _G `ui `ux -> ( _atoi (1 -> &U F19166 `*Cuc `ui ]
 [e :U 2646 ]
-[; ;main.c: 134: beginG=0;
-"134
-[e = _beginG -> -> 0 `i `uc ]
-[; ;main.c: 135: if (beginB==1)
-"135
-[e $ ! == -> _beginB `i -> 1 `i 2647  ]
-[; ;main.c: 136: B[0]=atoi(buffer);
-"136
-[e = *U + &U _B * -> -> -> 0 `i `ui `ux -> -> # *U &U _B `ui `ux -> ( _atoi (1 -> &U F19161 `*Cuc `ui ]
+[; ;interrupts.c: 56: beginG=0;
+"56
+[e = F19168 -> -> 0 `i `uc ]
+[; ;interrupts.c: 57: if (beginB==1)
+"57
+[e $ ! == -> F19169 `i -> 1 `i 2647  ]
+[; ;interrupts.c: 58: B[0]=atoi(buffer);
+"58
+[e = *U + &U _B * -> -> -> 0 `i `ui `ux -> -> # *U &U _B `ui `ux -> ( _atoi (1 -> &U F19166 `*Cuc `ui ]
 [e :U 2647 ]
-[; ;main.c: 137: beginB=0;
-"137
-[e = _beginB -> -> 0 `i `uc ]
-[; ;main.c: 140: compteur=0;
-"140
-[e = F19160 -> -> 0 `i `uc ]
-[; ;main.c: 141: buffer[3]='\0';
-"141
-[e = *U + &U F19161 * -> -> -> 3 `i `ui `ux -> -> # *U &U F19161 `ui `ux -> -> 0 `ui `uc ]
-[; ;main.c: 142: buffer[2]='\0';
-"142
-[e = *U + &U F19161 * -> -> -> 2 `i `ui `ux -> -> # *U &U F19161 `ui `ux -> -> 0 `ui `uc ]
-[; ;main.c: 143: buffer[1]='\0';
-"143
-[e = *U + &U F19161 * -> -> -> 1 `i `ui `ux -> -> # *U &U F19161 `ui `ux -> -> 0 `ui `uc ]
-[; ;main.c: 144: buffer[0]='\0';
-"144
-[e = *U + &U F19161 * -> -> -> 0 `i `ui `ux -> -> # *U &U F19161 `ui `ux -> -> 0 `ui `uc ]
-"145
+[; ;interrupts.c: 59: beginB=0;
+"59
+[e = F19169 -> -> 0 `i `uc ]
+[; ;interrupts.c: 62: compteur=0;
+"62
+[e = F19165 -> -> 0 `i `uc ]
+[; ;interrupts.c: 63: buffer[3]='\0';
+"63
+[e = *U + &U F19166 * -> -> -> 3 `i `ui `ux -> -> # *U &U F19166 `ui `ux -> -> 0 `ui `uc ]
+[; ;interrupts.c: 64: buffer[2]='\0';
+"64
+[e = *U + &U F19166 * -> -> -> 2 `i `ui `ux -> -> # *U &U F19166 `ui `ux -> -> 0 `ui `uc ]
+[; ;interrupts.c: 65: buffer[1]='\0';
+"65
+[e = *U + &U F19166 * -> -> -> 1 `i `ui `ux -> -> # *U &U F19166 `ui `ux -> -> 0 `ui `uc ]
+[; ;interrupts.c: 66: buffer[0]='\0';
+"66
+[e = *U + &U F19166 * -> -> -> 0 `i `ui `ux -> -> # *U &U F19166 `ui `ux -> -> 0 `ui `uc ]
+"67
 }
 [e :U 2644 ]
-"146
+"68
 }
 [e :U 2642 ]
-[; ;main.c: 145: }
-[; ;main.c: 146: }
-[; ;main.c: 148: if (input[0]=='R')
-"148
+[; ;interrupts.c: 67: }
+[; ;interrupts.c: 68: }
+[; ;interrupts.c: 70: if (input[0]=='R')
+"70
 [e $ ! == -> *U + &U _input * -> -> -> 0 `i `ui `ux -> -> # *U &U _input `ui `ux `ui -> 82 `ui 2648  ]
-[; ;main.c: 149: beginR=1;
-"149
-[e = _beginR -> -> 1 `i `uc ]
+[; ;interrupts.c: 71: beginR=1;
+"71
+[e = F19167 -> -> 1 `i `uc ]
 [e :U 2648 ]
-[; ;main.c: 150: if (input[0]=='G')
-"150
+[; ;interrupts.c: 72: if (input[0]=='G')
+"72
 [e $ ! == -> *U + &U _input * -> -> -> 0 `i `ui `ux -> -> # *U &U _input `ui `ux `ui -> 71 `ui 2649  ]
-[; ;main.c: 151: beginG=1;
-"151
-[e = _beginG -> -> 1 `i `uc ]
+[; ;interrupts.c: 73: beginG=1;
+"73
+[e = F19168 -> -> 1 `i `uc ]
 [e :U 2649 ]
-[; ;main.c: 152: if (input[0]=='B')
-"152
+[; ;interrupts.c: 74: if (input[0]=='B')
+"74
 [e $ ! == -> *U + &U _input * -> -> -> 0 `i `ui `ux -> -> # *U &U _input `ui `ux `ui -> 66 `ui 2650  ]
-[; ;main.c: 153: beginB=1;
-"153
-[e = _beginB -> -> 1 `i `uc ]
+[; ;interrupts.c: 75: beginB=1;
+"75
+[e = F19169 -> -> 1 `i `uc ]
 [e :U 2650 ]
-[; ;main.c: 154: }
-"154
+[; ;interrupts.c: 76: }
+"76
 [e :UE 2641 ]
-}
-"157
-[v _main `(i ~T0 @X0 1 ef2`i`**uc ]
-{
-[; ;main.c: 157: int main(int argc, char** argv) {
-[e :U _main ]
-[v _argc `i ~T0 @X0 1 r1 ]
-[v _argv `**uc ~T0 @X0 1 r2 ]
-[f ]
-"159
-[v _delay `l ~T0 @X0 1 a ]
-[; ;main.c: 159: long int delay=0;
-[e = _delay -> -> 0 `i `l ]
-[; ;main.c: 160: for(delay=0;delay<100000;delay++);
-"160
-{
-[e = _delay -> -> 0 `i `l ]
-[e $ < _delay -> 100000 `l 2652  ]
-[e $U 2653  ]
-[e :U 2652 ]
-[e ++ _delay -> -> 1 `i `l ]
-[e $ < _delay -> 100000 `l 2652  ]
-[e :U 2653 ]
-}
-[; ;main.c: 161: initialisation();
-"161
-[e ( _initialisation ..  ]
-[v F19169 `uc ~T0 @X0 -> 15 `i s ]
-[i F19169
-:U ..
--> 0 `c
-..
-]
-"162
-[v _msg `uc ~T0 @X0 -> 15 `i a ]
-[; ;main.c: 162: char msg[15]="";
-[e = _msg F19169 ]
-"164
-[v _mode `uc ~T0 @X0 1 a ]
-[; ;main.c: 164: char mode=0;
-[e = _mode -> -> 0 `i `uc ]
-"165
-[v _old_SWITCH1 `uc ~T0 @X0 1 a ]
-[; ;main.c: 165: char old_SWITCH1=0;
-[e = _old_SWITCH1 -> -> 0 `i `uc ]
-"171
-[v _amplitude1 `ui ~T0 @X0 1 a ]
-[; ;main.c: 171: unsigned int amplitude1=0;
-[e = _amplitude1 -> -> 0 `i `ui ]
-"172
-[v _amplitude2 `ui ~T0 @X0 1 a ]
-[; ;main.c: 172: unsigned int amplitude2=0;
-[e = _amplitude2 -> -> 0 `i `ui ]
-"173
-[v _amplitude3 `ui ~T0 @X0 1 a ]
-[; ;main.c: 173: unsigned int amplitude3=0;
-[e = _amplitude3 -> -> 0 `i `ui ]
-[; ;main.c: 175: while (1) {
-"175
-[e :U 2656 ]
-{
-[; ;main.c: 176: for(delay=0;delay<100;delay++);
-"176
-{
-[e = _delay -> -> 0 `i `l ]
-[e $ < _delay -> -> 100 `i `l 2658  ]
-[e $U 2659  ]
-[e :U 2658 ]
-[e ++ _delay -> -> 1 `i `l ]
-[e $ < _delay -> -> 100 `i `l 2658  ]
-[e :U 2659 ]
-}
-[; ;main.c: 178: amplitude1=readADC(1);
-"178
-[e = _amplitude1 ( _readADC (1 -> -> 1 `i `uc ]
-[; ;main.c: 179: amplitude2=readADC(2);
-"179
-[e = _amplitude2 ( _readADC (1 -> -> 2 `i `uc ]
-[; ;main.c: 180: amplitude3=readADC(3);
-"180
-[e = _amplitude3 ( _readADC (1 -> -> 3 `i `uc ]
-[; ;main.c: 183: if (RC0==0 && old_SWITCH1==1)
-"183
-[e $ ! && == -> _RC0 `i -> 0 `i == -> _old_SWITCH1 `i -> 1 `i 2661  ]
-[; ;main.c: 184: {
-"184
-{
-[; ;main.c: 185: mode=!mode;
-"185
-[e = _mode -> -> ! != -> _mode `i -> -> -> 0 `i `uc `i `i `uc ]
-"186
-}
-[e :U 2661 ]
-[; ;main.c: 186: }
-[; ;main.c: 187: old_SWITCH1=RC0;
-"187
-[e = _old_SWITCH1 -> -> _RC0 `i `uc ]
-[; ;main.c: 189: if (mode==1)
-"189
-[e $ ! == -> _mode `i -> 1 `i 2662  ]
-[; ;main.c: 190: {
-"190
-{
-[; ;main.c: 191: pwm('R',(int)( (float)R[0] * (float)amplitude1/65520.));
-"191
-[e ( _pwm (2 , -> -> 82 `ui `uc -> / -> * -> *U + &U _R * -> -> -> 0 `i `ui `ux -> -> # *U &U _R `ui `ux `f -> _amplitude1 `f `d .65520. `i ]
-[; ;main.c: 192: pwm('G',(int)( (float)G[0] * (float)amplitude2/65520.));
-"192
-[e ( _pwm (2 , -> -> 71 `ui `uc -> / -> * -> *U + &U _G * -> -> -> 0 `i `ui `ux -> -> # *U &U _G `ui `ux `f -> _amplitude2 `f `d .65520. `i ]
-[; ;main.c: 193: pwm('B',(int)( (float)B[0] * (float)amplitude3/65520.));
-"193
-[e ( _pwm (2 , -> -> 66 `ui `uc -> / -> * -> *U + &U _B * -> -> -> 0 `i `ui `ux -> -> # *U &U _B `ui `ux `f -> _amplitude3 `f `d .65520. `i ]
-"194
-}
-[; ;main.c: 194: }
-[e $U 2663  ]
-"195
-[e :U 2662 ]
-[; ;main.c: 195: else
-[; ;main.c: 196: {
-"196
-{
-[; ;main.c: 197: pwm('R',(int)( millis * (float)amplitude1/65520.));
-"197
-[e ( _pwm (2 , -> -> 82 `ui `uc -> / -> * -> _millis `f -> _amplitude1 `f `d .65520. `i ]
-[; ;main.c: 198: pwm('G',(int)( millis * (float)amplitude2/65520.));
-"198
-[e ( _pwm (2 , -> -> 71 `ui `uc -> / -> * -> _millis `f -> _amplitude2 `f `d .65520. `i ]
-[; ;main.c: 199: pwm('B',(int)( millis * (float)amplitude3/65520.));
-"199
-[e ( _pwm (2 , -> -> 66 `ui `uc -> / -> * -> _millis `f -> _amplitude3 `f `d .65520. `i ]
-"200
-}
-[e :U 2663 ]
-"201
-}
-[e :U 2655 ]
-"175
-[e $U 2656  ]
-[e :U 2657 ]
-[; ;main.c: 200: }
-[; ;main.c: 201: }
-[; ;main.c: 203: return (0);
-"203
-[e ) -> 0 `i ]
-[e $UE 2651  ]
-[; ;main.c: 204: }
-"204
-[e :UE 2651 ]
-}
-"209
-[v _writeStringToUART `(v ~T0 @X0 1 ef1`*Cuc ]
-"210
-{
-[; ;main.c: 209: void writeStringToUART (const char *msg)
-[; ;main.c: 210: {
-[e :U _writeStringToUART ]
-"209
-[v _msg `*Cuc ~T0 @X0 1 r1 ]
-"210
-[f ]
-[; ;main.c: 211: while(*msg) {
-"211
-[e $U 2665  ]
-[e :U 2666 ]
-{
-[; ;main.c: 212: while(PIR3bits.TX2IF == 0) {}
-"212
-[e $U 2668  ]
-[e :U 2669 ]
-{
-}
-[e :U 2668 ]
-[e $ == -> . . _PIR3bits 0 4 `i -> 0 `i 2669  ]
-[e :U 2670 ]
-[; ;main.c: 213: TXREG2 = *msg++;
-"213
-[e = _TXREG2 *U ++ _msg * -> -> 1 `i `x -> -> # *U _msg `i `x ]
-"214
-}
-[e :U 2665 ]
-"211
-[e $ != -> *U _msg `i -> -> -> 0 `i `Cuc `i 2666  ]
-[e :U 2667 ]
-[; ;main.c: 214: }
-[; ;main.c: 215: }
-"215
-[e :UE 2664 ]
-}
-"217
-[v _readADC `(ui ~T0 @X0 1 ef1`uc ]
-"218
-{
-[; ;main.c: 217: unsigned int readADC(char channel)
-[; ;main.c: 218: {
-[e :U _readADC ]
-"217
-[v _channel `uc ~T0 @X0 1 r1 ]
-"218
-[f ]
-"219
-[v _tempo `uc ~T0 @X0 1 a ]
-[; ;main.c: 219: char tempo=0;
-[e = _tempo -> -> 0 `i `uc ]
-[; ;main.c: 220: switch (channel)
-"220
-[e $U 2673  ]
-[; ;main.c: 221: {
-"221
-{
-[; ;main.c: 222: case 1:
-"222
-[e :U 2674 ]
-[; ;main.c: 223: {
-"223
-{
-[; ;main.c: 224: CHS1=0;
-"224
-[e = _CHS1 -> -> 0 `i `b ]
-[; ;main.c: 225: CHS0=1;
-"225
-[e = _CHS0 -> -> 1 `i `b ]
-[; ;main.c: 226: break;
-"226
-[e $U 2672  ]
-"227
-}
-[; ;main.c: 227: }
-[; ;main.c: 228: case 2:
-"228
-[e :U 2675 ]
-[; ;main.c: 229: {
-"229
-{
-[; ;main.c: 230: CHS1=1;
-"230
-[e = _CHS1 -> -> 1 `i `b ]
-[; ;main.c: 231: CHS0=0;
-"231
-[e = _CHS0 -> -> 0 `i `b ]
-[; ;main.c: 232: break;
-"232
-[e $U 2672  ]
-"233
-}
-[; ;main.c: 233: }
-[; ;main.c: 234: case 3:
-"234
-[e :U 2676 ]
-[; ;main.c: 235: {
-"235
-{
-[; ;main.c: 236: CHS1=1;
-"236
-[e = _CHS1 -> -> 1 `i `b ]
-[; ;main.c: 237: CHS0=1;
-"237
-[e = _CHS0 -> -> 1 `i `b ]
-[; ;main.c: 238: break;
-"238
-[e $U 2672  ]
-"239
-}
-"240
-}
-[; ;main.c: 239: }
-[; ;main.c: 240: }
-[e $U 2672  ]
-"220
-[e :U 2673 ]
-[e [\ _channel , $ -> -> 1 `i `uc 2674
- , $ -> -> 2 `i `uc 2675
- , $ -> -> 3 `i `uc 2676
- 2672 ]
-"240
-[e :U 2672 ]
-[; ;main.c: 241: for(tempo=0;tempo<100;tempo++);
-"241
-{
-[e = _tempo -> -> 0 `i `uc ]
-[e $ < -> _tempo `i -> 100 `i 2677  ]
-[e $U 2678  ]
-[e :U 2677 ]
-[e ++ _tempo -> -> 1 `i `uc ]
-[e $ < -> _tempo `i -> 100 `i 2677  ]
-[e :U 2678 ]
-}
-[; ;main.c: 242: GO_nDONE = 1;
-"242
-[e = _GO_nDONE -> -> 1 `i `b ]
-[; ;main.c: 243: while(GO_nDONE);
-"243
-[e $U 2680  ]
-[e :U 2681 ]
-[e :U 2680 ]
-[e $ _GO_nDONE 2681  ]
-[e :U 2682 ]
-[; ;main.c: 245: return ((ADRESH<<8)+ADRESL);
-"245
-[e ) -> + << -> _ADRESH `i -> 8 `i -> _ADRESL `i `ui ]
-[e $UE 2671  ]
-[; ;main.c: 246: }
-"246
-[e :UE 2671 ]
 }

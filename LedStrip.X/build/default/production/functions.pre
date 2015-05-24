@@ -1,67 +1,5 @@
 
-# 1 "main.c"
-
-
-# 15
-#pragma config RETEN = OFF
-#pragma config INTOSCSEL = HIGH
-#pragma config SOSCSEL = DIG
-#pragma config XINST = OFF
-
-
-#pragma config FOSC = INTIO2
-#pragma config PLLCFG = OFF
-#pragma config FCMEN = OFF
-#pragma config IESO = OFF
-
-
-#pragma config PWRTEN = OFF
-#pragma config BOREN = SBORDIS
-#pragma config BORV = 3
-#pragma config BORPWR = ZPBORMV
-
-
-#pragma config WDTEN = OFF
-#pragma config WDTPS = 1048576
-
-
-#pragma config CANMX = PORTB
-#pragma config MSSPMSK = MSK7
-#pragma config MCLRE = OFF
-
-
-#pragma config STVREN = ON
-#pragma config BBSIZ = BB2K
-
-
-#pragma config CP0 = OFF
-#pragma config CP1 = OFF
-#pragma config CP2 = OFF
-#pragma config CP3 = OFF
-
-
-#pragma config CPB = OFF
-#pragma config CPD = OFF
-
-
-#pragma config WRT0 = OFF
-#pragma config WRT1 = OFF
-#pragma config WRT2 = OFF
-#pragma config WRT3 = OFF
-
-
-#pragma config WRTC = OFF
-#pragma config WRTB = OFF
-#pragma config WRTD = OFF
-
-
-#pragma config EBTR0 = OFF
-#pragma config EBTR1 = OFF
-#pragma config EBTR2 = OFF
-#pragma config EBTR3 = OFF
-
-
-#pragma config EBTRB = OFF
+# 1 "functions.c"
 
 # 8 "/opt/microchip/xc8/v1.34/include/stdio.h"
 typedef int ptrdiff_t;
@@ -21961,13 +21899,6 @@ extern __nonreentrant void _delaywdt(unsigned long);
 #pragma intrinsic(_delay3)
 extern __nonreentrant void _delay3(unsigned char);
 
-# 15 "main.h"
-void writeStringToUART (const char* msg);
-unsigned int readADC(char);
-
-# 12 "converter.h"
-void pwm(char,int);
-
 # 11 "init.h"
 void initialisation(void);
 void initComms(void);
@@ -21975,159 +21906,38 @@ void initPWM(void);
 void initADC(void);
 void initTimer0(void);
 
-# 89 "main.c"
-char beginR=0;
-char beginG=0;
-char beginB=0;
-unsigned int R[100]=0;
-unsigned int G[100]=0;
-unsigned int B[100]=0;
+# 12 "converter.h"
+void pwm(char,int);
 
-unsigned char millis=0;
+# 11 "functions.h"
+void setRGB(int, int, int);
+void strobe(void);
 
+# 23 "main.h"
+void writeStringToUART (const char* msg);
+unsigned int readADC(char);
+void changeModeDetect(void);
 
-void interrupt low_priority Timer0_ISR(void)
+# 3 "functions.c"
+extern unsigned int amplitude1;
+extern unsigned int amplitude2;
+extern unsigned int amplitude3;
+
+extern long millis;
+
+void setRGB(int r, int g, int b)
 {
-
-if (T0IE && T0IF)
-{
-T0IF=0;
-
-millis++;
-}
-}
-
-void interrupt high_priority RX2_ISR(void) {
-RC2IF = 0;
-
-static char compteur=0;
-static char buffer[16]="";
-
-char input[2] = "";
-input[0] = RCREG2;
-
-if (beginR==1 | beginG==1 | beginB==1)
-{
-if (input[0]!='R' & input[0]!='G' & input[0]!='B')
-{
-buffer[compteur]=input[0];
-compteur+=1;
+pwm('R',r);
+pwm('G',g);
+pwm('B',b);
 }
 
+void strobe()
+{
+if (millis%((int)(400*(float)amplitude2/65520.))<(int)((400*(float)amplitude3/65520.)*(float)amplitude2/65520.))
+setRGB( (int)(1023*(float)amplitude1/65520.),
+(int)(1023*(float)amplitude1/65520.),
+(int)(1023*(float)amplitude1/65520.));
 else
-{
-if (beginR==1)
-R[0]=atoi(buffer);
-beginR=0;
-if (beginG==1)
-G[0]=atoi(buffer);
-beginG=0;
-if (beginB==1)
-B[0]=atoi(buffer);
-beginB=0;
-
-
-compteur=0;
-buffer[3]='\0';
-buffer[2]='\0';
-buffer[1]='\0';
-buffer[0]='\0';
-}
-}
-
-if (input[0]=='R')
-beginR=1;
-if (input[0]=='G')
-beginG=1;
-if (input[0]=='B')
-beginB=1;
-}
-
-
-int main(int argc, char** argv) {
-
-long int delay=0;
-for(delay=0;delay<100000;delay++);
-initialisation();
-char msg[15]="";
-
-char mode=0;
-char old_SWITCH1=0;
-
-# 171
-unsigned int amplitude1=0;
-unsigned int amplitude2=0;
-unsigned int amplitude3=0;
-
-while (1) {
-for(delay=0;delay<100;delay++);
-
-amplitude1=readADC(1);
-amplitude2=readADC(2);
-amplitude3=readADC(3);
-
-
-if (RC0==0 && old_SWITCH1==1)
-{
-mode=!mode;
-}
-old_SWITCH1=RC0;
-
-if (mode==1)
-{
-pwm('R',(int)( (float)R[0] * (float)amplitude1/65520.));
-pwm('G',(int)( (float)G[0] * (float)amplitude2/65520.));
-pwm('B',(int)( (float)B[0] * (float)amplitude3/65520.));
-}
-else
-{
-pwm('R',(int)( millis * (float)amplitude1/65520.));
-pwm('G',(int)( millis * (float)amplitude2/65520.));
-pwm('B',(int)( millis * (float)amplitude3/65520.));
-}
-}
-
-return (0);
-}
-
-
-
-
-void writeStringToUART (const char *msg)
-{
-while(*msg) {
-while(PIR3bits.TX2IF == 0) {}
-TXREG2 = *msg++;
-}
-}
-
-unsigned int readADC(char channel)
-{
-char tempo=0;
-switch (channel)
-{
-case 1:
-{
-CHS1=0;
-CHS0=1;
-break;
-}
-case 2:
-{
-CHS1=1;
-CHS0=0;
-break;
-}
-case 3:
-{
-CHS1=1;
-CHS0=1;
-break;
-}
-}
-for(tempo=0;tempo<100;tempo++);
-GO_nDONE = 1;
-while(GO_nDONE);
-
-return ((ADRESH<<8)+ADRESL);
+setRGB(0,0,0);
 }

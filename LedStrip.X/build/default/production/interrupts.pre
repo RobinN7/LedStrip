@@ -1,5 +1,5 @@
 
-# 1 "init.c"
+# 1 "interrupts.c"
 
 # 8 "/opt/microchip/xc8/v1.34/include/stdio.h"
 typedef int ptrdiff_t;
@@ -21906,128 +21906,88 @@ void initPWM(void);
 void initADC(void);
 void initTimer0(void);
 
-# 6 "init.c"
-void initialisation(void) {
+# 12 "converter.h"
+void pwm(char,int);
 
+# 11 "functions.h"
+void setRGB(int, int, int);
+void strobe(void);
 
+# 23 "main.h"
+void writeStringToUART (const char* msg);
+unsigned int readADC(char);
+void changeModeDetect(void);
 
-initPWM();
+# 5 "interrupts.c"
+long millis=0;
 
-
-
-initComms();
-
-
-
-initADC();
-
-
-
-initTimer0();
-
-}
-
-
-void initPWM()
+void interrupt low_priority Timer0_ISR(void)
 {
 
 
 
-PR2=0xFF;
+if (T0IE && T0IF)
+{
+T0IF=0;
 
+TMR0=15;
 
+millis++;
+}
 
-CCPR2L=0b00000000;
-CCPR3L=0b00000000;
-CCPR4L=0b00000000;
-DC2B1=0;
-DC2B0=0;
-DC3B1=0;
-DC3B0=0;
-DC4B1=0;
-DC4B0=0;
-
-# 50
-TRISC=TRISC & 0b00111011;
-
-
-T2CKPS1=0;
-T2CKPS0=0;
-
-
-TMR2ON = 1;
-
-
-CCP2M2=1;
-CCP2M3=1;
-CCP3M2=1;
-CCP3M3=1;
-CCP4M2=1;
-CCP4M3=1;
 }
 
 
-void initComms()
-{
-TRISBbits.TRISB7 = 1;
-TRISBbits.TRISB6 = 0;
 
-
-TXSTA2bits.BRGH = 1;
-TXSTA2bits.SYNC = 0;
-SPBRGH2 = 0;
-SPBRG2 = 51;
-BAUDCON2 = 0x08;
-
-
-
-TXSTA2bits.TXEN = 1;
-RCSTA2bits.CREN = 1;
-RCSTA2bits.SPEN = 1;
-
-
-RCONbits.IPEN = 1;
-INTCONbits.GIE = 1;
-INTCONbits.PEIE = 1;
-PIE3bits.RC2IE = 1;
-PIE3bits.TX2IE = 0;
-
+void interrupt high_priority RX2_ISR(void) {
 RC2IF = 0;
+
+extern unsigned int R[100];
+extern unsigned int G[100];
+extern unsigned int B[100];
+
+static char compteur=0;
+static char buffer[16]="";
+static char beginR=0;
+static char beginG=0;
+static char beginB=0;
+
+char input[2] = "";
+input[0] = RCREG2;
+
+if (beginR==1 | beginG==1 | beginB==1)
+{
+if (input[0]!='R' & input[0]!='G' & input[0]!='B')
+{
+buffer[compteur]=input[0];
+compteur+=1;
 }
 
-void initADC(void)
+else
 {
-TRIGSEL1=0;
-TRIGSEL0=0;
+if (beginR==1)
+R[0]=atoi(buffer);
+beginR=0;
+if (beginG==1)
+G[0]=atoi(buffer);
+beginG=0;
+if (beginB==1)
+B[0]=atoi(buffer);
+beginB=0;
 
-VCFG1=0;
-VCFG0=0;
-VNCFG=0;
 
-
-
-ANSEL3=1;
-ANSEL2=1;
-ANSEL1=1;
-
-ADON=1;
-
-CHS0=1;
+compteur=0;
+buffer[3]='\0';
+buffer[2]='\0';
+buffer[1]='\0';
+buffer[0]='\0';
+}
 }
 
-void initTimer0(void)
-{
-
-T0PS0 = 1;
-T0PS1 = 1;
-T0PS2 = 1;
-PSA = 0;
-T0CS = 0;
-T08BIT = 1;
-TMR0IP = 0;
-TMR0IE = 1;
-PEIE = 1;
-GIE = 1;
-
-
+if (input[0]=='R')
+beginR=1;
+if (input[0]=='G')
+beginG=1;
+if (input[0]=='B')
+beginB=1;
 }

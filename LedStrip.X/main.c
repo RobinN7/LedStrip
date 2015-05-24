@@ -86,131 +86,56 @@
 
 //////////////////////////////// GLOBAL VARS ///////////////////////////////////
 
-char beginR=0;
-char beginG=0;
-char beginB=0;
+
 unsigned int R[100]=0;
 unsigned int G[100]=0;
 unsigned int B[100]=0;
 
-unsigned int millis=0;
-////////////////////////////// TIMER0 INTERRUPT ////////////////////////////////
+unsigned int amplitude1=0;
+unsigned int amplitude2=0;
+unsigned int amplitude3=0;
 
-void interrupt low_priority Timer0_ISR(void)
-{
-    //static unsigned char millis=0;
-    if (T0IE && T0IF)
-    {
-        T0IF=0; //TMR0 interrupt flag must be cleared in software
-                //to allow subsequent interrupts
-        TMR0=15; // Offset pour avoir des ticks toutes les millisecondes
-
-        millis++; //increment the counter variable by 1
-        if (millis==1000)
-        {
-            millis=0;
-            pwm('R',1023);
-            pwm('G',1023);
-            pwm('B',1023);
-            pwm('R',0);
-            pwm('G',0);
-            pwm('B',0);
-        }
-    }
-
-}
-
-void interrupt high_priority RX2_ISR(void) {
-    RC2IF = 0;              // On baisse le FLAG
-
-    static char compteur=0;
-    static char buffer[16]="";
-
-    char input[2] = "";
-    input[0] = RCREG2;    // Lecture UART
-
-    if (beginR==1 | beginG==1 | beginB==1)  // Trame lancee precedemment
-    {
-        if (input[0]!='R' & input[0]!='G' & input[0]!='B')  // Trame en cours
-        {
-            buffer[compteur]=input[0];
-            compteur+=1;
-        }
-
-        else                                                // Fin d'une trame
-        {
-            if (beginR==1)  // Fin de trame rouge
-                R[0]=atoi(buffer);
-                beginR=0;
-            if (beginG==1)  // Fin de trame vert
-                G[0]=atoi(buffer);
-                beginG=0;
-            if (beginB==1)  // Fin de trame bleu
-                B[0]=atoi(buffer);
-                beginB=0;
-
-            // RAZ compteur et buffer
-            compteur=0;
-            buffer[3]='\0';
-            buffer[2]='\0';
-            buffer[1]='\0';
-            buffer[0]='\0';
-        }
-    }
-
-    if (input[0]=='R')  // Debut trame rouge
-        beginR=1;
-    if (input[0]=='G')  // Debut trame vert
-        beginG=1;
-    if (input[0]=='B')  // Debut trame bleu
-        beginB=1;
-}
-
+char mode=0;
 
 int main(int argc, char** argv) {
 
-    long int delay=0;
-    for(delay=0;delay<100000;delay++);
     initialisation();
-    char msg[15]="";
- 
-    char mode=0;
-    char old_SWITCH1=0;
     
+    //char msg[15]="";
     //sprintf(msg, "%d\n\r", i);
     //writeStringToUART(msg);
-   
-
-    unsigned int amplitude1=0;
-    unsigned int amplitude2=0;
-    unsigned int amplitude3=0;
 
     while (1) {
-        for(delay=0;delay<100;delay++);
-        
         amplitude1=readADC(1);
         amplitude2=readADC(2);
         amplitude3=readADC(3);
 
-        // Detection de front montant sur le bouton du premier potentiometre
-        if (SWITCH1==0 && old_SWITCH1==1) 
-        {
-            mode=!mode;
-        }
-        old_SWITCH1=SWITCH1;
+        changeModeDetect();
 
-        if (mode==1)
-        {
-            pwm('R',(int)( (float)R[0] * (float)amplitude1/65520.));
-            pwm('G',(int)( (float)G[0] * (float)amplitude2/65520.));
-            pwm('B',(int)( (float)B[0] * (float)amplitude3/65520.));
+        // Action differente selon le mode
+        switch (mode) {
+        // Couleur manuelle
+        case 0 :
+            setRGB( (int)( 1023 * (float)amplitude1/65520.),
+                    (int)( 1023 * (float)amplitude2/65520.),
+                    (int)( 1023 * (float)amplitude3/65520.));
+            break;
+        // Musique
+        case 1 :
+            setRGB( (int)( (float)R[0] * (float)amplitude1/65520.),
+                    (int)( (float)R[0] * (float)amplitude2/65520.),
+                    (int)( (float)R[0] * (float)amplitude3/65520.));
+            break;
+        // Strobe
+        case 2 :
+            strobe();
+            break;
+
+        default:
+            setRGB(0,0,0);
+
         }
-        else
-        {
-            //pwm('R',(int)( 1023 * (float)amplitude1/65520.));
-            //pwm('G',(int)( 1023 * (float)amplitude2/65520.));
-            //pwm('B',(int)( 1023 * (float)amplitude3/65520.));
-        }
+
     }
 
     return (EXIT_SUCCESS);
@@ -256,4 +181,43 @@ unsigned int readADC(char channel)
     while(GO_nDONE); //Wait for A/D Conversion to complete
 
     return ((ADRESH<<8)+ADRESL);
+}
+
+void changeModeDetect()
+{
+    long int delay=0;
+
+    // Detection de front montant sur le 1er bouton
+    // => Mode precedent
+    static char old_SWITCH1=0;
+
+    if (SWITCH1==0 && old_SWITCH1==1)
+    {
+        for(delay=0;delay<10000;delay++);   // Anti rebond
+        if (SWITCH1==0 && old_SWITCH1==1)   //
+        {
+            if (mode==0)
+                mode=2;
+            else
+                mode-=1;
+        }
+    }
+    old_SWITCH1=SWITCH1;
+
+    // Detection de front montant sur le 3eme bouton
+    // => Mode suivant
+    static char old_SWITCH3=0;
+
+    if (SWITCH3==0 && old_SWITCH3==1)
+    {
+        for(delay=0;delay<10000;delay++);   // Anti rebond
+        if (SWITCH3==0 && old_SWITCH3==1)   //
+        {
+            if (mode==2)
+                mode=0;
+            else
+                mode+=1;
+        }
+    }
+    old_SWITCH3=SWITCH3;
 }

@@ -21906,7 +21906,19 @@ void initPWM(void);
 void initADC(void);
 void initTimer0(void);
 
-# 6 "init.c"
+# 12 "converter.h"
+void pwm(char,int);
+
+# 11 "functions.h"
+void setRGB(int, int, int);
+void strobe(void);
+
+# 23 "main.h"
+void writeStringToUART (const char* msg);
+unsigned int readADC(char);
+void changeModeDetect(void);
+
+# 3 "init.c"
 void initialisation(void) {
 
 
@@ -21947,7 +21959,7 @@ DC3B0=0;
 DC4B1=0;
 DC4B0=0;
 
-# 50
+# 47
 TRISC=TRISC & 0b00111011;
 
 

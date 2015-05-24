@@ -1,220 +1,14 @@
 Version 3.2 HI-TECH Software Intermediate Code
-"13 init.h
-[v _initPWM `(v ~T0 @X0 0 ef ]
-"12
-[v _initComms `(v ~T0 @X0 0 ef ]
-"14
-[v _initADC `(v ~T0 @X0 0 ef ]
-"15
-[v _initTimer0 `(v ~T0 @X0 0 ef ]
-"38004 /opt/microchip/xc8/v1.34/include/pic18f26k80.h
-[v _PR2 `Vuc ~T0 @X0 0 e@4043 ]
-"28741
-[v _CCPR2L `Vuc ~T0 @X0 0 e@3921 ]
-"28542
-[v _CCPR3L `Vuc ~T0 @X0 0 e@3918 ]
-"28420
-[v _CCPR4L `Vuc ~T0 @X0 0 e@3915 ]
-"41945
-[v _DC2B1 `Vb ~T0 @X0 0 e@31365 ]
-"41943
-[v _DC2B0 `Vb ~T0 @X0 0 e@31364 ]
-"41949
-[v _DC3B1 `Vb ~T0 @X0 0 e@31341 ]
-"41947
-[v _DC3B0 `Vb ~T0 @X0 0 e@31340 ]
-"41953
-[v _DC4B1 `Vb ~T0 @X0 0 e@31317 ]
-"41951
-[v _DC4B0 `Vb ~T0 @X0 0 e@31316 ]
-"33613
-[v _TRISC `Vuc ~T0 @X0 0 e@3988 ]
-"44669
-[v _T2CKPS1 `Vb ~T0 @X0 0 e@32337 ]
-"44667
-[v _T2CKPS0 `Vb ~T0 @X0 0 e@32336 ]
-"44773
-[v _TMR2ON `Vb ~T0 @X0 0 e@32338 ]
-"41729
-[v _CCP2M2 `Vb ~T0 @X0 0 e@31362 ]
-"41731
-[v _CCP2M3 `Vb ~T0 @X0 0 e@31363 ]
-"41753
-[v _CCP3M2 `Vb ~T0 @X0 0 e@31338 ]
-"41755
-[v _CCP3M3 `Vb ~T0 @X0 0 e@31339 ]
-"41775
-[v _CCP4M2 `Vb ~T0 @X0 0 e@31314 ]
-"41777
-[v _CCP4M3 `Vb ~T0 @X0 0 e@31315 ]
-"33558
-[s S2202 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S2202 . TRISB0 TRISB1 TRISB2 TRISB3 TRISB4 TRISB5 TRISB6 TRISB7 ]
-"33557
-[u S2201 `S2202 1 ]
-[n S2201 . . ]
-"33569
-[v _TRISBbits `VS2201 ~T0 @X0 0 e@3987 ]
-"36519
-[s S2374 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S2374 . TX9D TRMT BRGH SENDB SYNC TXEN TX9 CSRC ]
-"36529
-[s S2375 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S2375 . TX9D2 TRMT2 BRGH2 SENDB2 SYNC2 TXEN2 TX92 CSRC2 ]
-"36539
-[s S2376 :6 `uc 1 :1 `uc 1 ]
-[n S2376 . . TX8_92 ]
-"36543
-[s S2377 :1 `uc 1 ]
-[n S2377 . TXD82 ]
-"36518
-[u S2373 `S2374 1 `S2375 1 `S2376 1 `S2377 1 ]
-[n S2373 . . . . . ]
-"36547
-[v _TXSTA2bits `VS2373 ~T0 @X0 0 e@4026 ]
-"32320
-[v _SPBRGH2 `Vuc ~T0 @X0 0 e@3964 ]
-"32301
-[v _SPBRG2 `Vuc ~T0 @X0 0 e@3963 ]
-"36359
-[v _BAUDCON2 `Vuc ~T0 @X0 0 e@4025 ]
-"34512
-[s S2251 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S2251 . RX9D OERR FERR ADDEN CREN SREN RX9 SPEN ]
-"34522
-[s S2252 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S2252 . RX9D2 OERR2 FERR2 ADDEN2 CREN2 SREN2 RX92 SPEN2 ]
-"34532
-[s S2253 :6 `uc 1 :1 `uc 1 ]
-[n S2253 . . RC8_92 ]
-"34536
-[s S2254 :6 `uc 1 :1 `uc 1 ]
-[n S2254 . . RC92 ]
-"34540
-[s S2255 :1 `uc 1 ]
-[n S2255 . RCD82 ]
-"34511
-[u S2250 `S2251 1 `S2252 1 `S2253 1 `S2254 1 `S2255 1 ]
-[n S2250 . . . . . . ]
-"34544
-[v _RCSTA2bits `VS2250 ~T0 @X0 0 e@4006 ]
-"38301
-[s S2479 :1 `uc 1 ]
-[n S2479 . NOT_BOR ]
-"38304
-[s S2480 :1 `uc 1 :1 `uc 1 ]
-[n S2480 . . NOT_POR ]
-"38308
-[s S2481 :2 `uc 1 :1 `uc 1 ]
-[n S2481 . . NOT_PD ]
-"38312
-[s S2482 :3 `uc 1 :1 `uc 1 ]
-[n S2482 . . NOT_TO ]
-"38316
-[s S2483 :4 `uc 1 :1 `uc 1 ]
-[n S2483 . . NOT_RI ]
-"38320
-[s S2484 :5 `uc 1 :1 `uc 1 ]
-[n S2484 . . NOT_CM ]
-"38324
-[s S2485 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S2485 . nBOR nPOR nPD nTO nRI nCM SBOREN IPEN ]
-"38334
-[s S2486 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S2486 . BOR POR PD TO RI CM ]
-"38300
-[u S2478 `S2479 1 `S2480 1 `S2481 1 `S2482 1 `S2483 1 `S2484 1 `S2485 1 `S2486 1 ]
-[n S2478 . . . . . . . . . ]
-"38343
-[v _RCONbits `VS2478 ~T0 @X0 0 e@4048 ]
-"39513
-[s S2563 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S2563 . RBIF INT0IF TMR0IF RBIE INT0IE TMR0IE PEIE_GIEL GIE_GIEH ]
-"39523
-[s S2564 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S2564 . . INT0F T0IF . INT0E T0IE PEIE GIE ]
-"39533
-[s S2565 :6 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S2565 . . GIEL GIEH ]
-"39538
-[s S2566 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S2566 . . INT0F T0IF . INT0E T0IE PEIE GIE ]
-"39548
-[s S2567 :6 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S2567 . . GIEL GIEH ]
-"39512
-[u S2562 `S2563 1 `S2564 1 `S2565 1 `S2566 1 `S2567 1 ]
-[n S2562 . . . . . . ]
-"39554
-[v _INTCONbits `VS2562 ~T0 @X0 0 e@4082 ]
-"34290
-[s S2235 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S2235 . . CCP1IE CCP2IE CTMUIE TX2IE RC2IE ]
-"34298
-[s S2236 :1 `uc 1 :1 `uc 1 ]
-[n S2236 . . RXB1IE ]
-"34302
-[s S2237 :1 `uc 1 :1 `uc 1 ]
-[n S2237 . . RXBNIE ]
-"34306
-[s S2238 :2 `uc 1 :1 `uc 1 ]
-[n S2238 . . TXB0IE ]
-"34310
-[s S2239 :3 `uc 1 :1 `uc 1 ]
-[n S2239 . . TXB1IE ]
-"34314
-[s S2240 :4 `uc 1 :1 `uc 1 ]
-[n S2240 . . TXB2IE ]
-"34318
-[s S2241 :4 `uc 1 :1 `uc 1 ]
-[n S2241 . . TXBNIE ]
-"34289
-[u S2234 `S2235 1 `S2236 1 `S2237 1 `S2238 1 `S2239 1 `S2240 1 `S2241 1 ]
-[n S2234 . . . . . . . . ]
-"34323
-[v _PIE3bits `VS2234 ~T0 @X0 0 e@4003 ]
-"42775
-[v _RC2IF `Vb ~T0 @X0 0 e@32037 ]
-"44811
-[v _TRIGSEL1 `Vb ~T0 @X0 0 e@32271 ]
-"44809
-[v _TRIGSEL0 `Vb ~T0 @X0 0 e@32270 ]
-"45607
-[v _VCFG1 `Vb ~T0 @X0 0 e@32269 ]
-"45603
-[v _VCFG0 `Vb ~T0 @X0 0 e@32268 ]
-"45613
-[v _VNCFG `Vb ~T0 @X0 0 e@32267 ]
-"40167
-[v _ANSEL3 `Vb ~T0 @X0 0 e@31467 ]
-"40165
-[v _ANSEL2 `Vb ~T0 @X0 0 e@31466 ]
-"40161
-[v _ANSEL1 `Vb ~T0 @X0 0 e@31465 ]
-"40157
-[v _ADON `Vb ~T0 @X0 0 e@32272 ]
-"41819
-[v _CHS0 `Vb ~T0 @X0 0 e@32274 ]
-"44633
-[v _T0PS0 `Vb ~T0 @X0 0 e@32424 ]
-"44635
-[v _T0PS1 `Vb ~T0 @X0 0 e@32425 ]
-"44637
-[v _T0PS2 `Vb ~T0 @X0 0 e@32426 ]
-"42709
-[v _PSA `Vb ~T0 @X0 0 e@32427 ]
-"44625
-[v _T0CS `Vb ~T0 @X0 0 e@32429 ]
-"44623
-[v _T08BIT `Vb ~T0 @X0 0 e@32430 ]
-"44737
-[v _TMR0IP `Vb ~T0 @X0 0 e@32650 ]
-"44733
-[v _TMR0IE `Vb ~T0 @X0 0 e@32661 ]
-"42691
-[v _PEIE `Vb ~T0 @X0 0 e@32662 ]
-"42293
-[v _GIE `Vb ~T0 @X0 0 e@32663 ]
+"12 converter.h
+[v _pwm `(v ~T0 @X0 0 ef2`uc`i ]
+"7 functions.c
+[v _millis `l ~T0 @X0 0 e ]
+"4
+[v _amplitude2 `ui ~T0 @X0 0 e ]
+"5
+[v _amplitude3 `ui ~T0 @X0 0 e ]
+"3
+[v _amplitude1 `ui ~T0 @X0 0 e ]
 [; ;stdio.h: 8: typedef int ptrdiff_t;
 [; ;stdio.h: 9: typedef unsigned size_t;
 [; ;stdio.h: 10: typedef unsigned short wchar_t;
@@ -17603,241 +17397,67 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;init.h: 13: void initPWM(void);
 [; ;init.h: 14: void initADC(void);
 [; ;init.h: 15: void initTimer0(void);
-"6 init.c
-[v _initialisation `(v ~T0 @X0 1 ef ]
-{
-[; ;init.c: 6: void initialisation(void) {
-[e :U _initialisation ]
-[f ]
-[; ;init.c: 10: initPWM();
+[; ;converter.h: 12: void pwm(char,int);
+[; ;functions.h: 11: void setRGB(int, int, int);
+[; ;functions.h: 12: void strobe(void);
+[; ;main.h: 23: void writeStringToUART (const char* msg);
+[; ;main.h: 24: unsigned int readADC(char);
+[; ;main.h: 25: void changeModeDetect(void);
+[; ;functions.c: 3: extern unsigned int amplitude1;
+[; ;functions.c: 4: extern unsigned int amplitude2;
+[; ;functions.c: 5: extern unsigned int amplitude3;
+[; ;functions.c: 7: extern long millis;
+"9 functions.c
+[v _setRGB `(v ~T0 @X0 1 ef3`i`i`i ]
 "10
-[e ( _initPWM ..  ]
-[; ;init.c: 14: initComms();
+{
+[; ;functions.c: 9: void setRGB(int r, int g, int b)
+[; ;functions.c: 10: {
+[e :U _setRGB ]
+"9
+[v _r `i ~T0 @X0 1 r1 ]
+[v _g `i ~T0 @X0 1 r2 ]
+[v _b `i ~T0 @X0 1 r3 ]
+"10
+[f ]
+[; ;functions.c: 11: pwm('R',r);
+"11
+[e ( _pwm (2 , -> -> 82 `ui `uc _r ]
+[; ;functions.c: 12: pwm('G',g);
+"12
+[e ( _pwm (2 , -> -> 71 `ui `uc _g ]
+[; ;functions.c: 13: pwm('B',b);
+"13
+[e ( _pwm (2 , -> -> 66 `ui `uc _b ]
+[; ;functions.c: 14: }
 "14
-[e ( _initComms ..  ]
-[; ;init.c: 18: initADC();
-"18
-[e ( _initADC ..  ]
-[; ;init.c: 22: initTimer0();
-"22
-[e ( _initTimer0 ..  ]
-[; ;init.c: 24: }
-"24
 [e :UE 2639 ]
 }
-"27
-[v _initPWM `(v ~T0 @X0 1 ef ]
-"28
+"16
+[v _strobe `(v ~T0 @X0 1 ef ]
+"17
 {
-[; ;init.c: 27: void initPWM()
-[; ;init.c: 28: {
-[e :U _initPWM ]
+[; ;functions.c: 16: void strobe()
+[; ;functions.c: 17: {
+[e :U _strobe ]
 [f ]
-[; ;init.c: 32: PR2=0xFF;
-"32
-[e = _PR2 -> -> 255 `i `uc ]
-[; ;init.c: 36: CCPR2L=0b00000000;
-"36
-[e = _CCPR2L -> -> 0 `i `uc ]
-[; ;init.c: 37: CCPR3L=0b00000000;
-"37
-[e = _CCPR3L -> -> 0 `i `uc ]
-[; ;init.c: 38: CCPR4L=0b00000000;
-"38
-[e = _CCPR4L -> -> 0 `i `uc ]
-[; ;init.c: 39: DC2B1=0;
-"39
-[e = _DC2B1 -> -> 0 `i `b ]
-[; ;init.c: 40: DC2B0=0;
-"40
-[e = _DC2B0 -> -> 0 `i `b ]
-[; ;init.c: 41: DC3B1=0;
-"41
-[e = _DC3B1 -> -> 0 `i `b ]
-[; ;init.c: 42: DC3B0=0;
-"42
-[e = _DC3B0 -> -> 0 `i `b ]
-[; ;init.c: 43: DC4B1=0;
-"43
-[e = _DC4B1 -> -> 0 `i `b ]
-[; ;init.c: 44: DC4B0=0;
-"44
-[e = _DC4B0 -> -> 0 `i `b ]
-[; ;init.c: 50: TRISC=TRISC & 0b00111011;
-"50
-[e = _TRISC -> & -> _TRISC `i -> 59 `i `uc ]
-[; ;init.c: 53: T2CKPS1=0;
-"53
-[e = _T2CKPS1 -> -> 0 `i `b ]
-[; ;init.c: 54: T2CKPS0=0;
-"54
-[e = _T2CKPS0 -> -> 0 `i `b ]
-[; ;init.c: 57: TMR2ON = 1;
-"57
-[e = _TMR2ON -> -> 1 `i `b ]
-[; ;init.c: 60: CCP2M2=1;
-"60
-[e = _CCP2M2 -> -> 1 `i `b ]
-[; ;init.c: 61: CCP2M3=1;
-"61
-[e = _CCP2M3 -> -> 1 `i `b ]
-[; ;init.c: 62: CCP3M2=1;
-"62
-[e = _CCP3M2 -> -> 1 `i `b ]
-[; ;init.c: 63: CCP3M3=1;
-"63
-[e = _CCP3M3 -> -> 1 `i `b ]
-[; ;init.c: 64: CCP4M2=1;
-"64
-[e = _CCP4M2 -> -> 1 `i `b ]
-[; ;init.c: 65: CCP4M3=1;
-"65
-[e = _CCP4M3 -> -> 1 `i `b ]
-[; ;init.c: 66: }
-"66
+[; ;functions.c: 18: if (millis%((int)(400*(float)amplitude2/65520.))<(int)((400*(float)amplitude3/65520.)*(float)amplitude2/65520.))
+"18
+[e $ ! < % _millis -> -> / -> * -> -> 400 `i `f -> _amplitude2 `f `d .65520. `i `l -> -> / * / -> * -> -> 400 `i `f -> _amplitude3 `f `d .65520. -> -> _amplitude2 `f `d .65520. `i `l 2641  ]
+[; ;functions.c: 19: setRGB( (int)(1023*(float)amplitude1/65520.),
+[; ;functions.c: 20: (int)(1023*(float)amplitude1/65520.),
+[; ;functions.c: 21: (int)(1023*(float)amplitude1/65520.));
+"21
+[e ( _setRGB (3 , , -> / -> * -> -> 1023 `i `f -> _amplitude1 `f `d .65520. `i -> / -> * -> -> 1023 `i `f -> _amplitude1 `f `d .65520. `i -> / -> * -> -> 1023 `i `f -> _amplitude1 `f `d .65520. `i ]
+[e $U 2642  ]
+"22
+[e :U 2641 ]
+[; ;functions.c: 22: else
+[; ;functions.c: 23: setRGB(0,0,0);
+"23
+[e ( _setRGB (3 , , -> 0 `i -> 0 `i -> 0 `i ]
+[e :U 2642 ]
+[; ;functions.c: 24: }
+"24
 [e :UE 2640 ]
-}
-"69
-[v _initComms `(v ~T0 @X0 1 ef ]
-"70
-{
-[; ;init.c: 69: void initComms()
-[; ;init.c: 70: {
-[e :U _initComms ]
-[f ]
-[; ;init.c: 71: TRISBbits.TRISB7 = 1;
-"71
-[e = . . _TRISBbits 0 7 -> -> 1 `i `uc ]
-[; ;init.c: 72: TRISBbits.TRISB6 = 0;
-"72
-[e = . . _TRISBbits 0 6 -> -> 0 `i `uc ]
-[; ;init.c: 75: TXSTA2bits.BRGH = 1;
-"75
-[e = . . _TXSTA2bits 0 2 -> -> 1 `i `uc ]
-[; ;init.c: 76: TXSTA2bits.SYNC = 0;
-"76
-[e = . . _TXSTA2bits 0 4 -> -> 0 `i `uc ]
-[; ;init.c: 77: SPBRGH2 = 0;
-"77
-[e = _SPBRGH2 -> -> 0 `i `uc ]
-[; ;init.c: 78: SPBRG2 = 51;
-"78
-[e = _SPBRG2 -> -> 51 `i `uc ]
-[; ;init.c: 79: BAUDCON2 = 0x08;
-"79
-[e = _BAUDCON2 -> -> 8 `i `uc ]
-[; ;init.c: 83: TXSTA2bits.TXEN = 1;
-"83
-[e = . . _TXSTA2bits 0 5 -> -> 1 `i `uc ]
-[; ;init.c: 84: RCSTA2bits.CREN = 1;
-"84
-[e = . . _RCSTA2bits 0 4 -> -> 1 `i `uc ]
-[; ;init.c: 85: RCSTA2bits.SPEN = 1;
-"85
-[e = . . _RCSTA2bits 0 7 -> -> 1 `i `uc ]
-[; ;init.c: 88: RCONbits.IPEN = 1;
-"88
-[e = . . _RCONbits 6 7 -> -> 1 `i `uc ]
-[; ;init.c: 89: INTCONbits.GIE = 1;
-"89
-[e = . . _INTCONbits 1 7 -> -> 1 `i `uc ]
-[; ;init.c: 90: INTCONbits.PEIE = 1;
-"90
-[e = . . _INTCONbits 1 6 -> -> 1 `i `uc ]
-[; ;init.c: 91: PIE3bits.RC2IE = 1;
-"91
-[e = . . _PIE3bits 0 5 -> -> 1 `i `uc ]
-[; ;init.c: 92: PIE3bits.TX2IE = 0;
-"92
-[e = . . _PIE3bits 0 4 -> -> 0 `i `uc ]
-[; ;init.c: 94: RC2IF = 0;
-"94
-[e = _RC2IF -> -> 0 `i `b ]
-[; ;init.c: 95: }
-"95
-[e :UE 2641 ]
-}
-"97
-[v _initADC `(v ~T0 @X0 1 ef ]
-"98
-{
-[; ;init.c: 97: void initADC(void)
-[; ;init.c: 98: {
-[e :U _initADC ]
-[f ]
-[; ;init.c: 99: TRIGSEL1=0;
-"99
-[e = _TRIGSEL1 -> -> 0 `i `b ]
-[; ;init.c: 100: TRIGSEL0=0;
-"100
-[e = _TRIGSEL0 -> -> 0 `i `b ]
-[; ;init.c: 102: VCFG1=0;
-"102
-[e = _VCFG1 -> -> 0 `i `b ]
-[; ;init.c: 103: VCFG0=0;
-"103
-[e = _VCFG0 -> -> 0 `i `b ]
-[; ;init.c: 104: VNCFG=0;
-"104
-[e = _VNCFG -> -> 0 `i `b ]
-[; ;init.c: 108: ANSEL3=1;
-"108
-[e = _ANSEL3 -> -> 1 `i `b ]
-[; ;init.c: 109: ANSEL2=1;
-"109
-[e = _ANSEL2 -> -> 1 `i `b ]
-[; ;init.c: 110: ANSEL1=1;
-"110
-[e = _ANSEL1 -> -> 1 `i `b ]
-[; ;init.c: 112: ADON=1;
-"112
-[e = _ADON -> -> 1 `i `b ]
-[; ;init.c: 114: CHS0=1;
-"114
-[e = _CHS0 -> -> 1 `i `b ]
-[; ;init.c: 115: }
-"115
-[e :UE 2642 ]
-}
-"117
-[v _initTimer0 `(v ~T0 @X0 1 ef ]
-"118
-{
-[; ;init.c: 117: void initTimer0(void)
-[; ;init.c: 118: {
-[e :U _initTimer0 ]
-[f ]
-[; ;init.c: 120: T0PS0 = 1;
-"120
-[e = _T0PS0 -> -> 1 `i `b ]
-[; ;init.c: 121: T0PS1 = 1;
-"121
-[e = _T0PS1 -> -> 1 `i `b ]
-[; ;init.c: 122: T0PS2 = 1;
-"122
-[e = _T0PS2 -> -> 1 `i `b ]
-[; ;init.c: 123: PSA = 0;
-"123
-[e = _PSA -> -> 0 `i `b ]
-[; ;init.c: 124: T0CS = 0;
-"124
-[e = _T0CS -> -> 0 `i `b ]
-[; ;init.c: 125: T08BIT = 1;
-"125
-[e = _T08BIT -> -> 1 `i `b ]
-[; ;init.c: 126: TMR0IP = 0;
-"126
-[e = _TMR0IP -> -> 0 `i `b ]
-[; ;init.c: 127: TMR0IE = 1;
-"127
-[e = _TMR0IE -> -> 1 `i `b ]
-[; ;init.c: 128: PEIE = 1;
-"128
-[e = _PEIE -> -> 1 `i `b ]
-[; ;init.c: 129: GIE = 1;
-"129
-[e = _GIE -> -> 1 `i `b ]
-[; ;init.c: 132: }
-"132
-[e :UE 2643 ]
 }

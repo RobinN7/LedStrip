@@ -21899,10 +21899,26 @@ extern __nonreentrant void _delaywdt(unsigned long);
 #pragma intrinsic(_delay3)
 extern __nonreentrant void _delay3(unsigned char);
 
+# 11 "init.h"
+void initialisation(void);
+void initComms(void);
+void initPWM(void);
+void initADC(void);
+void initTimer0(void);
+
 # 12 "converter.h"
 void pwm(char,int);
 
-# 8 "converter.c"
+# 11 "functions.h"
+void setRGB(int, int, int);
+void strobe(void);
+
+# 23 "main.h"
+void writeStringToUART (const char* msg);
+unsigned int readADC(char);
+void changeModeDetect(void);
+
+# 4 "converter.c"
 void pwm(char color, int dutycycle) {
 switch(color){
 case 'B':

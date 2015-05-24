@@ -17400,77 +17400,87 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;pic18.h: 161: extern __nonreentrant void _delay(unsigned long);
 [; ;pic18.h: 163: extern __nonreentrant void _delaywdt(unsigned long);
 [; ;pic18.h: 165: extern __nonreentrant void _delay3(unsigned char);
+[; ;init.h: 11: void initialisation(void);
+[; ;init.h: 12: void initComms(void);
+[; ;init.h: 13: void initPWM(void);
+[; ;init.h: 14: void initADC(void);
+[; ;init.h: 15: void initTimer0(void);
 [; ;converter.h: 12: void pwm(char,int);
-"8 converter.c
+[; ;functions.h: 11: void setRGB(int, int, int);
+[; ;functions.h: 12: void strobe(void);
+[; ;main.h: 23: void writeStringToUART (const char* msg);
+[; ;main.h: 24: unsigned int readADC(char);
+[; ;main.h: 25: void changeModeDetect(void);
+"4 converter.c
 [v _pwm `(v ~T0 @X0 1 ef2`uc`i ]
 {
-[; ;converter.c: 8: void pwm(char color, int dutycycle) {
+[; ;converter.c: 4: void pwm(char color, int dutycycle) {
 [e :U _pwm ]
 [v _color `uc ~T0 @X0 1 r1 ]
 [v _dutycycle `i ~T0 @X0 1 r2 ]
 [f ]
-[; ;converter.c: 9: switch(color){
-"9
+[; ;converter.c: 5: switch(color){
+"5
 [e $U 2641  ]
 {
-[; ;converter.c: 10: case 'B':
-"10
+[; ;converter.c: 6: case 'B':
+"6
 [e :U 2642 ]
-[; ;converter.c: 11: CCPR2L=dutycycle/4;
-"11
+[; ;converter.c: 7: CCPR2L=dutycycle/4;
+"7
 [e = _CCPR2L -> / _dutycycle -> 4 `i `uc ]
-[; ;converter.c: 12: DC2B1=(dutycycle/2)%1;
-"12
+[; ;converter.c: 8: DC2B1=(dutycycle/2)%1;
+"8
 [e = _DC2B1 -> % / _dutycycle -> 2 `i -> 1 `i `b ]
-[; ;converter.c: 13: DC2B0=dutycycle%1;
-"13
-[e = _DC2B0 -> % _dutycycle -> 1 `i `b ]
-[; ;converter.c: 14: break;
-"14
-[e $U 2640  ]
-[; ;converter.c: 15: case 'R':
-"15
-[e :U 2643 ]
-[; ;converter.c: 16: CCPR3L=dutycycle/4;
-"16
-[e = _CCPR3L -> / _dutycycle -> 4 `i `uc ]
-[; ;converter.c: 17: DC3B1=(dutycycle/2)%1;
-"17
-[e = _DC3B1 -> % / _dutycycle -> 2 `i -> 1 `i `b ]
-[; ;converter.c: 18: DC3B0=0;
-"18
-[e = _DC3B0 -> -> 0 `i `b ]
-[; ;converter.c: 19: break;
-"19
-[e $U 2640  ]
-[; ;converter.c: 20: case 'G':
-"20
-[e :U 2644 ]
-[; ;converter.c: 21: CCPR4L=dutycycle/4;
-"21
-[e = _CCPR4L -> / _dutycycle -> 4 `i `uc ]
-[; ;converter.c: 22: DC4B1=(dutycycle/2)%1;
-"22
-[e = _DC4B1 -> % / _dutycycle -> 2 `i -> 1 `i `b ]
-[; ;converter.c: 23: DC4B0=dutycycle%1;
-"23
-[e = _DC4B0 -> % _dutycycle -> 1 `i `b ]
-[; ;converter.c: 24: break;
-"24
-[e $U 2640  ]
-"25
-}
-[; ;converter.c: 25: }
-[e $U 2640  ]
+[; ;converter.c: 9: DC2B0=dutycycle%1;
 "9
+[e = _DC2B0 -> % _dutycycle -> 1 `i `b ]
+[; ;converter.c: 10: break;
+"10
+[e $U 2640  ]
+[; ;converter.c: 11: case 'R':
+"11
+[e :U 2643 ]
+[; ;converter.c: 12: CCPR3L=dutycycle/4;
+"12
+[e = _CCPR3L -> / _dutycycle -> 4 `i `uc ]
+[; ;converter.c: 13: DC3B1=(dutycycle/2)%1;
+"13
+[e = _DC3B1 -> % / _dutycycle -> 2 `i -> 1 `i `b ]
+[; ;converter.c: 14: DC3B0=0;
+"14
+[e = _DC3B0 -> -> 0 `i `b ]
+[; ;converter.c: 15: break;
+"15
+[e $U 2640  ]
+[; ;converter.c: 16: case 'G':
+"16
+[e :U 2644 ]
+[; ;converter.c: 17: CCPR4L=dutycycle/4;
+"17
+[e = _CCPR4L -> / _dutycycle -> 4 `i `uc ]
+[; ;converter.c: 18: DC4B1=(dutycycle/2)%1;
+"18
+[e = _DC4B1 -> % / _dutycycle -> 2 `i -> 1 `i `b ]
+[; ;converter.c: 19: DC4B0=dutycycle%1;
+"19
+[e = _DC4B0 -> % _dutycycle -> 1 `i `b ]
+[; ;converter.c: 20: break;
+"20
+[e $U 2640  ]
+"21
+}
+[; ;converter.c: 21: }
+[e $U 2640  ]
+"5
 [e :U 2641 ]
 [e [\ _color , $ -> -> 66 `ui `uc 2642
  , $ -> -> 82 `ui `uc 2643
  , $ -> -> 71 `ui `uc 2644
  2640 ]
-"25
+"21
 [e :U 2640 ]
-[; ;converter.c: 27: }
-"27
+[; ;converter.c: 23: }
+"23
 [e :UE 2639 ]
 }
