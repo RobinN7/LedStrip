@@ -4,11 +4,11 @@ Version 3.2 HI-TECH Software Intermediate Code
 "7 functions.c
 [v _millis `l ~T0 @X0 0 e ]
 "4
-[v _amplitude2 `ui ~T0 @X0 0 e ]
+[v _amplitude2 `f ~T0 @X0 0 e ]
 "5
-[v _amplitude3 `ui ~T0 @X0 0 e ]
+[v _amplitude3 `f ~T0 @X0 0 e ]
 "3
-[v _amplitude1 `ui ~T0 @X0 0 e ]
+[v _amplitude1 `f ~T0 @X0 0 e ]
 [; ;stdio.h: 8: typedef int ptrdiff_t;
 [; ;stdio.h: 9: typedef unsigned size_t;
 [; ;stdio.h: 10: typedef unsigned short wchar_t;
@@ -17402,10 +17402,11 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;functions.h: 12: void strobe(void);
 [; ;main.h: 23: void writeStringToUART (const char* msg);
 [; ;main.h: 24: unsigned int readADC(char);
-[; ;main.h: 25: void changeModeDetect(void);
-[; ;functions.c: 3: extern unsigned int amplitude1;
-[; ;functions.c: 4: extern unsigned int amplitude2;
-[; ;functions.c: 5: extern unsigned int amplitude3;
+[; ;main.h: 25: void readAllADC(void);
+[; ;main.h: 26: void changeModeDetect(void);
+[; ;functions.c: 3: extern float amplitude1;
+[; ;functions.c: 4: extern float amplitude2;
+[; ;functions.c: 5: extern float amplitude3;
 [; ;functions.c: 7: extern long millis;
 "9 functions.c
 [v _setRGB `(v ~T0 @X0 1 ef3`i`i`i ]
@@ -17441,14 +17442,14 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;functions.c: 17: {
 [e :U _strobe ]
 [f ]
-[; ;functions.c: 18: if (millis%((int)(400*(float)amplitude2/65520.))<(int)((400*(float)amplitude3/65520.)*(float)amplitude2/65520.))
+[; ;functions.c: 18: if (millis%((int)(1000*(1 - amplitude2*0.96)))<(int)(1000*(1-amplitude2*0.96)*(amplitude3*0.94+0.06)))
 "18
-[e $ ! < % _millis -> -> / -> * -> -> 400 `i `f -> _amplitude2 `f `d .65520. `i `l -> -> / * / -> * -> -> 400 `i `f -> _amplitude3 `f `d .65520. -> -> _amplitude2 `f `d .65520. `i `l 2641  ]
-[; ;functions.c: 19: setRGB( (int)(1023*(float)amplitude1/65520.),
-[; ;functions.c: 20: (int)(1023*(float)amplitude1/65520.),
-[; ;functions.c: 21: (int)(1023*(float)amplitude1/65520.));
+[e $ ! < % _millis -> -> * -> -> 1000 `i `d - -> -> 1 `i `d * -> _amplitude2 `d .0.96 `i `l -> -> * * -> -> 1000 `i `d - -> -> 1 `i `d * -> _amplitude2 `d .0.96 + * -> _amplitude3 `d .0.94 .0.06 `i `l 2641  ]
+[; ;functions.c: 19: setRGB( (int)(1023*amplitude1),
+[; ;functions.c: 20: (int)(1023*amplitude1),
+[; ;functions.c: 21: (int)(1023*amplitude1));
 "21
-[e ( _setRGB (3 , , -> / -> * -> -> 1023 `i `f -> _amplitude1 `f `d .65520. `i -> / -> * -> -> 1023 `i `f -> _amplitude1 `f `d .65520. `i -> / -> * -> -> 1023 `i `f -> _amplitude1 `f `d .65520. `i ]
+[e ( _setRGB (3 , , -> * -> -> 1023 `i `f _amplitude1 `i -> * -> -> 1023 `i `f _amplitude1 `i -> * -> -> 1023 `i `f _amplitude1 `i ]
 [e $U 2642  ]
 "22
 [e :U 2641 ]

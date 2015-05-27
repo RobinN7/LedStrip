@@ -17410,7 +17410,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;functions.h: 12: void strobe(void);
 [; ;main.h: 23: void writeStringToUART (const char* msg);
 [; ;main.h: 24: unsigned int readADC(char);
-[; ;main.h: 25: void changeModeDetect(void);
+[; ;main.h: 25: void readAllADC(void);
+[; ;main.h: 26: void changeModeDetect(void);
 "4 converter.c
 [v _pwm `(v ~T0 @X0 1 ef2`uc`i ]
 {

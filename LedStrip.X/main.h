@@ -22,6 +22,7 @@
 
 void writeStringToUART (const char* msg);
 unsigned int readADC(char);
+void readAllADC(void);
 void changeModeDetect(void);
 
 #endif	/* MAIN_H */

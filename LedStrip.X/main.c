@@ -91,9 +91,9 @@ unsigned int R[100]=0;
 unsigned int G[100]=0;
 unsigned int B[100]=0;
 
-unsigned int amplitude1=0;
-unsigned int amplitude2=0;
-unsigned int amplitude3=0;
+float amplitude1=0;
+float amplitude2=0;
+float amplitude3=0;
 
 char mode=0;
 
@@ -106,36 +106,34 @@ int main(int argc, char** argv) {
     //writeStringToUART(msg);
 
     while (1) {
-        amplitude1=readADC(1);
-        amplitude2=readADC(2);
-        amplitude3=readADC(3);
+        // Lecture des trois potentiometres
+        readAllADC();
 
+        // Detection d'un changement de mode
         changeModeDetect();
-
+        
         // Action differente selon le mode
         switch (mode) {
-        // Couleur manuelle
-        case 0 :
-            setRGB( (int)( 1023 * (float)amplitude1/65520.),
-                    (int)( 1023 * (float)amplitude2/65520.),
-                    (int)( 1023 * (float)amplitude3/65520.));
-            break;
-        // Musique
-        case 1 :
-            setRGB( (int)( (float)R[0] * (float)amplitude1/65520.),
-                    (int)( (float)R[0] * (float)amplitude2/65520.),
-                    (int)( (float)R[0] * (float)amplitude3/65520.));
-            break;
-        // Strobe
-        case 2 :
-            strobe();
-            break;
+            // Couleur manuelle
+            case 0 :
+                setRGB( (int)( 1023 * amplitude1),
+                        (int)( 1023 * amplitude2),
+                        (int)( 1023 * amplitude3));
+                break;
+            // Musique
+            case 1 :
+                setRGB( (int)( (float)R[0] * amplitude1),
+                        (int)( (float)G[0] * amplitude2),
+                        (int)( (float)B[0] * amplitude3));
+                break;
+            // Strobe
+            case 2 :
+                strobe();
+                break;
 
-        default:
-            setRGB(0,0,0);
-
+            default:
+                setRGB(0,0,0);
         }
-
     }
 
     return (EXIT_SUCCESS);
@@ -152,6 +150,7 @@ void writeStringToUART (const char *msg)
     }
 }
 
+// Lecture d'un canal de l'ADC
 unsigned int readADC(char channel)
 {
     char tempo=0;
@@ -181,6 +180,15 @@ unsigned int readADC(char channel)
     while(GO_nDONE); //Wait for A/D Conversion to complete
 
     return ((ADRESH<<8)+ADRESL);
+}
+
+// Lecture successive des trois canaux de l'ADC
+void readAllADC()
+{
+    // Amplitude des potentiometres ramenees entre 0 et 1
+    amplitude1=(float)readADC(1)/65520.;
+    amplitude2=(float)readADC(2)/65520.;
+    amplitude3=(float)readADC(3)/65520.;
 }
 
 void changeModeDetect()

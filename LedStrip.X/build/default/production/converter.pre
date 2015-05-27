@@ -21916,6 +21916,7 @@ void strobe(void);
 # 23 "main.h"
 void writeStringToUART (const char* msg);
 unsigned int readADC(char);
+void readAllADC(void);
 void changeModeDetect(void);
 
 # 4 "converter.c"

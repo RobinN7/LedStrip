@@ -1,8 +1,8 @@
 #include "main.h"
 
-extern unsigned int amplitude1;
-extern unsigned int amplitude2;
-extern unsigned int amplitude3;
+extern float amplitude1;
+extern float amplitude2;
+extern float amplitude3;
 
 extern long millis;
 
@@ -15,10 +15,10 @@ void setRGB(int r, int g, int b)
 
 void strobe()
 {
-    if (millis%((int)(400*(float)amplitude2/65520.))<(int)((400*(float)amplitude3/65520.)*(float)amplitude2/65520.))
-        setRGB( (int)(1023*(float)amplitude1/65520.),
-                (int)(1023*(float)amplitude1/65520.),
-                (int)(1023*(float)amplitude1/65520.));
+    if (millis%((int)(1000*(1 - amplitude2*0.96)))<(int)(1000*(1-amplitude2*0.96)*(amplitude3*0.94+0.06)))
+        setRGB( (int)(1023*amplitude1),
+                (int)(1023*amplitude1),
+                (int)(1023*amplitude1));
     else
         setRGB(0,0,0);
 }

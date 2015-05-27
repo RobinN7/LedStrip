@@ -1,3 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?><project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/1"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/1">
+        <file>file:/home/robin/7Robot/LedStrip/LedStrip.X/main.c</file>
+        <file>file:/home/robin/7Robot/LedStrip/LedStrip.X/main.h</file>
+        <file>file:/home/robin/7Robot/LedStrip/LedStrip.X/init.c</file>
+        <file>file:/home/robin/7Robot/LedStrip/LedStrip.X/converter.c</file>
+        <file>file:/home/robin/7Robot/LedStrip/LedStrip.X/init.h</file>
+        <file>file:/home/robin/7Robot/LedStrip/LedStrip.X/interrupts.h</file>
+        <file>file:/home/robin/7Robot/LedStrip/LedStrip.X/interrupts.c</file>
+        <file>file:/home/robin/7Robot/LedStrip/LedStrip.X/functions.c</file>
+        <file>file:/home/robin/7Robot/LedStrip/LedStrip.X/functions.h</file>
+        <file>file:/home/robin/7Robot/LedStrip/LedStrip.X/converter.h</file>
+    </open-files>
 </project-private>

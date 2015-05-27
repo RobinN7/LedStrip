@@ -21990,6 +21990,7 @@ void strobe(void);
 # 23 "main.h"
 void writeStringToUART (const char* msg);
 unsigned int readADC(char);
+void readAllADC(void);
 void changeModeDetect(void);
 
 # 90 "main.c"
@@ -21997,9 +21998,9 @@ unsigned int R[100]=0;
 unsigned int G[100]=0;
 unsigned int B[100]=0;
 
-unsigned int amplitude1=0;
-unsigned int amplitude2=0;
-unsigned int amplitude3=0;
+float amplitude1=0;
+float amplitude2=0;
+float amplitude3=0;
 
 char mode=0;
 
@@ -22009,9 +22010,9 @@ initialisation();
 
 # 108
 while (1) {
-amplitude1=readADC(1);
-amplitude2=readADC(2);
-amplitude3=readADC(3);
+
+readAllADC();
+
 
 changeModeDetect();
 
@@ -22019,15 +22020,15 @@ changeModeDetect();
 switch (mode) {
 
 case 0 :
-setRGB( (int)( 1023 * (float)amplitude1/65520.),
-(int)( 1023 * (float)amplitude2/65520.),
-(int)( 1023 * (float)amplitude3/65520.));
+setRGB( (int)( 1023 * amplitude1),
+(int)( 1023 * amplitude2),
+(int)( 1023 * amplitude3));
 break;
 
 case 1 :
-setRGB( (int)( (float)R[0] * (float)amplitude1/65520.),
-(int)( (float)R[0] * (float)amplitude2/65520.),
-(int)( (float)R[0] * (float)amplitude3/65520.));
+setRGB( (int)( (float)R[0] * amplitude1),
+(int)( (float)G[0] * amplitude2),
+(int)( (float)B[0] * amplitude3));
 break;
 
 case 2 :
@@ -22036,9 +22037,7 @@ break;
 
 default:
 setRGB(0,0,0);
-
 }
-
 }
 
 return (0);
@@ -22054,6 +22053,7 @@ while(PIR3bits.TX2IF == 0) {}
 TXREG2 = *msg++;
 }
 }
+
 
 unsigned int readADC(char channel)
 {
@@ -22084,6 +22084,15 @@ GO_nDONE = 1;
 while(GO_nDONE);
 
 return ((ADRESH<<8)+ADRESL);
+}
+
+
+void readAllADC()
+{
+
+amplitude1=(float)readADC(1)/65520.;
+amplitude2=(float)readADC(2)/65520.;
+amplitude3=(float)readADC(3)/65520.;
 }
 
 void changeModeDetect()

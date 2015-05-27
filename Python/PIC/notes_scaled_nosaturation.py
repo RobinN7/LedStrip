@@ -78,5 +78,5 @@ def process(audio_stream, num_leds, num_samples, sample_rate):
 	notes = schur(notes, human_ear_multipliers)
 	notes = rolling_scale_to_max(notes, falloff=0.98) # Range: 0-1
 	notes = exaggerate(notes, exponent=2)
-	notes = rolling_smooth(notes, falloff=0.92) # Range: 0-1
+	notes = rolling_smooth(notes, falloff=0.95) # Range: 0-1
 	return notes

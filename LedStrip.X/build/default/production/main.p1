@@ -2,9 +2,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [p mainexit ]
 "11 init.h
 [v _initialisation `(v ~T0 @X0 0 ef ]
-"24 main.h
-[v _readADC `(ui ~T0 @X0 0 ef1`uc ]
-"25
+"25 main.h
+[v _readAllADC `(v ~T0 @X0 0 ef ]
+"26
 [v _changeModeDetect `(v ~T0 @X0 0 ef ]
 "11 functions.h
 [v _setRGB `(v ~T0 @X0 0 ef3`i`i`i ]
@@ -17512,7 +17512,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;functions.h: 12: void strobe(void);
 [; ;main.h: 23: void writeStringToUART (const char* msg);
 [; ;main.h: 24: unsigned int readADC(char);
-[; ;main.h: 25: void changeModeDetect(void);
+[; ;main.h: 25: void readAllADC(void);
+[; ;main.h: 26: void changeModeDetect(void);
 "90 main.c
 [v _R `ui ~T0 @X0 -> 100 `i e ]
 [i _R
@@ -17538,23 +17539,23 @@ Version 3.2 HI-TECH Software Intermediate Code
 ]
 [; ;main.c: 92: unsigned int B[100]=0;
 "94
-[v _amplitude1 `ui ~T0 @X0 1 e ]
+[v _amplitude1 `f ~T0 @X0 1 e ]
 [i _amplitude1
--> -> 0 `i `ui
+-> -> 0 `i `f
 ]
-[; ;main.c: 94: unsigned int amplitude1=0;
+[; ;main.c: 94: float amplitude1=0;
 "95
-[v _amplitude2 `ui ~T0 @X0 1 e ]
+[v _amplitude2 `f ~T0 @X0 1 e ]
 [i _amplitude2
--> -> 0 `i `ui
+-> -> 0 `i `f
 ]
-[; ;main.c: 95: unsigned int amplitude2=0;
+[; ;main.c: 95: float amplitude2=0;
 "96
-[v _amplitude3 `ui ~T0 @X0 1 e ]
+[v _amplitude3 `f ~T0 @X0 1 e ]
 [i _amplitude3
--> -> 0 `i `ui
+-> -> 0 `i `f
 ]
-[; ;main.c: 96: unsigned int amplitude3=0;
+[; ;main.c: 96: float amplitude3=0;
 "98
 [v _mode `uc ~T0 @X0 1 e ]
 [i _mode
@@ -17576,15 +17577,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 "108
 [e :U 2641 ]
 {
-[; ;main.c: 109: amplitude1=readADC(1);
-"109
-[e = _amplitude1 ( _readADC (1 -> -> 1 `i `uc ]
-[; ;main.c: 110: amplitude2=readADC(2);
+[; ;main.c: 110: readAllADC();
 "110
-[e = _amplitude2 ( _readADC (1 -> -> 2 `i `uc ]
-[; ;main.c: 111: amplitude3=readADC(3);
-"111
-[e = _amplitude3 ( _readADC (1 -> -> 3 `i `uc ]
+[e ( _readAllADC ..  ]
 [; ;main.c: 113: changeModeDetect();
 "113
 [e ( _changeModeDetect ..  ]
@@ -17595,22 +17590,22 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;main.c: 118: case 0 :
 "118
 [e :U 2645 ]
-[; ;main.c: 119: setRGB( (int)( 1023 * (float)amplitude1/65520.),
-[; ;main.c: 120: (int)( 1023 * (float)amplitude2/65520.),
-[; ;main.c: 121: (int)( 1023 * (float)amplitude3/65520.));
+[; ;main.c: 119: setRGB( (int)( 1023 * amplitude1),
+[; ;main.c: 120: (int)( 1023 * amplitude2),
+[; ;main.c: 121: (int)( 1023 * amplitude3));
 "121
-[e ( _setRGB (3 , , -> / -> * -> -> 1023 `i `f -> _amplitude1 `f `d .65520. `i -> / -> * -> -> 1023 `i `f -> _amplitude2 `f `d .65520. `i -> / -> * -> -> 1023 `i `f -> _amplitude3 `f `d .65520. `i ]
+[e ( _setRGB (3 , , -> * -> -> 1023 `i `f _amplitude1 `i -> * -> -> 1023 `i `f _amplitude2 `i -> * -> -> 1023 `i `f _amplitude3 `i ]
 [; ;main.c: 122: break;
 "122
 [e $U 2643  ]
 [; ;main.c: 124: case 1 :
 "124
 [e :U 2646 ]
-[; ;main.c: 125: setRGB( (int)( (float)R[0] * (float)amplitude1/65520.),
-[; ;main.c: 126: (int)( (float)R[0] * (float)amplitude2/65520.),
-[; ;main.c: 127: (int)( (float)R[0] * (float)amplitude3/65520.));
+[; ;main.c: 125: setRGB( (int)( (float)R[0] * amplitude1),
+[; ;main.c: 126: (int)( (float)G[0] * amplitude2),
+[; ;main.c: 127: (int)( (float)B[0] * amplitude3));
 "127
-[e ( _setRGB (3 , , -> / -> * -> *U + &U _R * -> -> -> 0 `i `ui `ux -> -> # *U &U _R `ui `ux `f -> _amplitude1 `f `d .65520. `i -> / -> * -> *U + &U _R * -> -> -> 0 `i `ui `ux -> -> # *U &U _R `ui `ux `f -> _amplitude2 `f `d .65520. `i -> / -> * -> *U + &U _R * -> -> -> 0 `i `ui `ux -> -> # *U &U _R `ui `ux `f -> _amplitude3 `f `d .65520. `i ]
+[e ( _setRGB (3 , , -> * -> *U + &U _R * -> -> -> 0 `i `ui `ux -> -> # *U &U _R `ui `ux `f _amplitude1 `i -> * -> *U + &U _G * -> -> -> 0 `i `ui `ux -> -> # *U &U _G `ui `ux `f _amplitude2 `i -> * -> *U + &U _B * -> -> -> 0 `i `ui `ux -> -> # *U &U _B `ui `ux `f _amplitude3 `i ]
 [; ;main.c: 128: break;
 "128
 [e $U 2643  ]
@@ -17629,9 +17624,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;main.c: 135: setRGB(0,0,0);
 "135
 [e ( _setRGB (3 , , -> 0 `i -> 0 `i -> 0 `i ]
-"137
+"136
 }
-[; ;main.c: 137: }
+[; ;main.c: 136: }
 [e $U 2643  ]
 "116
 [e :U 2644 ]
@@ -17639,41 +17634,41 @@ Version 3.2 HI-TECH Software Intermediate Code
  , $ -> -> 1 `i `uc 2646
  , $ -> -> 2 `i `uc 2647
  2648 ]
-"137
+"136
 [e :U 2643 ]
-"139
+"137
 }
 [e :U 2640 ]
 "108
 [e $U 2641  ]
 [e :U 2642 ]
-[; ;main.c: 139: }
-[; ;main.c: 141: return (0);
-"141
+[; ;main.c: 137: }
+[; ;main.c: 139: return (0);
+"139
 [e ) -> 0 `i ]
 [e $UE 2639  ]
-[; ;main.c: 142: }
-"142
+[; ;main.c: 140: }
+"140
 [e :UE 2639 ]
 }
-"147
+"145
 [v _writeStringToUART `(v ~T0 @X0 1 ef1`*Cuc ]
-"148
+"146
 {
-[; ;main.c: 147: void writeStringToUART (const char *msg)
-[; ;main.c: 148: {
+[; ;main.c: 145: void writeStringToUART (const char *msg)
+[; ;main.c: 146: {
 [e :U _writeStringToUART ]
-"147
+"145
 [v _msg `*Cuc ~T0 @X0 1 r1 ]
-"148
+"146
 [f ]
-[; ;main.c: 149: while(*msg) {
-"149
+[; ;main.c: 147: while(*msg) {
+"147
 [e $U 2650  ]
 [e :U 2651 ]
 {
-[; ;main.c: 150: while(PIR3bits.TX2IF == 0) {}
-"150
+[; ;main.c: 148: while(PIR3bits.TX2IF == 0) {}
+"148
 [e $U 2653  ]
 [e :U 2654 ]
 {
@@ -17681,109 +17676,109 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e :U 2653 ]
 [e $ == -> . . _PIR3bits 0 4 `i -> 0 `i 2654  ]
 [e :U 2655 ]
-[; ;main.c: 151: TXREG2 = *msg++;
-"151
+[; ;main.c: 149: TXREG2 = *msg++;
+"149
 [e = _TXREG2 *U ++ _msg * -> -> 1 `i `x -> -> # *U _msg `i `x ]
-"152
+"150
 }
 [e :U 2650 ]
-"149
+"147
 [e $ != -> *U _msg `i -> -> -> 0 `i `Cuc `i 2651  ]
 [e :U 2652 ]
-[; ;main.c: 152: }
-[; ;main.c: 153: }
-"153
+[; ;main.c: 150: }
+[; ;main.c: 151: }
+"151
 [e :UE 2649 ]
 }
-"155
+"154
 [v _readADC `(ui ~T0 @X0 1 ef1`uc ]
-"156
-{
-[; ;main.c: 155: unsigned int readADC(char channel)
-[; ;main.c: 156: {
-[e :U _readADC ]
 "155
+{
+[; ;main.c: 154: unsigned int readADC(char channel)
+[; ;main.c: 155: {
+[e :U _readADC ]
+"154
 [v _channel `uc ~T0 @X0 1 r1 ]
-"156
+"155
 [f ]
-"157
+"156
 [v _tempo `uc ~T0 @X0 1 a ]
-[; ;main.c: 157: char tempo=0;
+[; ;main.c: 156: char tempo=0;
 [e = _tempo -> -> 0 `i `uc ]
-[; ;main.c: 158: switch (channel)
-"158
+[; ;main.c: 157: switch (channel)
+"157
 [e $U 2658  ]
-[; ;main.c: 159: {
+[; ;main.c: 158: {
+"158
+{
+[; ;main.c: 159: case 1:
 "159
-{
-[; ;main.c: 160: case 1:
-"160
 [e :U 2659 ]
-[; ;main.c: 161: {
+[; ;main.c: 160: {
+"160
+{
+[; ;main.c: 161: CHS1=0;
 "161
-{
-[; ;main.c: 162: CHS1=0;
-"162
 [e = _CHS1 -> -> 0 `i `b ]
-[; ;main.c: 163: CHS0=1;
+[; ;main.c: 162: CHS0=1;
+"162
+[e = _CHS0 -> -> 1 `i `b ]
+[; ;main.c: 163: break;
 "163
-[e = _CHS0 -> -> 1 `i `b ]
-[; ;main.c: 164: break;
+[e $U 2657  ]
 "164
-[e $U 2657  ]
+}
+[; ;main.c: 164: }
+[; ;main.c: 165: case 2:
 "165
-}
-[; ;main.c: 165: }
-[; ;main.c: 166: case 2:
-"166
 [e :U 2660 ]
-[; ;main.c: 167: {
+[; ;main.c: 166: {
+"166
+{
+[; ;main.c: 167: CHS1=1;
 "167
-{
-[; ;main.c: 168: CHS1=1;
+[e = _CHS1 -> -> 1 `i `b ]
+[; ;main.c: 168: CHS0=0;
 "168
-[e = _CHS1 -> -> 1 `i `b ]
-[; ;main.c: 169: CHS0=0;
-"169
 [e = _CHS0 -> -> 0 `i `b ]
-[; ;main.c: 170: break;
+[; ;main.c: 169: break;
+"169
+[e $U 2657  ]
 "170
-[e $U 2657  ]
-"171
 }
-[; ;main.c: 171: }
-[; ;main.c: 172: case 3:
-"172
+[; ;main.c: 170: }
+[; ;main.c: 171: case 3:
+"171
 [e :U 2661 ]
-[; ;main.c: 173: {
-"173
+[; ;main.c: 172: {
+"172
 {
-[; ;main.c: 174: CHS1=1;
-"174
+[; ;main.c: 173: CHS1=1;
+"173
 [e = _CHS1 -> -> 1 `i `b ]
-[; ;main.c: 175: CHS0=1;
-"175
+[; ;main.c: 174: CHS0=1;
+"174
 [e = _CHS0 -> -> 1 `i `b ]
-[; ;main.c: 176: break;
-"176
+[; ;main.c: 175: break;
+"175
 [e $U 2657  ]
+"176
+}
 "177
 }
-"178
-}
+[; ;main.c: 176: }
 [; ;main.c: 177: }
-[; ;main.c: 178: }
 [e $U 2657  ]
-"158
+"157
 [e :U 2658 ]
 [e [\ _channel , $ -> -> 1 `i `uc 2659
  , $ -> -> 2 `i `uc 2660
  , $ -> -> 3 `i `uc 2661
  2657 ]
-"178
+"177
 [e :U 2657 ]
-[; ;main.c: 179: for(tempo=0;tempo<100;tempo++);
-"179
+[; ;main.c: 178: for(tempo=0;tempo<100;tempo++);
+"178
 {
 [e = _tempo -> -> 0 `i `uc ]
 [e $ < -> _tempo `i -> 100 `i 2662  ]
@@ -17793,145 +17788,166 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e $ < -> _tempo `i -> 100 `i 2662  ]
 [e :U 2663 ]
 }
-[; ;main.c: 180: GO_nDONE = 1;
-"180
+[; ;main.c: 179: GO_nDONE = 1;
+"179
 [e = _GO_nDONE -> -> 1 `i `b ]
-[; ;main.c: 181: while(GO_nDONE);
-"181
+[; ;main.c: 180: while(GO_nDONE);
+"180
 [e $U 2665  ]
 [e :U 2666 ]
 [e :U 2665 ]
 [e $ _GO_nDONE 2666  ]
 [e :U 2667 ]
-[; ;main.c: 183: return ((ADRESH<<8)+ADRESL);
-"183
+[; ;main.c: 182: return ((ADRESH<<8)+ADRESL);
+"182
 [e ) -> + << -> _ADRESH `i -> 8 `i -> _ADRESL `i `ui ]
 [e $UE 2656  ]
-[; ;main.c: 184: }
-"184
+[; ;main.c: 183: }
+"183
 [e :UE 2656 ]
 }
 "186
-[v _changeModeDetect `(v ~T0 @X0 1 ef ]
+[v _readAllADC `(v ~T0 @X0 1 ef ]
 "187
 {
-[; ;main.c: 186: void changeModeDetect()
+[; ;main.c: 186: void readAllADC()
 [; ;main.c: 187: {
+[e :U _readAllADC ]
+[f ]
+[; ;main.c: 189: amplitude1=(float)readADC(1)/65520.;
+"189
+[e = _amplitude1 -> / -> -> ( _readADC (1 -> -> 1 `i `uc `f `d .65520. `f ]
+[; ;main.c: 190: amplitude2=(float)readADC(2)/65520.;
+"190
+[e = _amplitude2 -> / -> -> ( _readADC (1 -> -> 2 `i `uc `f `d .65520. `f ]
+[; ;main.c: 191: amplitude3=(float)readADC(3)/65520.;
+"191
+[e = _amplitude3 -> / -> -> ( _readADC (1 -> -> 3 `i `uc `f `d .65520. `f ]
+[; ;main.c: 192: }
+"192
+[e :UE 2668 ]
+}
+"194
+[v _changeModeDetect `(v ~T0 @X0 1 ef ]
+"195
+{
+[; ;main.c: 194: void changeModeDetect()
+[; ;main.c: 195: {
 [e :U _changeModeDetect ]
 [f ]
-"188
+"196
 [v _delay `l ~T0 @X0 1 a ]
-[; ;main.c: 188: long int delay=0;
+[; ;main.c: 196: long int delay=0;
 [e = _delay -> -> 0 `i `l ]
-"192
-[v F19198 `uc ~T0 @X0 1 s old_SWITCH1 ]
+"200
+[v F19197 `uc ~T0 @X0 1 s old_SWITCH1 ]
+[i F19197
+-> -> 0 `i `uc
+]
+[; ;main.c: 200: static char old_SWITCH1=0;
+[; ;main.c: 202: if (RC0==0 && old_SWITCH1==1)
+"202
+[e $ ! && == -> _RC0 `i -> 0 `i == -> F19197 `i -> 1 `i 2670  ]
+[; ;main.c: 203: {
+"203
+{
+[; ;main.c: 204: for(delay=0;delay<10000;delay++);
+"204
+{
+[e = _delay -> -> 0 `i `l ]
+[e $ < _delay -> -> 10000 `i `l 2671  ]
+[e $U 2672  ]
+[e :U 2671 ]
+[e ++ _delay -> -> 1 `i `l ]
+[e $ < _delay -> -> 10000 `i `l 2671  ]
+[e :U 2672 ]
+}
+[; ;main.c: 205: if (RC0==0 && old_SWITCH1==1)
+"205
+[e $ ! && == -> _RC0 `i -> 0 `i == -> F19197 `i -> 1 `i 2674  ]
+[; ;main.c: 206: {
+"206
+{
+[; ;main.c: 207: if (mode==0)
+"207
+[e $ ! == -> _mode `i -> 0 `i 2675  ]
+[; ;main.c: 208: mode=2;
+"208
+[e = _mode -> -> 2 `i `uc ]
+[e $U 2676  ]
+"209
+[e :U 2675 ]
+[; ;main.c: 209: else
+[; ;main.c: 210: mode-=1;
+"210
+[e =- _mode -> -> 1 `i `uc ]
+[e :U 2676 ]
+"211
+}
+[e :U 2674 ]
+"212
+}
+[e :U 2670 ]
+[; ;main.c: 211: }
+[; ;main.c: 212: }
+[; ;main.c: 213: old_SWITCH1=RC0;
+"213
+[e = F19197 -> -> _RC0 `i `uc ]
+"217
+[v F19198 `uc ~T0 @X0 1 s old_SWITCH3 ]
 [i F19198
 -> -> 0 `i `uc
 ]
-[; ;main.c: 192: static char old_SWITCH1=0;
-[; ;main.c: 194: if (RC0==0 && old_SWITCH1==1)
-"194
-[e $ ! && == -> _RC0 `i -> 0 `i == -> F19198 `i -> 1 `i 2669  ]
-[; ;main.c: 195: {
-"195
-{
-[; ;main.c: 196: for(delay=0;delay<10000;delay++);
-"196
-{
-[e = _delay -> -> 0 `i `l ]
-[e $ < _delay -> -> 10000 `i `l 2670  ]
-[e $U 2671  ]
-[e :U 2670 ]
-[e ++ _delay -> -> 1 `i `l ]
-[e $ < _delay -> -> 10000 `i `l 2670  ]
-[e :U 2671 ]
-}
-[; ;main.c: 197: if (RC0==0 && old_SWITCH1==1)
-"197
-[e $ ! && == -> _RC0 `i -> 0 `i == -> F19198 `i -> 1 `i 2673  ]
-[; ;main.c: 198: {
-"198
-{
-[; ;main.c: 199: if (mode==0)
-"199
-[e $ ! == -> _mode `i -> 0 `i 2674  ]
-[; ;main.c: 200: mode=2;
-"200
-[e = _mode -> -> 2 `i `uc ]
-[e $U 2675  ]
-"201
-[e :U 2674 ]
-[; ;main.c: 201: else
-[; ;main.c: 202: mode-=1;
-"202
-[e =- _mode -> -> 1 `i `uc ]
-[e :U 2675 ]
-"203
-}
-[e :U 2673 ]
-"204
-}
-[e :U 2669 ]
-[; ;main.c: 203: }
-[; ;main.c: 204: }
-[; ;main.c: 205: old_SWITCH1=RC0;
-"205
-[e = F19198 -> -> _RC0 `i `uc ]
-"209
-[v F19199 `uc ~T0 @X0 1 s old_SWITCH3 ]
-[i F19199
--> -> 0 `i `uc
-]
-[; ;main.c: 209: static char old_SWITCH3=0;
-[; ;main.c: 211: if (RA6==0 && old_SWITCH3==1)
-"211
-[e $ ! && == -> _RA6 `i -> 0 `i == -> F19199 `i -> 1 `i 2676  ]
-[; ;main.c: 212: {
-"212
-{
-[; ;main.c: 213: for(delay=0;delay<10000;delay++);
-"213
-{
-[e = _delay -> -> 0 `i `l ]
-[e $ < _delay -> -> 10000 `i `l 2677  ]
-[e $U 2678  ]
-[e :U 2677 ]
-[e ++ _delay -> -> 1 `i `l ]
-[e $ < _delay -> -> 10000 `i `l 2677  ]
-[e :U 2678 ]
-}
-[; ;main.c: 214: if (RA6==0 && old_SWITCH3==1)
-"214
-[e $ ! && == -> _RA6 `i -> 0 `i == -> F19199 `i -> 1 `i 2680  ]
-[; ;main.c: 215: {
-"215
-{
-[; ;main.c: 216: if (mode==2)
-"216
-[e $ ! == -> _mode `i -> 2 `i 2681  ]
-[; ;main.c: 217: mode=0;
-"217
-[e = _mode -> -> 0 `i `uc ]
-[e $U 2682  ]
-"218
-[e :U 2681 ]
-[; ;main.c: 218: else
-[; ;main.c: 219: mode+=1;
+[; ;main.c: 217: static char old_SWITCH3=0;
+[; ;main.c: 219: if (RA6==0 && old_SWITCH3==1)
 "219
-[e =+ _mode -> -> 1 `i `uc ]
-[e :U 2682 ]
+[e $ ! && == -> _RA6 `i -> 0 `i == -> F19198 `i -> 1 `i 2677  ]
+[; ;main.c: 220: {
 "220
-}
-[e :U 2680 ]
+{
+[; ;main.c: 221: for(delay=0;delay<10000;delay++);
 "221
+{
+[e = _delay -> -> 0 `i `l ]
+[e $ < _delay -> -> 10000 `i `l 2678  ]
+[e $U 2679  ]
+[e :U 2678 ]
+[e ++ _delay -> -> 1 `i `l ]
+[e $ < _delay -> -> 10000 `i `l 2678  ]
+[e :U 2679 ]
 }
-[e :U 2676 ]
-[; ;main.c: 220: }
-[; ;main.c: 221: }
-[; ;main.c: 222: old_SWITCH3=RA6;
+[; ;main.c: 222: if (RA6==0 && old_SWITCH3==1)
 "222
-[e = F19199 -> -> _RA6 `i `uc ]
-[; ;main.c: 223: }
+[e $ ! && == -> _RA6 `i -> 0 `i == -> F19198 `i -> 1 `i 2681  ]
+[; ;main.c: 223: {
 "223
-[e :UE 2668 ]
+{
+[; ;main.c: 224: if (mode==2)
+"224
+[e $ ! == -> _mode `i -> 2 `i 2682  ]
+[; ;main.c: 225: mode=0;
+"225
+[e = _mode -> -> 0 `i `uc ]
+[e $U 2683  ]
+"226
+[e :U 2682 ]
+[; ;main.c: 226: else
+[; ;main.c: 227: mode+=1;
+"227
+[e =+ _mode -> -> 1 `i `uc ]
+[e :U 2683 ]
+"228
+}
+[e :U 2681 ]
+"229
+}
+[e :U 2677 ]
+[; ;main.c: 228: }
+[; ;main.c: 229: }
+[; ;main.c: 230: old_SWITCH3=RA6;
+"230
+[e = F19198 -> -> _RA6 `i `uc ]
+[; ;main.c: 231: }
+"231
+[e :UE 2669 ]
 }

@@ -17404,16 +17404,17 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;functions.h: 12: void strobe(void);
 [; ;main.h: 23: void writeStringToUART (const char* msg);
 [; ;main.h: 24: unsigned int readADC(char);
-[; ;main.h: 25: void changeModeDetect(void);
+[; ;main.h: 25: void readAllADC(void);
+[; ;main.h: 26: void changeModeDetect(void);
 "5 interrupts.c
 [v _millis `l ~T0 @X0 1 e ]
 [i _millis
 -> -> 0 `i `l
 ]
 [; ;interrupts.c: 5: long millis=0;
-[v F19158 `(v ~T0 @X0 1 tf ]
+[v F19160 `(v ~T0 @X0 1 tf ]
 "7
-[v _Timer0_ISR `ILF19158 ~T0 @X0 1 e ]
+[v _Timer0_ISR `ILF19160 ~T0 @X0 1 e ]
 "8
 {
 [; ;interrupts.c: 7: void interrupt low_priority Timer0_ISR(void)
@@ -17443,9 +17444,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 "21
 [e :UE 2639 ]
 }
-[v F19161 `(v ~T0 @X0 1 tf ]
+[v F19163 `(v ~T0 @X0 1 tf ]
 "25
-[v _RX2_ISR `IHF19161 ~T0 @X0 1 e ]
+[v _RX2_ISR `IHF19163 ~T0 @X0 1 e ]
 {
 [; ;interrupts.c: 25: void interrupt high_priority RX2_ISR(void) {
 [e :U _RX2_ISR ]
@@ -17460,34 +17461,34 @@ Version 3.2 HI-TECH Software Intermediate Code
 "30
 [v _B `ui ~T0 @X0 -> 0 `x e ]
 "32
-[v F19165 `uc ~T0 @X0 1 s compteur ]
-[i F19165
+[v F19167 `uc ~T0 @X0 1 s compteur ]
+[i F19167
 -> -> 0 `i `uc
 ]
 "33
-[v F19166 `uc ~T0 @X0 -> 16 `i s buffer ]
-[i F19166
+[v F19168 `uc ~T0 @X0 -> 16 `i s buffer ]
+[i F19168
 :U ..
 -> 0 `c
 ..
 ]
 "34
-[v F19167 `uc ~T0 @X0 1 s beginR ]
-[i F19167
--> -> 0 `i `uc
-]
-"35
-[v F19168 `uc ~T0 @X0 1 s beginG ]
-[i F19168
--> -> 0 `i `uc
-]
-"36
-[v F19169 `uc ~T0 @X0 1 s beginB ]
+[v F19169 `uc ~T0 @X0 1 s beginR ]
 [i F19169
 -> -> 0 `i `uc
 ]
-[v F19171 `uc ~T0 @X0 -> 2 `i s ]
+"35
+[v F19170 `uc ~T0 @X0 1 s beginG ]
+[i F19170
+-> -> 0 `i `uc
+]
+"36
+[v F19171 `uc ~T0 @X0 1 s beginB ]
 [i F19171
+-> -> 0 `i `uc
+]
+[v F19173 `uc ~T0 @X0 -> 2 `i s ]
+[i F19173
 :U ..
 -> 0 `c
 ..
@@ -17503,13 +17504,13 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;interrupts.c: 35: static char beginG=0;
 [; ;interrupts.c: 36: static char beginB=0;
 [; ;interrupts.c: 38: char input[2] = "";
-[e = _input F19171 ]
+[e = _input F19173 ]
 [; ;interrupts.c: 39: input[0] = RCREG2;
 "39
 [e = *U + &U _input * -> -> -> 0 `i `ui `ux -> -> # *U &U _input `ui `ux _RCREG2 ]
 [; ;interrupts.c: 41: if (beginR==1 | beginG==1 | beginB==1)
 "41
-[e $ ! | | == -> F19167 `i -> 1 `i == -> F19168 `i -> 1 `i == -> F19169 `i -> 1 `i 2642  ]
+[e $ ! | | == -> F19169 `i -> 1 `i == -> F19170 `i -> 1 `i == -> F19171 `i -> 1 `i 2642  ]
 [; ;interrupts.c: 42: {
 "42
 {
@@ -17521,10 +17522,10 @@ Version 3.2 HI-TECH Software Intermediate Code
 {
 [; ;interrupts.c: 45: buffer[compteur]=input[0];
 "45
-[e = *U + &U F19166 * -> F19165 `ux -> -> # *U &U F19166 `ui `ux *U + &U _input * -> -> -> 0 `i `ui `ux -> -> # *U &U _input `ui `ux ]
+[e = *U + &U F19168 * -> F19167 `ux -> -> # *U &U F19168 `ui `ux *U + &U _input * -> -> -> 0 `i `ui `ux -> -> # *U &U _input `ui `ux ]
 [; ;interrupts.c: 46: compteur+=1;
 "46
-[e =+ F19165 -> -> 1 `i `uc ]
+[e =+ F19167 -> -> 1 `i `uc ]
 "47
 }
 [; ;interrupts.c: 47: }
@@ -17537,49 +17538,49 @@ Version 3.2 HI-TECH Software Intermediate Code
 {
 [; ;interrupts.c: 51: if (beginR==1)
 "51
-[e $ ! == -> F19167 `i -> 1 `i 2645  ]
+[e $ ! == -> F19169 `i -> 1 `i 2645  ]
 [; ;interrupts.c: 52: R[0]=atoi(buffer);
 "52
-[e = *U + &U _R * -> -> -> 0 `i `ui `ux -> -> # *U &U _R `ui `ux -> ( _atoi (1 -> &U F19166 `*Cuc `ui ]
+[e = *U + &U _R * -> -> -> 0 `i `ui `ux -> -> # *U &U _R `ui `ux -> ( _atoi (1 -> &U F19168 `*Cuc `ui ]
 [e :U 2645 ]
 [; ;interrupts.c: 53: beginR=0;
 "53
-[e = F19167 -> -> 0 `i `uc ]
+[e = F19169 -> -> 0 `i `uc ]
 [; ;interrupts.c: 54: if (beginG==1)
 "54
-[e $ ! == -> F19168 `i -> 1 `i 2646  ]
+[e $ ! == -> F19170 `i -> 1 `i 2646  ]
 [; ;interrupts.c: 55: G[0]=atoi(buffer);
 "55
-[e = *U + &U _G * -> -> -> 0 `i `ui `ux -> -> # *U &U _G `ui `ux -> ( _atoi (1 -> &U F19166 `*Cuc `ui ]
+[e = *U + &U _G * -> -> -> 0 `i `ui `ux -> -> # *U &U _G `ui `ux -> ( _atoi (1 -> &U F19168 `*Cuc `ui ]
 [e :U 2646 ]
 [; ;interrupts.c: 56: beginG=0;
 "56
-[e = F19168 -> -> 0 `i `uc ]
+[e = F19170 -> -> 0 `i `uc ]
 [; ;interrupts.c: 57: if (beginB==1)
 "57
-[e $ ! == -> F19169 `i -> 1 `i 2647  ]
+[e $ ! == -> F19171 `i -> 1 `i 2647  ]
 [; ;interrupts.c: 58: B[0]=atoi(buffer);
 "58
-[e = *U + &U _B * -> -> -> 0 `i `ui `ux -> -> # *U &U _B `ui `ux -> ( _atoi (1 -> &U F19166 `*Cuc `ui ]
+[e = *U + &U _B * -> -> -> 0 `i `ui `ux -> -> # *U &U _B `ui `ux -> ( _atoi (1 -> &U F19168 `*Cuc `ui ]
 [e :U 2647 ]
 [; ;interrupts.c: 59: beginB=0;
 "59
-[e = F19169 -> -> 0 `i `uc ]
+[e = F19171 -> -> 0 `i `uc ]
 [; ;interrupts.c: 62: compteur=0;
 "62
-[e = F19165 -> -> 0 `i `uc ]
+[e = F19167 -> -> 0 `i `uc ]
 [; ;interrupts.c: 63: buffer[3]='\0';
 "63
-[e = *U + &U F19166 * -> -> -> 3 `i `ui `ux -> -> # *U &U F19166 `ui `ux -> -> 0 `ui `uc ]
+[e = *U + &U F19168 * -> -> -> 3 `i `ui `ux -> -> # *U &U F19168 `ui `ux -> -> 0 `ui `uc ]
 [; ;interrupts.c: 64: buffer[2]='\0';
 "64
-[e = *U + &U F19166 * -> -> -> 2 `i `ui `ux -> -> # *U &U F19166 `ui `ux -> -> 0 `ui `uc ]
+[e = *U + &U F19168 * -> -> -> 2 `i `ui `ux -> -> # *U &U F19168 `ui `ux -> -> 0 `ui `uc ]
 [; ;interrupts.c: 65: buffer[1]='\0';
 "65
-[e = *U + &U F19166 * -> -> -> 1 `i `ui `ux -> -> # *U &U F19166 `ui `ux -> -> 0 `ui `uc ]
+[e = *U + &U F19168 * -> -> -> 1 `i `ui `ux -> -> # *U &U F19168 `ui `ux -> -> 0 `ui `uc ]
 [; ;interrupts.c: 66: buffer[0]='\0';
 "66
-[e = *U + &U F19166 * -> -> -> 0 `i `ui `ux -> -> # *U &U F19166 `ui `ux -> -> 0 `ui `uc ]
+[e = *U + &U F19168 * -> -> -> 0 `i `ui `ux -> -> # *U &U F19168 `ui `ux -> -> 0 `ui `uc ]
 "67
 }
 [e :U 2644 ]
@@ -17593,21 +17594,21 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e $ ! == -> *U + &U _input * -> -> -> 0 `i `ui `ux -> -> # *U &U _input `ui `ux `ui -> 82 `ui 2648  ]
 [; ;interrupts.c: 71: beginR=1;
 "71
-[e = F19167 -> -> 1 `i `uc ]
+[e = F19169 -> -> 1 `i `uc ]
 [e :U 2648 ]
 [; ;interrupts.c: 72: if (input[0]=='G')
 "72
 [e $ ! == -> *U + &U _input * -> -> -> 0 `i `ui `ux -> -> # *U &U _input `ui `ux `ui -> 71 `ui 2649  ]
 [; ;interrupts.c: 73: beginG=1;
 "73
-[e = F19168 -> -> 1 `i `uc ]
+[e = F19170 -> -> 1 `i `uc ]
 [e :U 2649 ]
 [; ;interrupts.c: 74: if (input[0]=='B')
 "74
 [e $ ! == -> *U + &U _input * -> -> -> 0 `i `ui `ux -> -> # *U &U _input `ui `ux `ui -> 66 `ui 2650  ]
 [; ;interrupts.c: 75: beginB=1;
 "75
-[e = F19169 -> -> 1 `i `uc ]
+[e = F19171 -> -> 1 `i `uc ]
 [e :U 2650 ]
 [; ;interrupts.c: 76: }
 "76
