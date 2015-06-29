@@ -22020,16 +22020,18 @@ changeModeDetect();
 switch (mode) {
 
 case 0 :
+setRGB( (int)( (float)R[0] * amplitude1),
+(int)( (float)G[0] * amplitude2),
+(int)( (float)B[0] * amplitude3));
+break;
+
+
+case 1 :
 setRGB( (int)( 1023 * amplitude1),
 (int)( 1023 * amplitude2),
 (int)( 1023 * amplitude3));
 break;
 
-case 1 :
-setRGB( (int)( (float)R[0] * amplitude1),
-(int)( (float)G[0] * amplitude2),
-(int)( (float)B[0] * amplitude3));
-break;
 
 case 2 :
 strobe();
@@ -22042,8 +22044,6 @@ setRGB(0,0,0);
 
 return (0);
 }
-
-
 
 
 void writeStringToUART (const char *msg)

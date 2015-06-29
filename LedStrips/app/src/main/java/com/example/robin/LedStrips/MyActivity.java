@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import com.larswerkman.holocolorpicker.ColorPicker;
@@ -41,20 +42,22 @@ public class MyActivity extends ActionBarActivity  implements ColorPicker.OnColo
 
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
-
-        openSocket();
     }
 
-    private void openSocket() {
+    public void openSocket(View view) {
+        TextView tv = (TextView) findViewById(R.id.textView_debug);
+
+        EditText editText = (EditText) findViewById(R.id.edit_ip_adress);
+        String ip_address = editText.getText().toString();
+
         try {
             socket = new Socket();
-            //socket.connect(new InetSocketAddress(InetAddress.getByName("192.168.1.120"), 22134));  // 7Robot
-            //socket.connect(new InetSocketAddress(InetAddress.getByName("192.168.87.210"), 22134));// Coloc
-            socket.connect(new InetSocketAddress(InetAddress.getByName("192.168.1.72"), 22134));  // Appart
-        } catch(IOException | android.os.NetworkOnMainThreadException ex)
+            socket.connect(new InetSocketAddress(InetAddress.getByName(ip_address), 22188));
+            tv.setText("Socket opened on " + ip_address + " !");
+            //} catch(IOException | android.os.NetworkOnMainThreadException ex)
+        } catch(Exception ex)
         {
-            TextView tv = (TextView) findViewById(R.id.textView);
-            tv.setText("Unable to open the socket !" + ex.toString());
+            tv.setText("Unable to open socket on " + ip_address + " !\n" + ex.toString());
         }
     }
 
@@ -79,13 +82,12 @@ public class MyActivity extends ActionBarActivity  implements ColorPicker.OnColo
     private void writeSocket(byte[] b) {
         try {
             socket.getOutputStream().write(b);
-            TextView tv = (TextView) findViewById(R.id.textView);
+            TextView tv = (TextView) findViewById(R.id.textView_debug);
             tv.setText(":)");
         } catch(NullPointerException | IOException | NetworkOnMainThreadException ex)
         {
-            TextView tv = (TextView) findViewById(R.id.textView);
+            TextView tv = (TextView) findViewById(R.id.textView_debug);
             tv.setText("Unable to write to the socket !" + ex.toString());
-            openSocket();
         }
     }
 

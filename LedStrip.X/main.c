@@ -114,18 +114,20 @@ int main(int argc, char** argv) {
         
         // Action differente selon le mode
         switch (mode) {
-            // Couleur manuelle
-            case 0 :
-                setRGB( (int)( 1023 * amplitude1),
-                        (int)( 1023 * amplitude2),
-                        (int)( 1023 * amplitude3));
-                break;
             // Musique
-            case 1 :
+            case 0 :
                 setRGB( (int)( (float)R[0] * amplitude1),
                         (int)( (float)G[0] * amplitude2),
                         (int)( (float)B[0] * amplitude3));
                 break;
+
+            // Couleur manuelle
+            case 1 :
+                setRGB( (int)( 1023 * amplitude1),
+                        (int)( 1023 * amplitude2),
+                        (int)( 1023 * amplitude3));
+                break;
+
             // Strobe
             case 2 :
                 strobe();
@@ -138,8 +140,6 @@ int main(int argc, char** argv) {
 
     return (EXIT_SUCCESS);
 }
-
-
 
 
 void writeStringToUART (const char *msg)

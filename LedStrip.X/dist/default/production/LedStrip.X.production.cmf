@@ -48,7 +48,7 @@ bssBANK2 BANK2 1 200 200 C8 1
 bssBANK3 BANK3 1 300 300 C8 1
 intcode CODE 0 8 8 10 1
 bssCOMRAM COMRAM 1 2D 2D 16 1
-$/tmp/cgtuRQ6Sb.obj
+$/tmp/cgtmT1Aow.obj
 idloc IDLOC 0 200000 200000 8 1
 reset_vec CODE 0 0 0 4 1
 end_init CODE 0 C2 C2 4 1
@@ -175,16 +175,16 @@ C6 text1 CODE >18:/home/robin/7Robot/LedStrip/LedStrip.X/functions.c
 636 text0 CODE >113:/home/robin/7Robot/LedStrip/LedStrip.X/main.c
 63A text0 CODE >116:/home/robin/7Robot/LedStrip/LedStrip.X/main.c
 63C text0 CODE >121:/home/robin/7Robot/LedStrip/LedStrip.X/main.c
-6EE text0 CODE >122:/home/robin/7Robot/LedStrip/LedStrip.X/main.c
-6F0 text0 CODE >127:/home/robin/7Robot/LedStrip/LedStrip.X/main.c
-7B4 text0 CODE >128:/home/robin/7Robot/LedStrip/LedStrip.X/main.c
-7B6 text0 CODE >131:/home/robin/7Robot/LedStrip/LedStrip.X/main.c
-7BA text0 CODE >132:/home/robin/7Robot/LedStrip/LedStrip.X/main.c
-7BC text0 CODE >135:/home/robin/7Robot/LedStrip/LedStrip.X/main.c
-7DE text0 CODE >136:/home/robin/7Robot/LedStrip/LedStrip.X/main.c
+700 text0 CODE >122:/home/robin/7Robot/LedStrip/LedStrip.X/main.c
+702 text0 CODE >128:/home/robin/7Robot/LedStrip/LedStrip.X/main.c
+7B4 text0 CODE >129:/home/robin/7Robot/LedStrip/LedStrip.X/main.c
+7B6 text0 CODE >133:/home/robin/7Robot/LedStrip/LedStrip.X/main.c
+7BA text0 CODE >134:/home/robin/7Robot/LedStrip/LedStrip.X/main.c
+7BC text0 CODE >137:/home/robin/7Robot/LedStrip/LedStrip.X/main.c
+7DE text0 CODE >138:/home/robin/7Robot/LedStrip/LedStrip.X/main.c
 7E0 text0 CODE >116:/home/robin/7Robot/LedStrip/LedStrip.X/main.c
 7F8 text0 CODE >108:/home/robin/7Robot/LedStrip/LedStrip.X/main.c
-7FA text0 CODE >140:/home/robin/7Robot/LedStrip/LedStrip.X/main.c
+7FA text0 CODE >142:/home/robin/7Robot/LedStrip/LedStrip.X/main.c
 7FE intcode_body CODE >25:/home/robin/7Robot/LedStrip/LedStrip.X/interrupts.c
 82A intcode_body CODE >26:/home/robin/7Robot/LedStrip/LedStrip.X/interrupts.c
 82C intcode_body CODE >38:/home/robin/7Robot/LedStrip/LedStrip.X/interrupts.c
@@ -459,44 +459,44 @@ FEE text9 CODE >33:/opt/microchip/xc8/v1.34/sources/common/almod.c
 139C text17 CODE >61:/home/robin/7Robot/LedStrip/LedStrip.X/init.c
 13A0 text17 CODE >62:/home/robin/7Robot/LedStrip/LedStrip.X/init.c
 13A4 text17 CODE >63:/home/robin/7Robot/LedStrip/LedStrip.X/init.c
-13A6 cinit CODE >4995:/tmp/cgtwcXoBa
-13A6 cinit CODE >4997:/tmp/cgtwcXoBa
-13A6 cinit CODE >5000:/tmp/cgtwcXoBa
-13A6 cinit CODE >5051:/tmp/cgtwcXoBa
-13AA cinit CODE >5052:/tmp/cgtwcXoBa
-13AC cinit CODE >5053:/tmp/cgtwcXoBa
-13AC cinit CODE >5054:/tmp/cgtwcXoBa
-13AE cinit CODE >5055:/tmp/cgtwcXoBa
-13B0 cinit CODE >5056:/tmp/cgtwcXoBa
-13B2 cinit CODE >5059:/tmp/cgtwcXoBa
-13B6 cinit CODE >5060:/tmp/cgtwcXoBa
-13B8 cinit CODE >5061:/tmp/cgtwcXoBa
-13B8 cinit CODE >5062:/tmp/cgtwcXoBa
-13BA cinit CODE >5063:/tmp/cgtwcXoBa
-13BC cinit CODE >5064:/tmp/cgtwcXoBa
-13BE cinit CODE >5067:/tmp/cgtwcXoBa
-13C2 cinit CODE >5068:/tmp/cgtwcXoBa
-13C4 cinit CODE >5069:/tmp/cgtwcXoBa
-13C4 cinit CODE >5070:/tmp/cgtwcXoBa
-13C6 cinit CODE >5071:/tmp/cgtwcXoBa
-13C8 cinit CODE >5072:/tmp/cgtwcXoBa
-13CA cinit CODE >5075:/tmp/cgtwcXoBa
-13CE cinit CODE >5076:/tmp/cgtwcXoBa
-13D0 cinit CODE >5077:/tmp/cgtwcXoBa
-13D0 cinit CODE >5078:/tmp/cgtwcXoBa
-13D2 cinit CODE >5079:/tmp/cgtwcXoBa
-13D4 cinit CODE >5080:/tmp/cgtwcXoBa
-13D6 cinit CODE >5083:/tmp/cgtwcXoBa
-13DA cinit CODE >5084:/tmp/cgtwcXoBa
-13DC cinit CODE >5085:/tmp/cgtwcXoBa
-13DC cinit CODE >5086:/tmp/cgtwcXoBa
-13DE cinit CODE >5087:/tmp/cgtwcXoBa
-13E0 cinit CODE >5088:/tmp/cgtwcXoBa
-13E2 cinit CODE >5094:/tmp/cgtwcXoBa
-13E2 cinit CODE >5096:/tmp/cgtwcXoBa
-13E4 cinit CODE >5097:/tmp/cgtwcXoBa
-13E6 cinit CODE >5098:/tmp/cgtwcXoBa
-13E8 cinit CODE >5099:/tmp/cgtwcXoBa
+13A6 cinit CODE >4995:/tmp/cgtyKyHcl
+13A6 cinit CODE >4997:/tmp/cgtyKyHcl
+13A6 cinit CODE >5000:/tmp/cgtyKyHcl
+13A6 cinit CODE >5051:/tmp/cgtyKyHcl
+13AA cinit CODE >5052:/tmp/cgtyKyHcl
+13AC cinit CODE >5053:/tmp/cgtyKyHcl
+13AC cinit CODE >5054:/tmp/cgtyKyHcl
+13AE cinit CODE >5055:/tmp/cgtyKyHcl
+13B0 cinit CODE >5056:/tmp/cgtyKyHcl
+13B2 cinit CODE >5059:/tmp/cgtyKyHcl
+13B6 cinit CODE >5060:/tmp/cgtyKyHcl
+13B8 cinit CODE >5061:/tmp/cgtyKyHcl
+13B8 cinit CODE >5062:/tmp/cgtyKyHcl
+13BA cinit CODE >5063:/tmp/cgtyKyHcl
+13BC cinit CODE >5064:/tmp/cgtyKyHcl
+13BE cinit CODE >5067:/tmp/cgtyKyHcl
+13C2 cinit CODE >5068:/tmp/cgtyKyHcl
+13C4 cinit CODE >5069:/tmp/cgtyKyHcl
+13C4 cinit CODE >5070:/tmp/cgtyKyHcl
+13C6 cinit CODE >5071:/tmp/cgtyKyHcl
+13C8 cinit CODE >5072:/tmp/cgtyKyHcl
+13CA cinit CODE >5075:/tmp/cgtyKyHcl
+13CE cinit CODE >5076:/tmp/cgtyKyHcl
+13D0 cinit CODE >5077:/tmp/cgtyKyHcl
+13D0 cinit CODE >5078:/tmp/cgtyKyHcl
+13D2 cinit CODE >5079:/tmp/cgtyKyHcl
+13D4 cinit CODE >5080:/tmp/cgtyKyHcl
+13D6 cinit CODE >5083:/tmp/cgtyKyHcl
+13DA cinit CODE >5084:/tmp/cgtyKyHcl
+13DC cinit CODE >5085:/tmp/cgtyKyHcl
+13DC cinit CODE >5086:/tmp/cgtyKyHcl
+13DE cinit CODE >5087:/tmp/cgtyKyHcl
+13E0 cinit CODE >5088:/tmp/cgtyKyHcl
+13E2 cinit CODE >5094:/tmp/cgtyKyHcl
+13E2 cinit CODE >5096:/tmp/cgtyKyHcl
+13E4 cinit CODE >5097:/tmp/cgtyKyHcl
+13E6 cinit CODE >5098:/tmp/cgtyKyHcl
+13E8 cinit CODE >5099:/tmp/cgtyKyHcl
 13EC text6 CODE >15:/opt/microchip/xc8/v1.34/sources/common/ftneg.c
 13EC text6 CODE >17:/opt/microchip/xc8/v1.34/sources/common/ftneg.c
 13FC text6 CODE >18:/opt/microchip/xc8/v1.34/sources/common/ftneg.c
@@ -591,7 +591,7 @@ __CFG_IESO$OFF 0 0 ABS 0 - dist/default/production/LedStrip.X.production.obj
 __end_of_readADC 1354 0 CODE 0 text11 dist/default/production/LedStrip.X.production.obj
 ___ftdiv@exp 2B 0 COMRAM 1 cstackCOMRAM dist/default/production/LedStrip.X.production.obj
 __Hibigdata 0 0 CODE 0 ibigdata dist/default/production/LedStrip.X.production.obj
-__mediumconst 0 0 MEDIUMCONST 0 mediumconst /tmp/cgtuRQ6Sb.obj
+__mediumconst 0 0 MEDIUMCONST 0 mediumconst /tmp/cgtmT1Aow.obj
 __Heeprom_data 0 0 EEDATA 0 eeprom_data dist/default/production/LedStrip.X.production.obj
 _TRIGSEL0 7E0E 0 ABS 0 - dist/default/production/LedStrip.X.production.obj
 _TRIGSEL1 7E0F 0 ABS 0 - dist/default/production/LedStrip.X.production.obj
@@ -604,13 +604,13 @@ _T0CS 7EAD 0 ABS 0 - dist/default/production/LedStrip.X.production.obj
 _T0IE 7F95 0 ABS 0 - dist/default/production/LedStrip.X.production.obj
 _T0IF 7F92 0 ABS 0 - dist/default/production/LedStrip.X.production.obj
 _TMR0 FD6 0 ABS 0 - dist/default/production/LedStrip.X.production.obj
-___sp 0 0 STACK 2 stack /tmp/cgtuRQ6Sb.obj
+___sp 0 0 STACK 2 stack /tmp/cgtmT1Aow.obj
 _atoi 1016 0 CODE 0 text23 dist/default/production/LedStrip.X.production.obj
 _main 62E 0 CODE 0 text0 dist/default/production/LedStrip.X.production.obj
 _mode CA 0 BANK0 1 bssBANK0 dist/default/production/LedStrip.X.production.obj
 ___ftadd@f1 82 0 BANK0 1 cstackBANK0 dist/default/production/LedStrip.X.production.obj
 ___ftadd@f2 85 0 BANK0 1 cstackBANK0 dist/default/production/LedStrip.X.production.obj
-start C2 0 CODE 0 init /tmp/cgtuRQ6Sb.obj
+start C2 0 CODE 0 init /tmp/cgtmT1Aow.obj
 setRGB@b A1 0 BANK0 1 cstackBANK0 dist/default/production/LedStrip.X.production.obj
 setRGB@g 9F 0 BANK0 1 cstackBANK0 dist/default/production/LedStrip.X.production.obj
 setRGB@r 9D 0 BANK0 1 cstackBANK0 dist/default/production/LedStrip.X.production.obj
@@ -640,11 +640,11 @@ RX2_ISR@beginB 2F 0 COMRAM 1 bssCOMRAM dist/default/production/LedStrip.X.produc
 RX2_ISR@beginG 30 0 COMRAM 1 bssCOMRAM dist/default/production/LedStrip.X.production.obj
 RX2_ISR@beginR 31 0 COMRAM 1 bssCOMRAM dist/default/production/LedStrip.X.production.obj
 RX2_ISR@buffer 33 0 COMRAM 1 bssCOMRAM dist/default/production/LedStrip.X.production.obj
-__accesstop 60 0 ABS 0 - /tmp/cgtuRQ6Sb.obj
-intlevel0 0 0 CODE 0 text /tmp/cgtuRQ6Sb.obj
-intlevel1 0 0 CODE 0 text /tmp/cgtuRQ6Sb.obj
-intlevel2 0 0 CODE 0 text /tmp/cgtuRQ6Sb.obj
-intlevel3 0 0 CODE 0 text /tmp/cgtuRQ6Sb.obj
+__accesstop 60 0 ABS 0 - /tmp/cgtmT1Aow.obj
+intlevel0 0 0 CODE 0 text /tmp/cgtmT1Aow.obj
+intlevel1 0 0 CODE 0 text /tmp/cgtmT1Aow.obj
+intlevel2 0 0 CODE 0 text /tmp/cgtmT1Aow.obj
+intlevel3 0 0 CODE 0 text /tmp/cgtmT1Aow.obj
 __LbssCOMRAM 0 0 ABS 0 bssCOMRAM dist/default/production/LedStrip.X.production.obj
 __size_of_initTimer0 0 0 ABS 0 - dist/default/production/LedStrip.X.production.obj
 __LnvFARRAM 0 0 FARRAM 0 nvFARRAM dist/default/production/LedStrip.X.production.obj
@@ -668,8 +668,8 @@ _ANSEL1 7AE9 0 ABS 0 - dist/default/production/LedStrip.X.production.obj
 _ANSEL2 7AEA 0 ABS 0 - dist/default/production/LedStrip.X.production.obj
 _ANSEL3 7AEB 0 ABS 0 - dist/default/production/LedStrip.X.production.obj
 ___awdiv@dividend 71 0 BANK0 1 cstackBANK0 dist/default/production/LedStrip.X.production.obj
-___inthi_sp 0 0 STACK 2 stack /tmp/cgtuRQ6Sb.obj
-___intlo_sp 0 0 STACK 2 stack /tmp/cgtuRQ6Sb.obj
+___inthi_sp 0 0 STACK 2 stack /tmp/cgtmT1Aow.obj
+___intlo_sp 0 0 STACK 2 stack /tmp/cgtmT1Aow.obj
 _CCP2M2 7A82 0 ABS 0 - dist/default/production/LedStrip.X.production.obj
 _CCP2M3 7A83 0 ABS 0 - dist/default/production/LedStrip.X.production.obj
 _CCP3M2 7A6A 0 ABS 0 - dist/default/production/LedStrip.X.production.obj
@@ -777,7 +777,7 @@ __Hbank13 0 0 ABS 0 bank13 dist/default/production/LedStrip.X.production.obj
 __Hbank14 0 0 ABS 0 bank14 dist/default/production/LedStrip.X.production.obj
 __Hbigbss 0 0 BIGRAM 1 bigbss dist/default/production/LedStrip.X.production.obj
 __Hbigram 0 0 ABS 0 bigram dist/default/production/LedStrip.X.production.obj
-__smallconst 0 0 SMALLCONST 0 smallconst /tmp/cgtuRQ6Sb.obj
+__smallconst 0 0 SMALLCONST 0 smallconst /tmp/cgtmT1Aow.obj
 _BAUDCON2 FB9 0 ABS 0 - dist/default/production/LedStrip.X.production.obj
 __CFG_FOSC$INTIO2 0 0 ABS 0 - dist/default/production/LedStrip.X.production.obj
 __Hcomram 0 0 ABS 0 comram dist/default/production/LedStrip.X.production.obj
@@ -934,8 +934,8 @@ _strobe C6 0 CODE 0 text1 dist/default/production/LedStrip.X.production.obj
 __Lfardata 0 0 FARRAM 0 fardata dist/default/production/LedStrip.X.production.obj
 __end_of_Timer0_ISR C2 0 CODE 0 intcodelo dist/default/production/LedStrip.X.production.obj
 ___lwtoft@c 76 0 BANK0 1 cstackBANK0 dist/default/production/LedStrip.X.production.obj
-stackhi E40 0 ABS 0 - /tmp/cgtuRQ6Sb.obj
-stacklo 3C8 0 ABS 0 - /tmp/cgtuRQ6Sb.obj
+stackhi E40 0 ABS 0 - /tmp/cgtmT1Aow.obj
+stacklo 3C8 0 ABS 0 - /tmp/cgtmT1Aow.obj
 __Lintcode 8 0 CODE 0 intcode dist/default/production/LedStrip.X.production.obj
 __Lintret 0 0 ABS 0 intret dist/default/production/LedStrip.X.production.obj
 __Lirdata 0 0 CODE 0 irdata dist/default/production/LedStrip.X.production.obj
@@ -1004,7 +1004,7 @@ __Ltext20 0 0 ABS 0 text20 dist/default/production/LedStrip.X.production.obj
 __Ltext23 0 0 ABS 0 text23 dist/default/production/LedStrip.X.production.obj
 __Ltext24 0 0 ABS 0 text24 dist/default/production/LedStrip.X.production.obj
 __Ltext25 0 0 ABS 0 text25 dist/default/production/LedStrip.X.production.obj
-__ramtop F00 0 RAM 0 ramtop /tmp/cgtuRQ6Sb.obj
+__ramtop F00 0 RAM 0 ramtop /tmp/cgtmT1Aow.obj
 __Lpowerup C2 0 CODE 0 powerup dist/default/production/LedStrip.X.production.obj
 __Leeprom_data 0 0 EEDATA 0 eeprom_data dist/default/production/LedStrip.X.production.obj
 _isdigit 14C4 0 CODE 0 text24 dist/default/production/LedStrip.X.production.obj

@@ -1,7 +1,7 @@
 
 
 Microchip Technology PIC18 LITE Macro Assembler V1.34 build -361300703 
-                                                                                               Mon May 25 14:04:50 2015
+                                                                                               Mon Jun 29 20:47:08 2015
 
 Microchip Technology Omniscient Code Generator (Lite mode) build 201502162209
      1                           	processor	18F26K80
@@ -642,116 +642,116 @@ Microchip Technology Omniscient Code Generator (Lite mode) build 201502162209
    631  00063A  D0D2               	goto	l2551
    632  00063C                     l2543:
    633                           
-   634                           ;main.c: 119: setRGB( (int)( 1023 * amplitude1),
-   635                           ;main.c: 120: (int)( 1023 * amplitude2),
-   636                           ;main.c: 121: (int)( 1023 * amplitude3));
-   637  00063C  0EC0               	movlw	192
-   638  00063E  0100               	movlb	0	; () banked
-   639  000640  6F7C               	movwf	___ftmul@f2& (0+255),b
-   640  000642  0E7F               	movlw	127
-   641  000644  0100               	movlb	0	; () banked
-   642  000646  6F7D               	movwf	(___ftmul@f2+1)& (0+255),b
-   643  000648  0E44               	movlw	68
-   644  00064A  0100               	movlb	0	; () banked
-   645  00064C  6F7E               	movwf	(___ftmul@f2+2)& (0+255),b
-   646  00064E  C0BD  F079         	movff	_amplitude1,___ftmul@f1
-   647  000652  C0BE  F07A         	movff	_amplitude1+1,___ftmul@f1+1
-   648  000656  C0BF  F07B         	movff	_amplitude1+2,___ftmul@f1+2
-   649  00065A  EC53  F005         	call	___ftmul	;wreg free
-   650  00065E  C079  F08E         	movff	?___ftmul,___fttol@f1
-   651  000662  C07A  F08F         	movff	?___ftmul+1,___fttol@f1+1
-   652  000666  C07B  F090         	movff	?___ftmul+2,___fttol@f1+2
-   653  00066A  ECAA  F004         	call	___fttol	;wreg free
-   654  00066E  C08E  F09D         	movff	?___fttol,setRGB@r
-   655  000672  C08F  F09E         	movff	?___fttol+1,setRGB@r+1
-   656  000676  0EC0               	movlw	192
-   657  000678  0100               	movlb	0	; () banked
-   658  00067A  6F7C               	movwf	___ftmul@f2& (0+255),b
-   659  00067C  0E7F               	movlw	127
-   660  00067E  0100               	movlb	0	; () banked
-   661  000680  6F7D               	movwf	(___ftmul@f2+1)& (0+255),b
-   662  000682  0E44               	movlw	68
-   663  000684  0100               	movlb	0	; () banked
-   664  000686  6F7E               	movwf	(___ftmul@f2+2)& (0+255),b
-   665  000688  C0C0  F079         	movff	_amplitude2,___ftmul@f1
-   666  00068C  C0C1  F07A         	movff	_amplitude2+1,___ftmul@f1+1
-   667  000690  C0C2  F07B         	movff	_amplitude2+2,___ftmul@f1+2
-   668  000694  EC53  F005         	call	___ftmul	;wreg free
-   669  000698  C079  F08E         	movff	?___ftmul,___fttol@f1
-   670  00069C  C07A  F08F         	movff	?___ftmul+1,___fttol@f1+1
-   671  0006A0  C07B  F090         	movff	?___ftmul+2,___fttol@f1+2
-   672  0006A4  ECAA  F004         	call	___fttol	;wreg free
-   673  0006A8  C08E  F09F         	movff	?___fttol,setRGB@g
-   674  0006AC  C08F  F0A0         	movff	?___fttol+1,setRGB@g+1
-   675  0006B0  0EC0               	movlw	192
-   676  0006B2  0100               	movlb	0	; () banked
-   677  0006B4  6F7C               	movwf	___ftmul@f2& (0+255),b
-   678  0006B6  0E7F               	movlw	127
-   679  0006B8  0100               	movlb	0	; () banked
-   680  0006BA  6F7D               	movwf	(___ftmul@f2+1)& (0+255),b
-   681  0006BC  0E44               	movlw	68
-   682  0006BE  0100               	movlb	0	; () banked
-   683  0006C0  6F7E               	movwf	(___ftmul@f2+2)& (0+255),b
-   684  0006C2  C0C3  F079         	movff	_amplitude3,___ftmul@f1
-   685  0006C6  C0C4  F07A         	movff	_amplitude3+1,___ftmul@f1+1
-   686  0006CA  C0C5  F07B         	movff	_amplitude3+2,___ftmul@f1+2
-   687  0006CE  EC53  F005         	call	___ftmul	;wreg free
-   688  0006D2  C079  F08E         	movff	?___ftmul,___fttol@f1
-   689  0006D6  C07A  F08F         	movff	?___ftmul+1,___fttol@f1+1
-   690  0006DA  C07B  F090         	movff	?___ftmul+2,___fttol@f1+2
-   691  0006DE  ECAA  F004         	call	___fttol	;wreg free
-   692  0006E2  C08E  F0A1         	movff	?___fttol,setRGB@b
-   693  0006E6  C08F  F0A2         	movff	?___fttol+1,setRGB@b+1
-   694  0006EA  EC0E  F00A         	call	_setRGB	;wreg free
-   695                           
-   696                           ;main.c: 122: break;
-   697  0006EE  D7A1               	goto	l194
-   698  0006F0                     l2545:
-   699                           
-   700                           ;main.c: 125: setRGB( (int)( (float)R[0] * amplitude1),
-   701                           ;main.c: 126: (int)( (float)G[0] * amplitude2),
-   702                           ;main.c: 127: (int)( (float)B[0] * amplitude3));
-   703  0006F0  C0BD  F07C         	movff	_amplitude1,___ftmul@f2
-   704  0006F4  C0BE  F07D         	movff	_amplitude1+1,___ftmul@f2+1
-   705  0006F8  C0BF  F07E         	movff	_amplitude1+2,___ftmul@f2+2
-   706  0006FC  C100  F076         	movff	_R,___lwtoft@c
-   707  000700  C101  F077         	movff	_R+1,___lwtoft@c+1
-   708  000704  EC24  F00A         	call	___lwtoft	;wreg free
-   709  000708  C076  F079         	movff	?___lwtoft,___ftmul@f1
-   710  00070C  C077  F07A         	movff	?___lwtoft+1,___ftmul@f1+1
-   711  000710  C078  F07B         	movff	?___lwtoft+2,___ftmul@f1+2
-   712  000714  EC53  F005         	call	___ftmul	;wreg free
-   713  000718  C079  F08E         	movff	?___ftmul,___fttol@f1
-   714  00071C  C07A  F08F         	movff	?___ftmul+1,___fttol@f1+1
-   715  000720  C07B  F090         	movff	?___ftmul+2,___fttol@f1+2
-   716  000724  ECAA  F004         	call	___fttol	;wreg free
-   717  000728  C08E  F09D         	movff	?___fttol,setRGB@r
-   718  00072C  C08F  F09E         	movff	?___fttol+1,setRGB@r+1
-   719  000730  C0C0  F07C         	movff	_amplitude2,___ftmul@f2
-   720  000734  C0C1  F07D         	movff	_amplitude2+1,___ftmul@f2+1
-   721  000738  C0C2  F07E         	movff	_amplitude2+2,___ftmul@f2+2
-   722  00073C  C200  F076         	movff	_G,___lwtoft@c
-   723  000740  C201  F077         	movff	_G+1,___lwtoft@c+1
-   724  000744  EC24  F00A         	call	___lwtoft	;wreg free
-   725  000748  C076  F079         	movff	?___lwtoft,___ftmul@f1
-   726  00074C  C077  F07A         	movff	?___lwtoft+1,___ftmul@f1+1
-   727  000750  C078  F07B         	movff	?___lwtoft+2,___ftmul@f1+2
-   728  000754  EC53  F005         	call	___ftmul	;wreg free
-   729  000758  C079  F08E         	movff	?___ftmul,___fttol@f1
-   730  00075C  C07A  F08F         	movff	?___ftmul+1,___fttol@f1+1
-   731  000760  C07B  F090         	movff	?___ftmul+2,___fttol@f1+2
-   732  000764  ECAA  F004         	call	___fttol	;wreg free
-   733  000768  C08E  F09F         	movff	?___fttol,setRGB@g
-   734  00076C  C08F  F0A0         	movff	?___fttol+1,setRGB@g+1
-   735  000770  C0C3  F07C         	movff	_amplitude3,___ftmul@f2
-   736  000774  C0C4  F07D         	movff	_amplitude3+1,___ftmul@f2+1
-   737  000778  C0C5  F07E         	movff	_amplitude3+2,___ftmul@f2+2
-   738  00077C  C300  F076         	movff	_B,___lwtoft@c
-   739  000780  C301  F077         	movff	_B+1,___lwtoft@c+1
-   740  000784  EC24  F00A         	call	___lwtoft	;wreg free
-   741  000788  C076  F079         	movff	?___lwtoft,___ftmul@f1
-   742  00078C  C077  F07A         	movff	?___lwtoft+1,___ftmul@f1+1
-   743  000790  C078  F07B         	movff	?___lwtoft+2,___ftmul@f1+2
+   634                           ;main.c: 119: setRGB( (int)( (float)R[0] * amplitude1),
+   635                           ;main.c: 120: (int)( (float)G[0] * amplitude2),
+   636                           ;main.c: 121: (int)( (float)B[0] * amplitude3));
+   637  00063C  C0BD  F07C         	movff	_amplitude1,___ftmul@f2
+   638  000640  C0BE  F07D         	movff	_amplitude1+1,___ftmul@f2+1
+   639  000644  C0BF  F07E         	movff	_amplitude1+2,___ftmul@f2+2
+   640  000648  C100  F076         	movff	_R,___lwtoft@c
+   641  00064C  C101  F077         	movff	_R+1,___lwtoft@c+1
+   642  000650  EC24  F00A         	call	___lwtoft	;wreg free
+   643  000654  C076  F079         	movff	?___lwtoft,___ftmul@f1
+   644  000658  C077  F07A         	movff	?___lwtoft+1,___ftmul@f1+1
+   645  00065C  C078  F07B         	movff	?___lwtoft+2,___ftmul@f1+2
+   646  000660  EC53  F005         	call	___ftmul	;wreg free
+   647  000664  C079  F08E         	movff	?___ftmul,___fttol@f1
+   648  000668  C07A  F08F         	movff	?___ftmul+1,___fttol@f1+1
+   649  00066C  C07B  F090         	movff	?___ftmul+2,___fttol@f1+2
+   650  000670  ECAA  F004         	call	___fttol	;wreg free
+   651  000674  C08E  F09D         	movff	?___fttol,setRGB@r
+   652  000678  C08F  F09E         	movff	?___fttol+1,setRGB@r+1
+   653  00067C  C0C0  F07C         	movff	_amplitude2,___ftmul@f2
+   654  000680  C0C1  F07D         	movff	_amplitude2+1,___ftmul@f2+1
+   655  000684  C0C2  F07E         	movff	_amplitude2+2,___ftmul@f2+2
+   656  000688  C200  F076         	movff	_G,___lwtoft@c
+   657  00068C  C201  F077         	movff	_G+1,___lwtoft@c+1
+   658  000690  EC24  F00A         	call	___lwtoft	;wreg free
+   659  000694  C076  F079         	movff	?___lwtoft,___ftmul@f1
+   660  000698  C077  F07A         	movff	?___lwtoft+1,___ftmul@f1+1
+   661  00069C  C078  F07B         	movff	?___lwtoft+2,___ftmul@f1+2
+   662  0006A0  EC53  F005         	call	___ftmul	;wreg free
+   663  0006A4  C079  F08E         	movff	?___ftmul,___fttol@f1
+   664  0006A8  C07A  F08F         	movff	?___ftmul+1,___fttol@f1+1
+   665  0006AC  C07B  F090         	movff	?___ftmul+2,___fttol@f1+2
+   666  0006B0  ECAA  F004         	call	___fttol	;wreg free
+   667  0006B4  C08E  F09F         	movff	?___fttol,setRGB@g
+   668  0006B8  C08F  F0A0         	movff	?___fttol+1,setRGB@g+1
+   669  0006BC  C0C3  F07C         	movff	_amplitude3,___ftmul@f2
+   670  0006C0  C0C4  F07D         	movff	_amplitude3+1,___ftmul@f2+1
+   671  0006C4  C0C5  F07E         	movff	_amplitude3+2,___ftmul@f2+2
+   672  0006C8  C300  F076         	movff	_B,___lwtoft@c
+   673  0006CC  C301  F077         	movff	_B+1,___lwtoft@c+1
+   674  0006D0  EC24  F00A         	call	___lwtoft	;wreg free
+   675  0006D4  C076  F079         	movff	?___lwtoft,___ftmul@f1
+   676  0006D8  C077  F07A         	movff	?___lwtoft+1,___ftmul@f1+1
+   677  0006DC  C078  F07B         	movff	?___lwtoft+2,___ftmul@f1+2
+   678  0006E0  EC53  F005         	call	___ftmul	;wreg free
+   679  0006E4  C079  F08E         	movff	?___ftmul,___fttol@f1
+   680  0006E8  C07A  F08F         	movff	?___ftmul+1,___fttol@f1+1
+   681  0006EC  C07B  F090         	movff	?___ftmul+2,___fttol@f1+2
+   682  0006F0  ECAA  F004         	call	___fttol	;wreg free
+   683  0006F4  C08E  F0A1         	movff	?___fttol,setRGB@b
+   684  0006F8  C08F  F0A2         	movff	?___fttol+1,setRGB@b+1
+   685  0006FC  EC0E  F00A         	call	_setRGB	;wreg free
+   686                           
+   687                           ;main.c: 122: break;
+   688  000700  D798               	goto	l194
+   689  000702                     l2545:
+   690                           
+   691                           ;main.c: 126: setRGB( (int)( 1023 * amplitude1),
+   692                           ;main.c: 127: (int)( 1023 * amplitude2),
+   693                           ;main.c: 128: (int)( 1023 * amplitude3));
+   694  000702  0EC0               	movlw	192
+   695  000704  0100               	movlb	0	; () banked
+   696  000706  6F7C               	movwf	___ftmul@f2& (0+255),b
+   697  000708  0E7F               	movlw	127
+   698  00070A  0100               	movlb	0	; () banked
+   699  00070C  6F7D               	movwf	(___ftmul@f2+1)& (0+255),b
+   700  00070E  0E44               	movlw	68
+   701  000710  0100               	movlb	0	; () banked
+   702  000712  6F7E               	movwf	(___ftmul@f2+2)& (0+255),b
+   703  000714  C0BD  F079         	movff	_amplitude1,___ftmul@f1
+   704  000718  C0BE  F07A         	movff	_amplitude1+1,___ftmul@f1+1
+   705  00071C  C0BF  F07B         	movff	_amplitude1+2,___ftmul@f1+2
+   706  000720  EC53  F005         	call	___ftmul	;wreg free
+   707  000724  C079  F08E         	movff	?___ftmul,___fttol@f1
+   708  000728  C07A  F08F         	movff	?___ftmul+1,___fttol@f1+1
+   709  00072C  C07B  F090         	movff	?___ftmul+2,___fttol@f1+2
+   710  000730  ECAA  F004         	call	___fttol	;wreg free
+   711  000734  C08E  F09D         	movff	?___fttol,setRGB@r
+   712  000738  C08F  F09E         	movff	?___fttol+1,setRGB@r+1
+   713  00073C  0EC0               	movlw	192
+   714  00073E  0100               	movlb	0	; () banked
+   715  000740  6F7C               	movwf	___ftmul@f2& (0+255),b
+   716  000742  0E7F               	movlw	127
+   717  000744  0100               	movlb	0	; () banked
+   718  000746  6F7D               	movwf	(___ftmul@f2+1)& (0+255),b
+   719  000748  0E44               	movlw	68
+   720  00074A  0100               	movlb	0	; () banked
+   721  00074C  6F7E               	movwf	(___ftmul@f2+2)& (0+255),b
+   722  00074E  C0C0  F079         	movff	_amplitude2,___ftmul@f1
+   723  000752  C0C1  F07A         	movff	_amplitude2+1,___ftmul@f1+1
+   724  000756  C0C2  F07B         	movff	_amplitude2+2,___ftmul@f1+2
+   725  00075A  EC53  F005         	call	___ftmul	;wreg free
+   726  00075E  C079  F08E         	movff	?___ftmul,___fttol@f1
+   727  000762  C07A  F08F         	movff	?___ftmul+1,___fttol@f1+1
+   728  000766  C07B  F090         	movff	?___ftmul+2,___fttol@f1+2
+   729  00076A  ECAA  F004         	call	___fttol	;wreg free
+   730  00076E  C08E  F09F         	movff	?___fttol,setRGB@g
+   731  000772  C08F  F0A0         	movff	?___fttol+1,setRGB@g+1
+   732  000776  0EC0               	movlw	192
+   733  000778  0100               	movlb	0	; () banked
+   734  00077A  6F7C               	movwf	___ftmul@f2& (0+255),b
+   735  00077C  0E7F               	movlw	127
+   736  00077E  0100               	movlb	0	; () banked
+   737  000780  6F7D               	movwf	(___ftmul@f2+1)& (0+255),b
+   738  000782  0E44               	movlw	68
+   739  000784  0100               	movlb	0	; () banked
+   740  000786  6F7E               	movwf	(___ftmul@f2+2)& (0+255),b
+   741  000788  C0C3  F079         	movff	_amplitude3,___ftmul@f1
+   742  00078C  C0C4  F07A         	movff	_amplitude3+1,___ftmul@f1+1
+   743  000790  C0C5  F07B         	movff	_amplitude3+2,___ftmul@f1+2
    744  000794  EC53  F005         	call	___ftmul	;wreg free
    745  000798  C079  F08E         	movff	?___ftmul,___fttol@f1
    746  00079C  C07A  F08F         	movff	?___ftmul+1,___fttol@f1+1
@@ -761,18 +761,18 @@ Microchip Technology Omniscient Code Generator (Lite mode) build 201502162209
    750  0007AC  C08F  F0A2         	movff	?___fttol+1,setRGB@b+1
    751  0007B0  EC0E  F00A         	call	_setRGB	;wreg free
    752                           
-   753                           ;main.c: 128: break;
+   753                           ;main.c: 129: break;
    754  0007B4  D73E               	goto	l194
    755  0007B6                     l2547:
    756                           
-   757                           ;main.c: 131: strobe();
+   757                           ;main.c: 133: strobe();
    758  0007B6  EC63  F000         	call	_strobe	;wreg free
    759                           
-   760                           ;main.c: 132: break;
+   760                           ;main.c: 134: break;
    761  0007BA  D73B               	goto	l194
    762  0007BC                     l2549:
    763                           
-   764                           ;main.c: 135: setRGB(0,0,0);
+   764                           ;main.c: 137: setRGB(0,0,0);
    765  0007BC  0E00               	movlw	0
    766  0007BE  0100               	movlb	0	; () banked
    767  0007C0  6F9E               	movwf	(setRGB@r+1)& (0+255),b
@@ -790,7 +790,7 @@ Microchip Technology Omniscient Code Generator (Lite mode) build 201502162209
    779  0007D8  6FA1               	movwf	setRGB@b& (0+255),b
    780  0007DA  EC0E  F00A         	call	_setRGB	;wreg free
    781                           
-   782                           ;main.c: 136: }
+   782                           ;main.c: 138: }
    783  0007DE  D729               	goto	l194
    784  0007E0                     l2551:
    785  0007E0  0100               	movlb	0	; () banked
@@ -807,7 +807,7 @@ Microchip Technology Omniscient Code Generator (Lite mode) build 201502162209
    796  0007E8  D729               	goto	l2543
    797  0007EA  0A01               	xorlw	1	; case 1
    798  0007EC  B4D8               	btfsc	status,2,c
-   799  0007EE  D780               	goto	l2545
+   799  0007EE  D789               	goto	l2545
    800  0007F0  0A03               	xorlw	3	; case 2
    801  0007F2  B4D8               	btfsc	status,2,c
    802  0007F4  D7E0               	goto	l2547
@@ -821,8 +821,8 @@ Microchip Technology Omniscient Code Generator (Lite mode) build 201502162209
    810                           ; BSR set to: 0
    811                           
    812                           ; BSR set to: 0
-   813                           ;main.c: 137: }
-   814                           ;main.c: 139: return (0);
+   813                           ;main.c: 139: }
+   814                           ;main.c: 141: return (0);
    815                           ;	Return value of _main is never used
    816  0007FA  EF61  F000         	goto	start
    817  0007FE                     __end_of_main:
@@ -5956,7 +5956,7 @@ CODE                 0      0       0       0        0.0%
 
 
 Microchip Technology PIC18 Macro Assembler V1.34 build -361300703 
-Symbol Table                                                                                   Mon May 25 14:04:50 2015
+Symbol Table                                                                                   Mon Jun 29 20:47:08 2015
 
                           _B 0300                            _G 0200                            _R 0100  
                ___awdiv@sign 001F                           bsr 000FE0          ___wmul@multiplicand 0003  
@@ -5993,7 +5993,7 @@ Symbol Table                                                                    
                        l2375 05B6                         l2367 0540                         l2359 0504  
                        l2471 0B80                         l2447 0B06                         l2543 063C  
                        l2551 07E0                         l2385 0606                         l2369 0550  
-                       l2465 0B60                         l2545 06F0                         l2395 0C0A  
+                       l2465 0B60                         l2545 0702                         l2395 0C0A  
                        l2475 0B9A                         l2539 038A                         l2547 07B6  
                        l1781 0FD0                         l1773 0F6E                         l1765 0F38  
                        l2469 0B7A                         l2549 07BC                         l1775 0F80  

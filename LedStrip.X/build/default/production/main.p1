@@ -17590,43 +17590,43 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;main.c: 118: case 0 :
 "118
 [e :U 2645 ]
-[; ;main.c: 119: setRGB( (int)( 1023 * amplitude1),
-[; ;main.c: 120: (int)( 1023 * amplitude2),
-[; ;main.c: 121: (int)( 1023 * amplitude3));
+[; ;main.c: 119: setRGB( (int)( (float)R[0] * amplitude1),
+[; ;main.c: 120: (int)( (float)G[0] * amplitude2),
+[; ;main.c: 121: (int)( (float)B[0] * amplitude3));
 "121
-[e ( _setRGB (3 , , -> * -> -> 1023 `i `f _amplitude1 `i -> * -> -> 1023 `i `f _amplitude2 `i -> * -> -> 1023 `i `f _amplitude3 `i ]
+[e ( _setRGB (3 , , -> * -> *U + &U _R * -> -> -> 0 `i `ui `ux -> -> # *U &U _R `ui `ux `f _amplitude1 `i -> * -> *U + &U _G * -> -> -> 0 `i `ui `ux -> -> # *U &U _G `ui `ux `f _amplitude2 `i -> * -> *U + &U _B * -> -> -> 0 `i `ui `ux -> -> # *U &U _B `ui `ux `f _amplitude3 `i ]
 [; ;main.c: 122: break;
 "122
 [e $U 2643  ]
-[; ;main.c: 124: case 1 :
-"124
+[; ;main.c: 125: case 1 :
+"125
 [e :U 2646 ]
-[; ;main.c: 125: setRGB( (int)( (float)R[0] * amplitude1),
-[; ;main.c: 126: (int)( (float)G[0] * amplitude2),
-[; ;main.c: 127: (int)( (float)B[0] * amplitude3));
-"127
-[e ( _setRGB (3 , , -> * -> *U + &U _R * -> -> -> 0 `i `ui `ux -> -> # *U &U _R `ui `ux `f _amplitude1 `i -> * -> *U + &U _G * -> -> -> 0 `i `ui `ux -> -> # *U &U _G `ui `ux `f _amplitude2 `i -> * -> *U + &U _B * -> -> -> 0 `i `ui `ux -> -> # *U &U _B `ui `ux `f _amplitude3 `i ]
-[; ;main.c: 128: break;
+[; ;main.c: 126: setRGB( (int)( 1023 * amplitude1),
+[; ;main.c: 127: (int)( 1023 * amplitude2),
+[; ;main.c: 128: (int)( 1023 * amplitude3));
 "128
+[e ( _setRGB (3 , , -> * -> -> 1023 `i `f _amplitude1 `i -> * -> -> 1023 `i `f _amplitude2 `i -> * -> -> 1023 `i `f _amplitude3 `i ]
+[; ;main.c: 129: break;
+"129
 [e $U 2643  ]
-[; ;main.c: 130: case 2 :
-"130
-[e :U 2647 ]
-[; ;main.c: 131: strobe();
-"131
-[e ( _strobe ..  ]
-[; ;main.c: 132: break;
+[; ;main.c: 132: case 2 :
 "132
-[e $U 2643  ]
-[; ;main.c: 134: default:
+[e :U 2647 ]
+[; ;main.c: 133: strobe();
+"133
+[e ( _strobe ..  ]
+[; ;main.c: 134: break;
 "134
-[e :U 2648 ]
-[; ;main.c: 135: setRGB(0,0,0);
-"135
-[e ( _setRGB (3 , , -> 0 `i -> 0 `i -> 0 `i ]
+[e $U 2643  ]
+[; ;main.c: 136: default:
 "136
+[e :U 2648 ]
+[; ;main.c: 137: setRGB(0,0,0);
+"137
+[e ( _setRGB (3 , , -> 0 `i -> 0 `i -> 0 `i ]
+"138
 }
-[; ;main.c: 136: }
+[; ;main.c: 138: }
 [e $U 2643  ]
 "116
 [e :U 2644 ]
@@ -17634,21 +17634,21 @@ Version 3.2 HI-TECH Software Intermediate Code
  , $ -> -> 1 `i `uc 2646
  , $ -> -> 2 `i `uc 2647
  2648 ]
-"136
+"138
 [e :U 2643 ]
-"137
+"139
 }
 [e :U 2640 ]
 "108
 [e $U 2641  ]
 [e :U 2642 ]
-[; ;main.c: 137: }
-[; ;main.c: 139: return (0);
-"139
+[; ;main.c: 139: }
+[; ;main.c: 141: return (0);
+"141
 [e ) -> 0 `i ]
 [e $UE 2639  ]
-[; ;main.c: 140: }
-"140
+[; ;main.c: 142: }
+"142
 [e :UE 2639 ]
 }
 "145
