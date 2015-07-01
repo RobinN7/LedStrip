@@ -22,5 +22,7 @@ android {
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile 'com.android.support:appcompat-v7:22.1.1'
-    compile 'com.larswerkman:HoloColorPicker:1.5'
+    compile 'com.larswerkman:HoloColorPicker:1.5'       // Color wheel
+    compile 'com.github.wendykierp:JTransforms:3.0'     // FFT
+    compile "com.androidplot:androidplot-core:0.6.1"    // Plot
 }
