@@ -14,9 +14,15 @@ import android.util.Log;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.androidplot.xy.BoundaryMode;
+import com.androidplot.xy.LineAndPointFormatter;
+import com.androidplot.xy.SimpleXYSeries;
+import com.androidplot.xy.XYPlot;
+import com.androidplot.xy.XYSeries;
 import com.larswerkman.holocolorpicker.ColorPicker;
 import com.larswerkman.holocolorpicker.SaturationBar;
 import com.larswerkman.holocolorpicker.ValueBar;
+
 
 import org.jtransforms.fft.DoubleFFT_1D;
 
@@ -34,17 +40,19 @@ public class MainActivity extends Activity implements ColorPicker.OnColorChanged
     protected int sDataAverage=0;
     protected double fftData[]= new double[1024];
 
-
     private static final String TAG = "LedStrips_BT";
+
+    private AudioRecord audioInput = null;
+    private Thread recordingThread = null;
+    private boolean isRecording = false;
 
     private static final int REQUEST_ENABLE_BT = 1;
     private BluetoothAdapter btAdapter = null;
     private BluetoothSocket btSocket = null;
     private OutputStream outStream = null;
 
-    private AudioRecord audioInput = null;
-    private Thread recordingThread = null;
-    private boolean isRecording = false;
+    private XYPlot plot;
+    protected int powOf2temp=(int)Math.pow(2,2);
 
     // Well known SPP UUID
     private static final UUID MY_UUID =
@@ -63,6 +71,46 @@ public class MainActivity extends Activity implements ColorPicker.OnColorChanged
 
         android.os.Process.setThreadPriority(android.os.Process.THREAD_PRIORITY_URGENT_AUDIO);
 
+
+        ////////////////////////////////////////////////////////////////////////////////////////////
+        //                                      Plot                                              //
+        ////////////////////////////////////////////////////////////////////////////////////////////
+
+        // initialize our XYPlot reference:
+        plot = (XYPlot) findViewById(R.id.mySimpleXYPlot);
+
+        // Create a couple arrays of y-values to plot:
+        final Number[] series1Numbers = new Number[1024/powOf2temp];
+
+        for (int j=0;j<series1Numbers.length;j++) {
+            series1Numbers[j]=j;
+        }
+
+        // Turn the above arrays into XYSeries':
+        final SimpleXYSeries series1 = new SimpleXYSeries(
+                Arrays.asList(series1Numbers),          // SimpleXYSeries takes a List so turn our array into a List
+                SimpleXYSeries.ArrayFormat.Y_VALS_ONLY, // Y_VALS_ONLY means use the element index as the x value
+                "Series1");                             // Set the display title of the series
+
+        // Create a formatter to use for drawing a series using LineAndPointRenderer
+        // and configure it from xml:
+        final LineAndPointFormatter series1Format = new LineAndPointFormatter();
+        series1Format.setPointLabelFormatter(null);
+        series1Format.configure(getApplicationContext(),
+                R.xml.line_point_formatter);
+
+        // add a new series' to the xyplot:
+        plot.addSeries(series1, series1Format);
+
+        // reduce the number of range labels
+        plot.setTicksPerRangeLabel(9);
+        plot.getGraphWidget().setDomainLabelOrientation(-45);
+        plot.getLegendWidget().setVisible(false);
+        // set range limits
+        plot.setRangeBoundaries(0, 10000, BoundaryMode.FIXED);
+        ////////////////////////////////////////////////////////////////////////////////////////////
+
+
         // AudioRecord //
         /////////////////
         int RECORDER_CHANNELS = AudioFormat.CHANNEL_CONFIGURATION_MONO;
@@ -73,7 +121,6 @@ public class MainActivity extends Activity implements ColorPicker.OnColorChanged
 
         // Fast Fourier Transform from JTransforms
         final DoubleFFT_1D fft = new DoubleFFT_1D(sData.length);
-
 
         // Start recording
         audioInput.startRecording();
@@ -93,6 +140,15 @@ public class MainActivity extends Activity implements ColorPicker.OnColorChanged
 
                     // Perform 1D fft
                     fft.realForward(fftData);
+
+
+                    // Update plot //
+                    for (int j = 0; j < series1.size(); j++) {
+                        series1.removeFirst();
+                        series1.addLast(null, fftData[j*powOf2temp]*powOf2temp);
+                    }
+                    plot.redraw();
+                    ////////////////
 
                     sDataAverage=0;
                     for (int i=0; i<1024; i++) sDataAverage+=Math.abs(fftData[i]);
@@ -118,9 +174,9 @@ public class MainActivity extends Activity implements ColorPicker.OnColorChanged
         recordingThread.start();
 
 
-
-        // Color Picker //
-        //////////////////
+        ////////////////////////////////////////////////////////////////////////////////////////////
+        //                                      Color Picker                                      //
+        ////////////////////////////////////////////////////////////////////////////////////////////
         ColorPicker picker = (ColorPicker) findViewById(R.id.picker);
         SaturationBar saturationBar = (SaturationBar) findViewById(R.id.saturationbar);
         ValueBar valueBar = (ValueBar) findViewById(R.id.valuebar);
@@ -128,12 +184,12 @@ public class MainActivity extends Activity implements ColorPicker.OnColorChanged
         picker.addValueBar(valueBar);
         picker.setOnColorChangedListener(this);
 
-        // Bluetooth //
-        ///////////////
+        ////////////////////////////////////////////////////////////////////////////////////////////
+        //                                      Bluetooth                                         //
+        ////////////////////////////////////////////////////////////////////////////////////////////
         btAdapter = BluetoothAdapter.getDefaultAdapter();
         checkBTState();
 
-        ////////////////////////////////////////////////////////////////////////////////////////////
         // Set up a pointer to the remote node using it's address.
         BluetoothDevice device = btAdapter.getRemoteDevice(address);
 
@@ -173,9 +229,6 @@ public class MainActivity extends Activity implements ColorPicker.OnColorChanged
             errorExit("Fatal Error", "In onResume() and output stream creation failed:" + e.getMessage() + ".");
         }
         ////////////////////////////////////////////////////////////////////////////////////////////
-
-
-
     }
 
     @Override
