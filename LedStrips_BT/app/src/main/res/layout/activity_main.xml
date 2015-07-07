@@ -35,7 +35,7 @@
     <com.androidplot.xy.XYPlot
         android:id="@+id/mySimpleXYPlot"
         android:layout_width="340dp"
-        android:layout_height="82dp"
+        android:layout_height="85dp"
         androidPlot.title="Frequency analysis"
         androidPlot.domainLabel="Frequency"
         androidPlot.rangeLabel="Amplitude"
@@ -53,6 +53,15 @@
         androidPlot.graphWidget.gridLinePaint.color="#000000"
         android:layout_gravity="center_horizontal"
         android:layout_weight="0.46" />
+
+    <SeekBar
+        android:layout_width="340dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/seekBar"
+        android:layout_gravity="center_horizontal"
+        android:indeterminate="false"
+        android:max="100"
+        android:progress="0" />
 
 
 </LinearLayout>

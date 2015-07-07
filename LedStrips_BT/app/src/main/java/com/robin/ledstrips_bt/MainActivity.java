@@ -11,6 +11,7 @@ import android.media.AudioRecord;
 import android.media.MediaRecorder;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -33,11 +34,14 @@ import java.util.UUID;
 
 public class MainActivity extends Activity implements ColorPicker.OnColorChangedListener{
 
+    private SeekBar sensBar;
+    protected float sensitivity=0;
+
     protected int old_count = 0;
     protected int old_color = 0;
 
     protected short sData[] = new short[1024];
-    protected int sDataAverage=0;
+    protected double sDataAverage=0;
     protected double fftData[]= new double[1024];
 
     private static final String TAG = "LedStrips_BT";
@@ -71,11 +75,9 @@ public class MainActivity extends Activity implements ColorPicker.OnColorChanged
 
         android.os.Process.setThreadPriority(android.os.Process.THREAD_PRIORITY_URGENT_AUDIO);
 
-
         ////////////////////////////////////////////////////////////////////////////////////////////
         //                                      Plot                                              //
         ////////////////////////////////////////////////////////////////////////////////////////////
-
         // initialize our XYPlot reference:
         plot = (XYPlot) findViewById(R.id.mySimpleXYPlot);
 
@@ -106,13 +108,16 @@ public class MainActivity extends Activity implements ColorPicker.OnColorChanged
         plot.setTicksPerRangeLabel(9);
         plot.getGraphWidget().setDomainLabelOrientation(-45);
         plot.getLegendWidget().setVisible(false);
-        // set range limits
-        plot.setRangeBoundaries(0, 10000, BoundaryMode.FIXED);
+        // set axis limits
+        plot.setRangeBoundaries(0, 100000, BoundaryMode.FIXED);
+        plot.setDomainBoundaries(0, 255, BoundaryMode.FIXED);
         ////////////////////////////////////////////////////////////////////////////////////////////
 
 
-        // AudioRecord //
-        /////////////////
+
+        ////////////////////////////////////////////////////////////////////////////////////////////
+        //                                  AudioRecord                                           //
+        ////////////////////////////////////////////////////////////////////////////////////////////
         int RECORDER_CHANNELS = AudioFormat.CHANNEL_CONFIGURATION_MONO;
         int RECORDER_AUDIO_ENCODING = AudioFormat.ENCODING_PCM_16BIT;
         int RECORDER_SAMPLERATE= 44100;
@@ -141,6 +146,16 @@ public class MainActivity extends Activity implements ColorPicker.OnColorChanged
                     // Perform 1D fft
                     fft.realForward(fftData);
 
+                    for (int j=0; j<fftData.length; j++) fftData[j]=Math.abs(fftData[j]);
+
+                    /*
+                    // Running average
+                    char order=20;
+                    for (int j=0; j<fftData.length-order; j++) {
+                        for (char k = 1; k < order; k++) fftData[j] += fftData[j + k];
+                        fftData[j] /= order;
+                    }
+                    */
 
                     // Update plot //
                     for (int j = 0; j < series1.size(); j++) {
@@ -150,21 +165,26 @@ public class MainActivity extends Activity implements ColorPicker.OnColorChanged
                     plot.redraw();
                     ////////////////
 
-                    sDataAverage=0;
-                    for (int i=0; i<1024; i++) sDataAverage+=Math.abs(fftData[i]);
-                    int attenuation=392; // Scaling factor to be in [0:255], to be replace with an adjustable value
-                    sDataAverage/=1024*attenuation;
+                    final int dataToSend[] = new int[3];
 
-                    final int dataToSend = (sDataAverage > 255) ? 255 : sDataAverage; // Limits the value to 255
+                    sensBar = (SeekBar) findViewById(R.id.seekBar);
+                    sensitivity=(float)sensBar.getProgress() / 400;
+
+                    sDataAverage=0;
+                    for (int freqDomain=0; freqDomain<3; freqDomain++) {
+                        for (int i = freqDomain*1024*2/9; i < (freqDomain+1)*1024*2/9; i++) sDataAverage += fftData[i];
+                        sDataAverage /= 1024/(3*sensitivity);
+
+                        dataToSend[freqDomain] = (sDataAverage > 255) ? 255 : (int) sDataAverage; // Limits the value to 255
+                    }
 
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
                             TextView tv = (TextView) findViewById(R.id.textView_debug);
-                            tv.setText("Average amplitude : " + String.valueOf(dataToSend) + "\n"
-                                    + "Fundamental index : " + "x");
+                            tv.setText("Average amplitudes : " + String.valueOf(Arrays.toString(dataToSend)));
 
-                            sendData("R" + dataToSend + "G" + dataToSend + "B" + dataToSend);
+                            sendData("R" + dataToSend[0] + "G" + dataToSend[1] + "B" + dataToSend[2]);
                         }
                     });
 
@@ -172,6 +192,7 @@ public class MainActivity extends Activity implements ColorPicker.OnColorChanged
             }
         }, "AudioRecorder Thread");
         recordingThread.start();
+        ////////////////////////////////////////////////////////////////////////////////////////////
 
 
         ////////////////////////////////////////////////////////////////////////////////////////////
@@ -183,6 +204,9 @@ public class MainActivity extends Activity implements ColorPicker.OnColorChanged
         picker.addSaturationBar(saturationBar);
         picker.addValueBar(valueBar);
         picker.setOnColorChangedListener(this);
+        ////////////////////////////////////////////////////////////////////////////////////////////
+
+
 
         ////////////////////////////////////////////////////////////////////////////////////////////
         //                                      Bluetooth                                         //
@@ -195,8 +219,7 @@ public class MainActivity extends Activity implements ColorPicker.OnColorChanged
 
         // Two things are needed to make a connection:
         //   A MAC address, which we got above.
-        //   A Service ID or UUID.  In this case we are using the
-        //     UUID for SPP.
+        //   A Service ID or UUID.  In this case we are using the UUID for SPP.
         try {
             btSocket = device.createRfcommSocketToServiceRecord(MY_UUID);
         } catch (IOException e) {
@@ -253,7 +276,7 @@ public class MainActivity extends Activity implements ColorPicker.OnColorChanged
         super.onResume();
 
         Log.d(TAG, "...In onResume()...");
-        /*
+/*
         // Set up a pointer to the remote node using it's address.
         BluetoothDevice device = btAdapter.getRemoteDevice(address);
 
@@ -292,7 +315,7 @@ public class MainActivity extends Activity implements ColorPicker.OnColorChanged
         } catch (IOException e) {
             errorExit("Fatal Error", "In onResume() and output stream creation failed:" + e.getMessage() + ".");
         }
-        */
+*/
     }
 
     @Override
@@ -300,7 +323,7 @@ public class MainActivity extends Activity implements ColorPicker.OnColorChanged
         super.onPause();
 
         Log.d(TAG, "...In onPause()...");
-        /*
+/*
         if (outStream != null) {
             try {
                 outStream.flush();
@@ -314,7 +337,7 @@ public class MainActivity extends Activity implements ColorPicker.OnColorChanged
         } catch (IOException e2) {
             errorExit("Fatal Error", "In onPause() and failed to close socket." + e2.getMessage() + ".");
         }
-        */
+*/
     }
 
     private void checkBTState() {
@@ -349,13 +372,14 @@ public class MainActivity extends Activity implements ColorPicker.OnColorChanged
         try {
             outStream.write(msgBuffer);
         } catch (IOException e) {
-            /*
+/*
             String msg = "In onResume() and an exception occurred during write: " + e.getMessage();
             if (address.equals("00:00:00:00:00:00"))
                 msg = msg + ".\n\nUpdate your server address from 00:00:00:00:00:00 to the correct address on line 37 in the java code";
             msg = msg +  ".\n\nCheck that the SPP UUID: " + MY_UUID.toString() + " exists on server.\n\n";
 
-            errorExit("Fatal Error", msg);*/
+            errorExit("Fatal Error", msg);
+*/
         }
     }
 }
