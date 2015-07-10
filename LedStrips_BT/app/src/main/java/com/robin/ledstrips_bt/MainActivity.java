@@ -11,9 +11,11 @@ import android.media.AudioRecord;
 import android.media.MediaRecorder;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.CompoundButton;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.ToggleButton;
 
 import com.androidplot.xy.BoundaryMode;
 import com.androidplot.xy.LineAndPointFormatter;
@@ -34,7 +36,9 @@ import java.util.UUID;
 
 public class MainActivity extends Activity implements ColorPicker.OnColorChangedListener{
 
-    private SeekBar sensBar;
+    protected ToggleButton tB;
+
+    protected SeekBar sensBar;
     protected float sensitivity=0;
 
     protected int old_count = 0;
@@ -74,6 +78,8 @@ public class MainActivity extends Activity implements ColorPicker.OnColorChanged
         setContentView(R.layout.activity_main);
 
         android.os.Process.setThreadPriority(android.os.Process.THREAD_PRIORITY_URGENT_AUDIO);
+
+        tB = (ToggleButton) findViewById(R.id.toggleButton);
 
         ////////////////////////////////////////////////////////////////////////////////////////////
         //                                      Plot                                              //
@@ -135,59 +141,62 @@ public class MainActivity extends Activity implements ColorPicker.OnColorChanged
 
                 while (isRecording) {
 
-                    // Record audio input
-                    audioInput.read(sData, 0, sData.length);
+                    if (tB.isChecked()) {
 
-                    // Convert and put sData short array into fftData double array to perform FFT
-                    for (int j=0;j<sData.length;j++) {
-                        fftData[j]=(double)sData[j];
-                    }
+                        // Record audio input
+                        audioInput.read(sData, 0, sData.length);
 
-                    // Perform 1D fft
-                    fft.realForward(fftData);
-
-                    for (int j=0; j<fftData.length; j++) fftData[j]=Math.abs(fftData[j]);
-
-                    /*
-                    // Running average
-                    char order=20;
-                    for (int j=0; j<fftData.length-order; j++) {
-                        for (char k = 1; k < order; k++) fftData[j] += fftData[j + k];
-                        fftData[j] /= order;
-                    }
-                    */
-
-                    // Update plot //
-                    for (int j = 0; j < series1.size(); j++) {
-                        series1.removeFirst();
-                        series1.addLast(null, fftData[j*powOf2temp]*powOf2temp);
-                    }
-                    plot.redraw();
-                    ////////////////
-
-                    final int dataToSend[] = new int[3];
-
-                    sensBar = (SeekBar) findViewById(R.id.seekBar);
-                    sensitivity=(float)sensBar.getProgress() / 400;
-
-                    sDataAverage=0;
-                    for (int freqDomain=0; freqDomain<3; freqDomain++) {
-                        for (int i = freqDomain*1024*2/9; i < (freqDomain+1)*1024*2/9; i++) sDataAverage += fftData[i];
-                        sDataAverage /= 1024/(3*sensitivity);
-
-                        dataToSend[freqDomain] = (sDataAverage > 255) ? 255 : (int) sDataAverage; // Limits the value to 255
-                    }
-
-                    runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            TextView tv = (TextView) findViewById(R.id.textView_debug);
-                            tv.setText("Average amplitudes : " + String.valueOf(Arrays.toString(dataToSend)));
-
-                            sendData("R" + dataToSend[0] + "G" + dataToSend[1] + "B" + dataToSend[2]);
+                        // Convert and put sData short array into fftData double array to perform FFT
+                        for (int j = 0; j < sData.length; j++) {
+                            fftData[j] = (double) sData[j];
                         }
-                    });
 
+                        // Perform 1D fft
+                        fft.realForward(fftData);
+
+                        for (int j = 0; j < fftData.length; j++) fftData[j] = Math.abs(fftData[j]);
+
+                        /*
+                        // Running average
+                        char order=20;
+                        for (int j=0; j<fftData.length-order; j++) {
+                            for (char k = 1; k < order; k++) fftData[j] += fftData[j + k];
+                            fftData[j] /= order;
+                        }
+                        */
+
+                        // Update plot //
+                        for (int j = 0; j < series1.size(); j++) {
+                            series1.removeFirst();
+                            series1.addLast(null, fftData[j * powOf2temp] * powOf2temp);
+                        }
+                        sensBar = (SeekBar) findViewById(R.id.seekBar);
+                        int sensBarProgress = sensBar.getProgress();
+                        plot.setRangeBoundaries(0, (100-((sensBarProgress==100)?99:sensBarProgress)) * 1000, BoundaryMode.FIXED);
+                        plot.redraw();
+                        ////////////////
+
+                        final int dataToSend[] = new int[3];
+
+                        for (int freqDomain = 0; freqDomain < 3; freqDomain++) {
+                            sDataAverage = 0;
+                            for (int i = freqDomain * 1024 * 2 / 9; i < (freqDomain + 1) * 1024 * 2 / 9; i++)
+                                sDataAverage += fftData[i];
+                            sDataAverage /= 1024 / (3 * (float)sensBarProgress/500);
+
+                            dataToSend[freqDomain] = (sDataAverage > 255) ? 255 : (int) sDataAverage; // Limits the value to 255
+                        }
+
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                TextView tv = (TextView) findViewById(R.id.textView_debug);
+                                tv.setText("Average amplitudes : " + String.valueOf(Arrays.toString(dataToSend)));
+
+                                sendData("R" + dataToSend[0] + "G" + dataToSend[1] + "B" + dataToSend[2]);
+                            }
+                        });
+                    }
                 }
             }
         }, "AudioRecorder Thread");
@@ -268,7 +277,7 @@ public class MainActivity extends Activity implements ColorPicker.OnColorChanged
         old_count = 0;
         old_color = color;
 
-        sendData("R" + Color.red(color) + "G" + Color.green(color) + "B" + Color.blue(color));
+        if (!tB.isChecked()) sendData("R" + Color.red(color) + "G" + Color.green(color) + "B" + Color.blue(color));
     }
 
     @Override

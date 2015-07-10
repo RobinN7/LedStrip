@@ -4,24 +4,57 @@
     android:orientation="vertical"
     android:weightSum="1">
 
-    <com.larswerkman.holocolorpicker.SaturationBar
-        android:id="@+id/saturationbar"
-        android:layout_width="200dp"
+    <LinearLayout
+        android:layout_width="324dp"
         android:layout_height="wrap_content"
+        android:orientation="horizontal"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="50dp"/>
+        android:weightSum="1">
 
-    <com.larswerkman.holocolorpicker.ColorPicker
-        android:id="@+id/picker"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
-        android:layout_gravity="center_horizontal" />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-    <com.larswerkman.holocolorpicker.ValueBar
-        android:id="@+id/valuebar"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal" />
+            <com.larswerkman.holocolorpicker.SaturationBar
+                android:id="@+id/saturationbar"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="50dp"/>
+
+            <com.larswerkman.holocolorpicker.ColorPicker
+                android:id="@+id/picker"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:layout_gravity="center_horizontal" />
+
+            <com.larswerkman.holocolorpicker.ValueBar
+                android:id="@+id/valuebar"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal" />
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="20dp"
+            android:layout_height="fill_parent"
+            android:orientation="vertical">
+
+        </LinearLayout>
+
+        <ToggleButton
+            android:layout_width="47dp"
+            android:layout_height="wrap_content"
+            android:text="New ToggleButton"
+            android:textOff="Color Wheel"
+            android:textOn="Audio analysis"
+            android:id="@+id/toggleButton"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="0.76"
+            android:checked="false" />
+
+    </LinearLayout>
 
     <TextView
         android:layout_width="wrap_content"
@@ -62,6 +95,5 @@
         android:indeterminate="false"
         android:max="100"
         android:progress="0" />
-
 
 </LinearLayout>
