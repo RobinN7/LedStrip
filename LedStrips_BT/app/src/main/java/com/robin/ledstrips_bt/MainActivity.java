@@ -39,7 +39,7 @@ public class MainActivity extends Activity implements ColorPicker.OnColorChanged
     protected ToggleButton tB;
 
     protected SeekBar sensBar;
-    protected float sensitivity=0;
+    protected SeekBar sensBarSmooth;
 
     protected int old_count = 0;
     protected int old_color = 0;
@@ -47,6 +47,7 @@ public class MainActivity extends Activity implements ColorPicker.OnColorChanged
     protected short sData[] = new short[1024];
     protected double sDataAverage=0;
     protected double fftData[]= new double[1024];
+    protected int[] oldSentData=new int[3];
 
     private static final String TAG = "LedStrips_BT";
 
@@ -80,141 +81,6 @@ public class MainActivity extends Activity implements ColorPicker.OnColorChanged
         android.os.Process.setThreadPriority(android.os.Process.THREAD_PRIORITY_URGENT_AUDIO);
 
         tB = (ToggleButton) findViewById(R.id.toggleButton);
-
-        ////////////////////////////////////////////////////////////////////////////////////////////
-        //                                      Plot                                              //
-        ////////////////////////////////////////////////////////////////////////////////////////////
-        // initialize our XYPlot reference:
-        plot = (XYPlot) findViewById(R.id.mySimpleXYPlot);
-
-        // Create a couple arrays of y-values to plot:
-        final Number[] series1Numbers = new Number[1024/powOf2temp];
-
-        for (int j=0;j<series1Numbers.length;j++) {
-            series1Numbers[j]=j;
-        }
-
-        // Turn the above arrays into XYSeries':
-        final SimpleXYSeries series1 = new SimpleXYSeries(
-                Arrays.asList(series1Numbers),          // SimpleXYSeries takes a List so turn our array into a List
-                SimpleXYSeries.ArrayFormat.Y_VALS_ONLY, // Y_VALS_ONLY means use the element index as the x value
-                "Series1");                             // Set the display title of the series
-
-        // Create a formatter to use for drawing a series using LineAndPointRenderer
-        // and configure it from xml:
-        final LineAndPointFormatter series1Format = new LineAndPointFormatter();
-        series1Format.setPointLabelFormatter(null);
-        series1Format.configure(getApplicationContext(),
-                R.xml.line_point_formatter);
-
-        // add a new series' to the xyplot:
-        plot.addSeries(series1, series1Format);
-
-        // reduce the number of range labels
-        plot.setTicksPerRangeLabel(9);
-        plot.getGraphWidget().setDomainLabelOrientation(-45);
-        plot.getLegendWidget().setVisible(false);
-        // set axis limits
-        plot.setRangeBoundaries(0, 100000, BoundaryMode.FIXED);
-        plot.setDomainBoundaries(0, 255, BoundaryMode.FIXED);
-        ////////////////////////////////////////////////////////////////////////////////////////////
-
-
-
-        ////////////////////////////////////////////////////////////////////////////////////////////
-        //                                  AudioRecord                                           //
-        ////////////////////////////////////////////////////////////////////////////////////////////
-        int RECORDER_CHANNELS = AudioFormat.CHANNEL_CONFIGURATION_MONO;
-        int RECORDER_AUDIO_ENCODING = AudioFormat.ENCODING_PCM_16BIT;
-        int RECORDER_SAMPLERATE= 44100;
-        int bufferSize = AudioRecord.getMinBufferSize(RECORDER_SAMPLERATE, RECORDER_CHANNELS, RECORDER_AUDIO_ENCODING);
-        audioInput = new AudioRecord(MediaRecorder.AudioSource.DEFAULT, RECORDER_SAMPLERATE, RECORDER_CHANNELS, RECORDER_AUDIO_ENCODING, bufferSize);
-
-        // Fast Fourier Transform from JTransforms
-        final DoubleFFT_1D fft = new DoubleFFT_1D(sData.length);
-
-        // Start recording
-        audioInput.startRecording();
-        isRecording = true;
-        recordingThread = new Thread(new Runnable() {
-            public void run() {
-
-                while (isRecording) {
-
-                    if (tB.isChecked()) {
-
-                        // Record audio input
-                        audioInput.read(sData, 0, sData.length);
-
-                        // Convert and put sData short array into fftData double array to perform FFT
-                        for (int j = 0; j < sData.length; j++) {
-                            fftData[j] = (double) sData[j];
-                        }
-
-                        // Perform 1D fft
-                        fft.realForward(fftData);
-
-                        for (int j = 0; j < fftData.length; j++) fftData[j] = Math.abs(fftData[j]);
-
-                        /*
-                        // Running average
-                        char order=20;
-                        for (int j=0; j<fftData.length-order; j++) {
-                            for (char k = 1; k < order; k++) fftData[j] += fftData[j + k];
-                            fftData[j] /= order;
-                        }
-                        */
-
-                        // Update plot //
-                        for (int j = 0; j < series1.size(); j++) {
-                            series1.removeFirst();
-                            series1.addLast(null, fftData[j * powOf2temp] * powOf2temp);
-                        }
-                        sensBar = (SeekBar) findViewById(R.id.seekBar);
-                        int sensBarProgress = sensBar.getProgress();
-                        plot.setRangeBoundaries(0, (100-((sensBarProgress==100)?99:sensBarProgress)) * 1000, BoundaryMode.FIXED);
-                        plot.redraw();
-                        ////////////////
-
-                        final int dataToSend[] = new int[3];
-
-                        for (int freqDomain = 0; freqDomain < 3; freqDomain++) {
-                            sDataAverage = 0;
-                            for (int i = freqDomain * 1024 * 2 / 9; i < (freqDomain + 1) * 1024 * 2 / 9; i++)
-                                sDataAverage += fftData[i];
-                            sDataAverage /= 1024 / (3 * (float)sensBarProgress/500);
-
-                            dataToSend[freqDomain] = (sDataAverage > 255) ? 255 : (int) sDataAverage; // Limits the value to 255
-                        }
-
-                        runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                TextView tv = (TextView) findViewById(R.id.textView_debug);
-                                tv.setText("Average amplitudes : " + String.valueOf(Arrays.toString(dataToSend)));
-
-                                sendData("R" + dataToSend[0] + "G" + dataToSend[1] + "B" + dataToSend[2]);
-                            }
-                        });
-                    }
-                }
-            }
-        }, "AudioRecorder Thread");
-        recordingThread.start();
-        ////////////////////////////////////////////////////////////////////////////////////////////
-
-
-        ////////////////////////////////////////////////////////////////////////////////////////////
-        //                                      Color Picker                                      //
-        ////////////////////////////////////////////////////////////////////////////////////////////
-        ColorPicker picker = (ColorPicker) findViewById(R.id.picker);
-        SaturationBar saturationBar = (SaturationBar) findViewById(R.id.saturationbar);
-        ValueBar valueBar = (ValueBar) findViewById(R.id.valuebar);
-        picker.addSaturationBar(saturationBar);
-        picker.addValueBar(valueBar);
-        picker.setOnColorChangedListener(this);
-        ////////////////////////////////////////////////////////////////////////////////////////////
-
 
 
         ////////////////////////////////////////////////////////////////////////////////////////////
@@ -261,6 +127,141 @@ public class MainActivity extends Activity implements ColorPicker.OnColorChanged
             errorExit("Fatal Error", "In onResume() and output stream creation failed:" + e.getMessage() + ".");
         }
         ////////////////////////////////////////////////////////////////////////////////////////////
+
+
+        ////////////////////////////////////////////////////////////////////////////////////////////
+        //                                      Plot                                              //
+        ////////////////////////////////////////////////////////////////////////////////////////////
+        // initialize our XYPlot reference:
+        plot = (XYPlot) findViewById(R.id.mySimpleXYPlot);
+
+        // Create a couple arrays of y-values to plot:
+        final Number[] series1Numbers = new Number[1024/powOf2temp];
+
+        for (int j=0;j<series1Numbers.length;j++) {
+            series1Numbers[j]=j;
+        }
+
+        // Turn the above arrays into XYSeries':
+        final SimpleXYSeries series1 = new SimpleXYSeries(
+                Arrays.asList(series1Numbers),          // SimpleXYSeries takes a List so turn our array into a List
+                SimpleXYSeries.ArrayFormat.Y_VALS_ONLY, // Y_VALS_ONLY means use the element index as the x value
+                "Series1");                             // Set the display title of the series
+
+        // Create a formatter to use for drawing a series using LineAndPointRenderer
+        // and configure it from xml:
+        final LineAndPointFormatter series1Format = new LineAndPointFormatter();
+        series1Format.setPointLabelFormatter(null);
+        series1Format.configure(getApplicationContext(),
+                R.xml.line_point_formatter);
+
+        // add a new series' to the xyplot:
+        plot.addSeries(series1, series1Format);
+
+        // reduce the number of range labels
+        plot.setTicksPerRangeLabel(9);
+        plot.getGraphWidget().setDomainLabelOrientation(-45);
+        plot.getLegendWidget().setVisible(false);
+        // set axis limits
+        plot.setRangeBoundaries(0, 100000, BoundaryMode.FIXED);
+        plot.setDomainBoundaries(0, 255, BoundaryMode.FIXED);
+        ////////////////////////////////////////////////////////////////////////////////////////////
+
+
+        ////////////////////////////////////////////////////////////////////////////////////////////
+        //                                  AudioRecord                                           //
+        ////////////////////////////////////////////////////////////////////////////////////////////
+        int RECORDER_CHANNELS = AudioFormat.CHANNEL_CONFIGURATION_MONO;
+        int RECORDER_AUDIO_ENCODING = AudioFormat.ENCODING_PCM_16BIT;
+        int RECORDER_SAMPLERATE= 44100;
+        int bufferSize = AudioRecord.getMinBufferSize(RECORDER_SAMPLERATE, RECORDER_CHANNELS, RECORDER_AUDIO_ENCODING);
+        audioInput = new AudioRecord(MediaRecorder.AudioSource.DEFAULT, RECORDER_SAMPLERATE, RECORDER_CHANNELS, RECORDER_AUDIO_ENCODING, bufferSize);
+
+        // Fast Fourier Transform from JTransforms
+        final DoubleFFT_1D fft = new DoubleFFT_1D(sData.length);
+
+        // Start recording
+        audioInput.startRecording();
+        isRecording = true;
+        recordingThread = new Thread(new Runnable() {
+            public void run() {
+
+                while (isRecording) {
+                    if (tB.isChecked()) {
+
+                        // Record audio input
+                        audioInput.read(sData, 0, sData.length);
+
+                        // Convert and put sData short array into fftData double array to perform FFT
+                        for (int j = 0; j < sData.length; j++) {
+                            fftData[j] = (double) sData[j];
+                        }
+
+                        // Perform 1D fft
+                        fft.realForward(fftData);
+                        for (int j = 0; j < fftData.length; j++) fftData[j] = Math.abs(fftData[j]);
+
+
+                        // Update plot //
+                        for (int j = 0; j < series1.size(); j++) {
+                            series1.removeFirst();
+                            series1.addLast(null, fftData[j * powOf2temp] * powOf2temp);
+                        }
+                        sensBar = (SeekBar) findViewById(R.id.seekBar);
+                        int sensBarProgress = sensBar.getProgress();
+                        plot.setRangeBoundaries(0, (100-((sensBarProgress==100)?99:sensBarProgress)) * 1000, BoundaryMode.FIXED);
+                        plot.redraw();
+                        ////////////////
+
+                        final int dataToSend[] = new int[3];
+                        sensBarSmooth = (SeekBar) findViewById(R.id.seekBarSmooth);
+                        int smoothness=sensBarSmooth.getProgress()+192;
+
+                        for (int freqDomain = 0; freqDomain < 3; freqDomain++) {
+                            sDataAverage = 0;
+                            for (int i = freqDomain * 1024 * 2 / 9; i < (freqDomain + 1) * 1024 * 2 / 9; i++)
+                                sDataAverage += fftData[i];
+                            sDataAverage /= 1024 / (3 * (float)sensBarProgress/500);
+
+                            // Limit the value to 255
+                            dataToSend[freqDomain] = (sDataAverage > 255) ? 255 : (int) sDataAverage;
+                            // Limit the amplitude fall
+                            dataToSend[freqDomain] =
+                                    (dataToSend[freqDomain]  < oldSentData[freqDomain]*(1-(float)(257-smoothness)/255)) ?
+                                            (int)(oldSentData[freqDomain]*(1-(float)(257-smoothness)/255)) :
+                                            dataToSend[freqDomain];
+
+                            oldSentData[freqDomain] = dataToSend[freqDomain];
+                        }
+
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                TextView tv = (TextView) findViewById(R.id.textView_debug);
+                                tv.setText("Average amplitudes : " + String.valueOf(Arrays.toString(dataToSend)));
+
+                                sendData("R" + dataToSend[0] + "G" + dataToSend[1] + "B" + dataToSend[2]);
+                            }
+                        });
+                    }
+                }
+            }
+        }, "AudioRecorder Thread");
+        recordingThread.start();
+        ////////////////////////////////////////////////////////////////////////////////////////////
+
+
+        ////////////////////////////////////////////////////////////////////////////////////////////
+        //                                      Color Picker                                      //
+        ////////////////////////////////////////////////////////////////////////////////////////////
+        ColorPicker picker = (ColorPicker) findViewById(R.id.picker);
+        SaturationBar saturationBar = (SaturationBar) findViewById(R.id.saturationbar);
+        ValueBar valueBar = (ValueBar) findViewById(R.id.valuebar);
+        picker.addSaturationBar(saturationBar);
+        picker.addValueBar(valueBar);
+        picker.setOnColorChangedListener(this);
+        ////////////////////////////////////////////////////////////////////////////////////////////
+
     }
 
     @Override

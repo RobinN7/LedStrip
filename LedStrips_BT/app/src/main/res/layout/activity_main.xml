@@ -1,11 +1,11 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
+    android:layout_height="wrap_content"
     android:orientation="vertical"
     android:weightSum="1">
 
     <LinearLayout
-        android:layout_width="324dp"
+        android:layout_width="320dp"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_gravity="center_horizontal"
@@ -50,7 +50,7 @@
             android:textOff="Color Wheel"
             android:textOn="Audio analysis"
             android:id="@+id/toggleButton"
-            android:layout_gravity="center_vertical"
+            android:layout_gravity="center"
             android:layout_weight="0.76"
             android:checked="false" />
 
@@ -60,15 +60,15 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="~~~~~~~~"
+        android:text=""
         android:id="@+id/textView_debug"
         android:layout_gravity="center_horizontal"
         android:paddingTop="20dp"/>
 
     <com.androidplot.xy.XYPlot
         android:id="@+id/mySimpleXYPlot"
-        android:layout_width="340dp"
-        android:layout_height="85dp"
+        android:layout_width="320dp"
+        android:layout_height="140dp"
         androidPlot.title="Frequency analysis"
         androidPlot.domainLabel="Frequency"
         androidPlot.rangeLabel="Amplitude"
@@ -84,16 +84,40 @@
         androidPlot.graphWidget.domainLabelPaint.textSize="@dimen/domain_tick_label_font_size"
         androidPlot.graphWidget.domainOriginLabelPaint.textSize="@dimen/domain_tick_label_font_size"
         androidPlot.graphWidget.gridLinePaint.color="#000000"
-        android:layout_gravity="center_horizontal"
-        android:layout_weight="0.46" />
+        android:layout_gravity="center_horizontal" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Sensitivity"
+        android:id="@+id/textView_sens"
+        android:layout_gravity="center_horizontal"/>
 
     <SeekBar
-        android:layout_width="340dp"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:id="@+id/seekBar"
-        android:layout_gravity="center_horizontal"
         android:indeterminate="false"
         android:max="100"
-        android:progress="0" />
+        android:progress="0"
+        android:layout_gravity="center_horizontal" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Smoothness"
+        android:id="@+id/textView_smooth"
+        android:layout_gravity="center_horizontal"/>
+
+    <SeekBar
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/seekBarSmooth"
+        android:indeterminate="false"
+        android:max="64"
+        android:progress="0"
+        android:layout_gravity="center_horizontal" />
 
 </LinearLayout>
