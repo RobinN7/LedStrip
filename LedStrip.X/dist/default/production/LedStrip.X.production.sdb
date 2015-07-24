@@ -41,13 +41,13 @@
 [v ___wmul __wmul `(ui  1 e 2 0 ]
 "15 /opt/microchip/xc8/v1.34/sources/common/Umul32.c
 [v ___lmul __lmul `(ul  1 e 4 0 ]
-"4 /home/robin/7Robot/LedStrip/LedStrip.X/converter.c
+"4 /home/robin/Github/LedStrip/LedStrip.X/converter.c
 [v _pwm pwm `(v  1 e 0 0 ]
-"9 /home/robin/7Robot/LedStrip/LedStrip.X/functions.c
+"9 /home/robin/Github/LedStrip/LedStrip.X/functions.c
 [v _setRGB setRGB `(v  1 e 0 0 ]
 "16
 [v _strobe strobe `(v  1 e 0 0 ]
-"3 /home/robin/7Robot/LedStrip/LedStrip.X/init.c
+"3 /home/robin/Github/LedStrip/LedStrip.X/init.c
 [v _initialisation initialisation `(v  1 e 0 0 ]
 "24
 [v _initPWM initPWM `(v  1 e 0 0 ]
@@ -57,11 +57,11 @@
 [v _initADC initADC `(v  1 e 0 0 ]
 "114
 [v _initTimer0 initTimer0 `(v  1 e 0 0 ]
-"7 /home/robin/7Robot/LedStrip/LedStrip.X/interrupts.c
+"7 /home/robin/Github/LedStrip/LedStrip.X/interrupts.c
 [v _Timer0_ISR Timer0_ISR `IIL(v  1 e 0 0 ]
 "25
 [v _RX2_ISR RX2_ISR `IIH(v  1 e 0 0 ]
-"100 /home/robin/7Robot/LedStrip/LedStrip.X/main.c
+"100 /home/robin/Github/LedStrip/LedStrip.X/main.c
 [v _main main `(i  1 e 2 0 ]
 "154
 [v _readADC readADC `(ui  1 e 2 0 ]
@@ -392,9 +392,9 @@
 [v _VCFG1 VCFG1 `VEb  1 e 0 @32269 ]
 "45613
 [v _VNCFG VNCFG `VEb  1 e 0 @32267 ]
-"5 /home/robin/7Robot/LedStrip/LedStrip.X/interrupts.c
+"5 /home/robin/Github/LedStrip/LedStrip.X/interrupts.c
 [v _millis millis `l  1 e 4 0 ]
-"90 /home/robin/7Robot/LedStrip/LedStrip.X/main.c
+"90 /home/robin/Github/LedStrip/LedStrip.X/main.c
 [v _R R `[100]ui  1 e 200 0 ]
 "91
 [v _G G `[100]ui  1 e 200 0 ]
@@ -413,7 +413,7 @@
 {
 "142
 } 0
-"16 /home/robin/7Robot/LedStrip/LedStrip.X/functions.c
+"16 /home/robin/Github/LedStrip/LedStrip.X/functions.c
 [v _strobe strobe `(v  1 e 0 0 ]
 {
 "24
@@ -426,7 +426,7 @@
 [v setRGB@b b `i  1 p 2 65 ]
 "14
 } 0
-"4 /home/robin/7Robot/LedStrip/LedStrip.X/converter.c
+"4 /home/robin/Github/LedStrip/LedStrip.X/converter.c
 [v _pwm pwm `(v  1 e 0 0 ]
 {
 [v pwm@color color `uc  1 a 1 wreg ]
@@ -503,7 +503,7 @@
 [v ___almod@divisor divisor `l  1 p 4 65 ]
 "35
 } 0
-"186 /home/robin/7Robot/LedStrip/LedStrip.X/main.c
+"186 /home/robin/Github/LedStrip/LedStrip.X/main.c
 [v _readAllADC readAllADC `(v  1 e 0 0 ]
 {
 "192
@@ -548,7 +548,7 @@
 [v ___ftpack@sign sign `uc  1 p 1 21 ]
 "86
 } 0
-"3 /home/robin/7Robot/LedStrip/LedStrip.X/init.c
+"3 /home/robin/Github/LedStrip/LedStrip.X/init.c
 [v _initialisation initialisation `(v  1 e 0 0 ]
 {
 "21
@@ -573,7 +573,7 @@
 {
 "112
 } 0
-"194 /home/robin/7Robot/LedStrip/LedStrip.X/main.c
+"194 /home/robin/Github/LedStrip/LedStrip.X/main.c
 [v _changeModeDetect changeModeDetect `(v  1 e 0 0 ]
 {
 "196
@@ -584,7 +584,7 @@
 [v changeModeDetect@old_SWITCH3 old_SWITCH3 `uc  1 s 1 old_SWITCH3 ]
 "231
 } 0
-"7 /home/robin/7Robot/LedStrip/LedStrip.X/interrupts.c
+"7 /home/robin/Github/LedStrip/LedStrip.X/interrupts.c
 [v _Timer0_ISR Timer0_ISR `IIL(v  1 e 0 0 ]
 {
 "21

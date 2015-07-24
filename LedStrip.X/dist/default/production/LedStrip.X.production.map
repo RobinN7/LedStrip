@@ -5,7 +5,7 @@ Linker command line:
 --edf=/opt/microchip/xc8/v1.34/dat/en_msgs.txt -cs \
   -h+dist/default/production/LedStrip.X.production.sym \
   --cmf=dist/default/production/LedStrip.X.production.cmf -z -Q18F26K80 \
-  -o/tmp/cgtXpPavA -Mdist/default/production/LedStrip.X.production.map -E1 \
+  -o/tmp/cgtDquh13 -Mdist/default/production/LedStrip.X.production.map -E1 \
   -ver=XC8 -ASTACK=03C8h-0e40h -pstack=STACK -ACODE=00h-0FFFFh \
   -ACONST=00h-0FFFFh -ASMALLCONST=0F00h-0FFFhx241 \
   -AMEDIUMCONST=0F00h-0FFFFh -ACOMRAM=01h-05Fh -AABS1=00h-0E40h \
@@ -25,7 +25,7 @@ Linker command line:
   -pfarbss=FARRAM,fardata=FARRAM,nvFARRAM=FARRAM \
   -pintsave_regs=BIGRAM,bigbss=BIGRAM,bigdata=BIGRAM -pbss=RAM \
   -pidata=CODE,irdata=CODE,ibigdata=CODE,ifardata=CODE -prparam=COMRAM \
-  /tmp/cgtmT1Aow.obj dist/default/production/LedStrip.X.production.obj 
+  /tmp/cgtoEOmfe.obj dist/default/production/LedStrip.X.production.obj 
 
 Object code version is 3.11
 
@@ -37,7 +37,7 @@ Call graph: (short form)
 
 
                 Name                               Link     Load   Length Selector   Space Scale
-/tmp/cgtmT1Aow.obj
+/tmp/cgtoEOmfe.obj
                 end_init                             C2       C2        4        C       0
                 reset_vec                             0        0        4        0       0
                 idloc                            200000   200000        8   200000       0

@@ -48,7 +48,7 @@ bssBANK2 BANK2 1 200 200 C8 1
 bssBANK3 BANK3 1 300 300 C8 1
 intcode CODE 0 8 8 10 1
 bssCOMRAM COMRAM 1 2D 2D 16 1
-$/tmp/cgtmT1Aow.obj
+$/tmp/cgtoEOmfe.obj
 idloc IDLOC 0 200000 200000 8 1
 reset_vec CODE 0 0 0 4 1
 end_init CODE 0 C2 C2 4 1
@@ -107,20 +107,20 @@ MEDIUMCONST 152A-FFFF 1
 # All other numeric values are in decimal.
 %LINETAB
 $dist/default/production/LedStrip.X.production.obj
-8 intcode CODE >21:/home/robin/7Robot/LedStrip/LedStrip.X/interrupts.c
-8 intcode CODE >25:/home/robin/7Robot/LedStrip/LedStrip.X/interrupts.c
-18 intcodelo CODE >7:/home/robin/7Robot/LedStrip/LedStrip.X/interrupts.c
-18 intcodelo CODE >231:/home/robin/7Robot/LedStrip/LedStrip.X/main.c
-5C intcodelo CODE >12:/home/robin/7Robot/LedStrip/LedStrip.X/interrupts.c
-62 intcodelo CODE >14:/home/robin/7Robot/LedStrip/LedStrip.X/interrupts.c
-64 intcodelo CODE >16:/home/robin/7Robot/LedStrip/LedStrip.X/interrupts.c
-6C intcodelo CODE >18:/home/robin/7Robot/LedStrip/LedStrip.X/interrupts.c
-7C intcodelo CODE >21:/home/robin/7Robot/LedStrip/LedStrip.X/interrupts.c
-C6 text1 CODE >16:/home/robin/7Robot/LedStrip/LedStrip.X/functions.c
-C6 text1 CODE >18:/home/robin/7Robot/LedStrip/LedStrip.X/functions.c
-2D6 text1 CODE >21:/home/robin/7Robot/LedStrip/LedStrip.X/functions.c
-38A text1 CODE >23:/home/robin/7Robot/LedStrip/LedStrip.X/functions.c
-3AE text1 CODE >24:/home/robin/7Robot/LedStrip/LedStrip.X/functions.c
+8 intcode CODE >21:/home/robin/Github/LedStrip/LedStrip.X/interrupts.c
+8 intcode CODE >25:/home/robin/Github/LedStrip/LedStrip.X/interrupts.c
+18 intcodelo CODE >7:/home/robin/Github/LedStrip/LedStrip.X/interrupts.c
+18 intcodelo CODE >231:/home/robin/Github/LedStrip/LedStrip.X/main.c
+5C intcodelo CODE >12:/home/robin/Github/LedStrip/LedStrip.X/interrupts.c
+62 intcodelo CODE >14:/home/robin/Github/LedStrip/LedStrip.X/interrupts.c
+64 intcodelo CODE >16:/home/robin/Github/LedStrip/LedStrip.X/interrupts.c
+6C intcodelo CODE >18:/home/robin/Github/LedStrip/LedStrip.X/interrupts.c
+7C intcodelo CODE >21:/home/robin/Github/LedStrip/LedStrip.X/interrupts.c
+C6 text1 CODE >16:/home/robin/Github/LedStrip/LedStrip.X/functions.c
+C6 text1 CODE >18:/home/robin/Github/LedStrip/LedStrip.X/functions.c
+2D6 text1 CODE >21:/home/robin/Github/LedStrip/LedStrip.X/functions.c
+38A text1 CODE >23:/home/robin/Github/LedStrip/LedStrip.X/functions.c
+3AE text1 CODE >24:/home/robin/Github/LedStrip/LedStrip.X/functions.c
 3B0 text8 CODE >86:/opt/microchip/xc8/v1.34/sources/common/ftadd.c
 3B0 text8 CODE >90:/opt/microchip/xc8/v1.34/sources/common/ftadd.c
 3CE text8 CODE >91:/opt/microchip/xc8/v1.34/sources/common/ftadd.c
@@ -168,54 +168,54 @@ C6 text1 CODE >18:/home/robin/7Robot/LedStrip/LedStrip.X/functions.c
 5FE text8 CODE >144:/opt/microchip/xc8/v1.34/sources/common/ftadd.c
 606 text8 CODE >146:/opt/microchip/xc8/v1.34/sources/common/ftadd.c
 62C text8 CODE >148:/opt/microchip/xc8/v1.34/sources/common/ftadd.c
-62E text0 CODE >100:/home/robin/7Robot/LedStrip/LedStrip.X/main.c
-62E text0 CODE >102:/home/robin/7Robot/LedStrip/LedStrip.X/main.c
-632 text0 CODE >108:/home/robin/7Robot/LedStrip/LedStrip.X/main.c
-632 text0 CODE >110:/home/robin/7Robot/LedStrip/LedStrip.X/main.c
-636 text0 CODE >113:/home/robin/7Robot/LedStrip/LedStrip.X/main.c
-63A text0 CODE >116:/home/robin/7Robot/LedStrip/LedStrip.X/main.c
-63C text0 CODE >121:/home/robin/7Robot/LedStrip/LedStrip.X/main.c
-700 text0 CODE >122:/home/robin/7Robot/LedStrip/LedStrip.X/main.c
-702 text0 CODE >128:/home/robin/7Robot/LedStrip/LedStrip.X/main.c
-7B4 text0 CODE >129:/home/robin/7Robot/LedStrip/LedStrip.X/main.c
-7B6 text0 CODE >133:/home/robin/7Robot/LedStrip/LedStrip.X/main.c
-7BA text0 CODE >134:/home/robin/7Robot/LedStrip/LedStrip.X/main.c
-7BC text0 CODE >137:/home/robin/7Robot/LedStrip/LedStrip.X/main.c
-7DE text0 CODE >138:/home/robin/7Robot/LedStrip/LedStrip.X/main.c
-7E0 text0 CODE >116:/home/robin/7Robot/LedStrip/LedStrip.X/main.c
-7F8 text0 CODE >108:/home/robin/7Robot/LedStrip/LedStrip.X/main.c
-7FA text0 CODE >142:/home/robin/7Robot/LedStrip/LedStrip.X/main.c
-7FE intcode_body CODE >25:/home/robin/7Robot/LedStrip/LedStrip.X/interrupts.c
-82A intcode_body CODE >26:/home/robin/7Robot/LedStrip/LedStrip.X/interrupts.c
-82C intcode_body CODE >38:/home/robin/7Robot/LedStrip/LedStrip.X/interrupts.c
-834 intcode_body CODE >39:/home/robin/7Robot/LedStrip/LedStrip.X/interrupts.c
-838 intcode_body CODE >41:/home/robin/7Robot/LedStrip/LedStrip.X/interrupts.c
-84A intcode_body CODE >43:/home/robin/7Robot/LedStrip/LedStrip.X/interrupts.c
-862 intcode_body CODE >45:/home/robin/7Robot/LedStrip/LedStrip.X/interrupts.c
-876 intcode_body CODE >46:/home/robin/7Robot/LedStrip/LedStrip.X/interrupts.c
-878 intcode_body CODE >47:/home/robin/7Robot/LedStrip/LedStrip.X/interrupts.c
-87A intcode_body CODE >51:/home/robin/7Robot/LedStrip/LedStrip.X/interrupts.c
-880 intcode_body CODE >52:/home/robin/7Robot/LedStrip/LedStrip.X/interrupts.c
-896 intcode_body CODE >53:/home/robin/7Robot/LedStrip/LedStrip.X/interrupts.c
-89A intcode_body CODE >54:/home/robin/7Robot/LedStrip/LedStrip.X/interrupts.c
-8A0 intcode_body CODE >55:/home/robin/7Robot/LedStrip/LedStrip.X/interrupts.c
-8B6 intcode_body CODE >56:/home/robin/7Robot/LedStrip/LedStrip.X/interrupts.c
-8BA intcode_body CODE >57:/home/robin/7Robot/LedStrip/LedStrip.X/interrupts.c
-8C0 intcode_body CODE >58:/home/robin/7Robot/LedStrip/LedStrip.X/interrupts.c
-8D6 intcode_body CODE >59:/home/robin/7Robot/LedStrip/LedStrip.X/interrupts.c
-8DA intcode_body CODE >62:/home/robin/7Robot/LedStrip/LedStrip.X/interrupts.c
-8DE intcode_body CODE >63:/home/robin/7Robot/LedStrip/LedStrip.X/interrupts.c
-8E2 intcode_body CODE >64:/home/robin/7Robot/LedStrip/LedStrip.X/interrupts.c
-8E6 intcode_body CODE >65:/home/robin/7Robot/LedStrip/LedStrip.X/interrupts.c
-8EA intcode_body CODE >66:/home/robin/7Robot/LedStrip/LedStrip.X/interrupts.c
-8EE intcode_body CODE >67:/home/robin/7Robot/LedStrip/LedStrip.X/interrupts.c
-8F0 intcode_body CODE >70:/home/robin/7Robot/LedStrip/LedStrip.X/interrupts.c
-8F8 intcode_body CODE >71:/home/robin/7Robot/LedStrip/LedStrip.X/interrupts.c
-8FE intcode_body CODE >72:/home/robin/7Robot/LedStrip/LedStrip.X/interrupts.c
-906 intcode_body CODE >73:/home/robin/7Robot/LedStrip/LedStrip.X/interrupts.c
-90C intcode_body CODE >74:/home/robin/7Robot/LedStrip/LedStrip.X/interrupts.c
-914 intcode_body CODE >75:/home/robin/7Robot/LedStrip/LedStrip.X/interrupts.c
-91A intcode_body CODE >76:/home/robin/7Robot/LedStrip/LedStrip.X/interrupts.c
+62E text0 CODE >100:/home/robin/Github/LedStrip/LedStrip.X/main.c
+62E text0 CODE >102:/home/robin/Github/LedStrip/LedStrip.X/main.c
+632 text0 CODE >108:/home/robin/Github/LedStrip/LedStrip.X/main.c
+632 text0 CODE >110:/home/robin/Github/LedStrip/LedStrip.X/main.c
+636 text0 CODE >113:/home/robin/Github/LedStrip/LedStrip.X/main.c
+63A text0 CODE >116:/home/robin/Github/LedStrip/LedStrip.X/main.c
+63C text0 CODE >121:/home/robin/Github/LedStrip/LedStrip.X/main.c
+700 text0 CODE >122:/home/robin/Github/LedStrip/LedStrip.X/main.c
+702 text0 CODE >128:/home/robin/Github/LedStrip/LedStrip.X/main.c
+7B4 text0 CODE >129:/home/robin/Github/LedStrip/LedStrip.X/main.c
+7B6 text0 CODE >133:/home/robin/Github/LedStrip/LedStrip.X/main.c
+7BA text0 CODE >134:/home/robin/Github/LedStrip/LedStrip.X/main.c
+7BC text0 CODE >137:/home/robin/Github/LedStrip/LedStrip.X/main.c
+7DE text0 CODE >138:/home/robin/Github/LedStrip/LedStrip.X/main.c
+7E0 text0 CODE >116:/home/robin/Github/LedStrip/LedStrip.X/main.c
+7F8 text0 CODE >108:/home/robin/Github/LedStrip/LedStrip.X/main.c
+7FA text0 CODE >142:/home/robin/Github/LedStrip/LedStrip.X/main.c
+7FE intcode_body CODE >25:/home/robin/Github/LedStrip/LedStrip.X/interrupts.c
+82A intcode_body CODE >26:/home/robin/Github/LedStrip/LedStrip.X/interrupts.c
+82C intcode_body CODE >38:/home/robin/Github/LedStrip/LedStrip.X/interrupts.c
+834 intcode_body CODE >39:/home/robin/Github/LedStrip/LedStrip.X/interrupts.c
+838 intcode_body CODE >41:/home/robin/Github/LedStrip/LedStrip.X/interrupts.c
+84A intcode_body CODE >43:/home/robin/Github/LedStrip/LedStrip.X/interrupts.c
+862 intcode_body CODE >45:/home/robin/Github/LedStrip/LedStrip.X/interrupts.c
+876 intcode_body CODE >46:/home/robin/Github/LedStrip/LedStrip.X/interrupts.c
+878 intcode_body CODE >47:/home/robin/Github/LedStrip/LedStrip.X/interrupts.c
+87A intcode_body CODE >51:/home/robin/Github/LedStrip/LedStrip.X/interrupts.c
+880 intcode_body CODE >52:/home/robin/Github/LedStrip/LedStrip.X/interrupts.c
+896 intcode_body CODE >53:/home/robin/Github/LedStrip/LedStrip.X/interrupts.c
+89A intcode_body CODE >54:/home/robin/Github/LedStrip/LedStrip.X/interrupts.c
+8A0 intcode_body CODE >55:/home/robin/Github/LedStrip/LedStrip.X/interrupts.c
+8B6 intcode_body CODE >56:/home/robin/Github/LedStrip/LedStrip.X/interrupts.c
+8BA intcode_body CODE >57:/home/robin/Github/LedStrip/LedStrip.X/interrupts.c
+8C0 intcode_body CODE >58:/home/robin/Github/LedStrip/LedStrip.X/interrupts.c
+8D6 intcode_body CODE >59:/home/robin/Github/LedStrip/LedStrip.X/interrupts.c
+8DA intcode_body CODE >62:/home/robin/Github/LedStrip/LedStrip.X/interrupts.c
+8DE intcode_body CODE >63:/home/robin/Github/LedStrip/LedStrip.X/interrupts.c
+8E2 intcode_body CODE >64:/home/robin/Github/LedStrip/LedStrip.X/interrupts.c
+8E6 intcode_body CODE >65:/home/robin/Github/LedStrip/LedStrip.X/interrupts.c
+8EA intcode_body CODE >66:/home/robin/Github/LedStrip/LedStrip.X/interrupts.c
+8EE intcode_body CODE >67:/home/robin/Github/LedStrip/LedStrip.X/interrupts.c
+8F0 intcode_body CODE >70:/home/robin/Github/LedStrip/LedStrip.X/interrupts.c
+8F8 intcode_body CODE >71:/home/robin/Github/LedStrip/LedStrip.X/interrupts.c
+8FE intcode_body CODE >72:/home/robin/Github/LedStrip/LedStrip.X/interrupts.c
+906 intcode_body CODE >73:/home/robin/Github/LedStrip/LedStrip.X/interrupts.c
+90C intcode_body CODE >74:/home/robin/Github/LedStrip/LedStrip.X/interrupts.c
+914 intcode_body CODE >75:/home/robin/Github/LedStrip/LedStrip.X/interrupts.c
+91A intcode_body CODE >76:/home/robin/Github/LedStrip/LedStrip.X/interrupts.c
 954 text5 CODE >44:/opt/microchip/xc8/v1.34/sources/common/fttol.c
 954 text5 CODE >49:/opt/microchip/xc8/v1.34/sources/common/fttol.c
 97A text5 CODE >50:/opt/microchip/xc8/v1.34/sources/common/fttol.c
@@ -315,25 +315,25 @@ DEA text14 CODE >83:/opt/microchip/xc8/v1.34/sources/common/float.c
 DF4 text14 CODE >84:/opt/microchip/xc8/v1.34/sources/common/float.c
 DFA text14 CODE >85:/opt/microchip/xc8/v1.34/sources/common/float.c
 E08 text14 CODE >86:/opt/microchip/xc8/v1.34/sources/common/float.c
-E0A text20 CODE >194:/home/robin/7Robot/LedStrip/LedStrip.X/main.c
-E0A text20 CODE >196:/home/robin/7Robot/LedStrip/LedStrip.X/main.c
-E1A text20 CODE >202:/home/robin/7Robot/LedStrip/LedStrip.X/main.c
-E26 text20 CODE >204:/home/robin/7Robot/LedStrip/LedStrip.X/main.c
-E68 text20 CODE >205:/home/robin/7Robot/LedStrip/LedStrip.X/main.c
-E74 text20 CODE >207:/home/robin/7Robot/LedStrip/LedStrip.X/main.c
-E7C text20 CODE >208:/home/robin/7Robot/LedStrip/LedStrip.X/main.c
-E84 text20 CODE >210:/home/robin/7Robot/LedStrip/LedStrip.X/main.c
-E88 text20 CODE >211:/home/robin/7Robot/LedStrip/LedStrip.X/main.c
-E8A text20 CODE >213:/home/robin/7Robot/LedStrip/LedStrip.X/main.c
-E94 text20 CODE >219:/home/robin/7Robot/LedStrip/LedStrip.X/main.c
-EA0 text20 CODE >221:/home/robin/7Robot/LedStrip/LedStrip.X/main.c
-EE2 text20 CODE >222:/home/robin/7Robot/LedStrip/LedStrip.X/main.c
-EEE text20 CODE >224:/home/robin/7Robot/LedStrip/LedStrip.X/main.c
-EF8 text20 CODE >225:/home/robin/7Robot/LedStrip/LedStrip.X/main.c
-F00 text20 CODE >227:/home/robin/7Robot/LedStrip/LedStrip.X/main.c
-F04 text20 CODE >228:/home/robin/7Robot/LedStrip/LedStrip.X/main.c
-F06 text20 CODE >230:/home/robin/7Robot/LedStrip/LedStrip.X/main.c
-F10 text20 CODE >231:/home/robin/7Robot/LedStrip/LedStrip.X/main.c
+E0A text20 CODE >194:/home/robin/Github/LedStrip/LedStrip.X/main.c
+E0A text20 CODE >196:/home/robin/Github/LedStrip/LedStrip.X/main.c
+E1A text20 CODE >202:/home/robin/Github/LedStrip/LedStrip.X/main.c
+E26 text20 CODE >204:/home/robin/Github/LedStrip/LedStrip.X/main.c
+E68 text20 CODE >205:/home/robin/Github/LedStrip/LedStrip.X/main.c
+E74 text20 CODE >207:/home/robin/Github/LedStrip/LedStrip.X/main.c
+E7C text20 CODE >208:/home/robin/Github/LedStrip/LedStrip.X/main.c
+E84 text20 CODE >210:/home/robin/Github/LedStrip/LedStrip.X/main.c
+E88 text20 CODE >211:/home/robin/Github/LedStrip/LedStrip.X/main.c
+E8A text20 CODE >213:/home/robin/Github/LedStrip/LedStrip.X/main.c
+E94 text20 CODE >219:/home/robin/Github/LedStrip/LedStrip.X/main.c
+EA0 text20 CODE >221:/home/robin/Github/LedStrip/LedStrip.X/main.c
+EE2 text20 CODE >222:/home/robin/Github/LedStrip/LedStrip.X/main.c
+EEE text20 CODE >224:/home/robin/Github/LedStrip/LedStrip.X/main.c
+EF8 text20 CODE >225:/home/robin/Github/LedStrip/LedStrip.X/main.c
+F00 text20 CODE >227:/home/robin/Github/LedStrip/LedStrip.X/main.c
+F04 text20 CODE >228:/home/robin/Github/LedStrip/LedStrip.X/main.c
+F06 text20 CODE >230:/home/robin/Github/LedStrip/LedStrip.X/main.c
+F10 text20 CODE >231:/home/robin/Github/LedStrip/LedStrip.X/main.c
 F12 text9 CODE >8:/opt/microchip/xc8/v1.34/sources/common/almod.c
 F12 text9 CODE >13:/opt/microchip/xc8/v1.34/sources/common/almod.c
 F18 text9 CODE >14:/opt/microchip/xc8/v1.34/sources/common/almod.c
@@ -372,11 +372,11 @@ FEE text9 CODE >33:/opt/microchip/xc8/v1.34/sources/common/almod.c
 10C6 text23 CODE >22:/opt/microchip/xc8/v1.34/sources/common/atoi.c
 10E0 text23 CODE >23:/opt/microchip/xc8/v1.34/sources/common/atoi.c
 10E8 text23 CODE >24:/opt/microchip/xc8/v1.34/sources/common/atoi.c
-10EA text10 CODE >186:/home/robin/7Robot/LedStrip/LedStrip.X/main.c
-10EA text10 CODE >189:/home/robin/7Robot/LedStrip/LedStrip.X/main.c
-112A text10 CODE >190:/home/robin/7Robot/LedStrip/LedStrip.X/main.c
-116A text10 CODE >191:/home/robin/7Robot/LedStrip/LedStrip.X/main.c
-11AA text10 CODE >192:/home/robin/7Robot/LedStrip/LedStrip.X/main.c
+10EA text10 CODE >186:/home/robin/Github/LedStrip/LedStrip.X/main.c
+10EA text10 CODE >189:/home/robin/Github/LedStrip/LedStrip.X/main.c
+112A text10 CODE >190:/home/robin/Github/LedStrip/LedStrip.X/main.c
+116A text10 CODE >191:/home/robin/Github/LedStrip/LedStrip.X/main.c
+11AA text10 CODE >192:/home/robin/Github/LedStrip/LedStrip.X/main.c
 11AC text4 CODE >8:/opt/microchip/xc8/v1.34/sources/common/awdiv.c
 11AC text4 CODE >14:/opt/microchip/xc8/v1.34/sources/common/awdiv.c
 11B0 text4 CODE >15:/opt/microchip/xc8/v1.34/sources/common/awdiv.c
@@ -402,132 +402,132 @@ FEE text9 CODE >33:/opt/microchip/xc8/v1.34/sources/common/almod.c
 124E text4 CODE >40:/opt/microchip/xc8/v1.34/sources/common/awdiv.c
 1258 text4 CODE >41:/opt/microchip/xc8/v1.34/sources/common/awdiv.c
 1262 text4 CODE >42:/opt/microchip/xc8/v1.34/sources/common/awdiv.c
-1264 text3 CODE >4:/home/robin/7Robot/LedStrip/LedStrip.X/converter.c
-1266 text3 CODE >5:/home/robin/7Robot/LedStrip/LedStrip.X/converter.c
-1268 text3 CODE >7:/home/robin/7Robot/LedStrip/LedStrip.X/converter.c
-1286 text3 CODE >8:/home/robin/7Robot/LedStrip/LedStrip.X/converter.c
-128A text3 CODE >9:/home/robin/7Robot/LedStrip/LedStrip.X/converter.c
-128E text3 CODE >10:/home/robin/7Robot/LedStrip/LedStrip.X/converter.c
-1290 text3 CODE >12:/home/robin/7Robot/LedStrip/LedStrip.X/converter.c
-12AE text3 CODE >13:/home/robin/7Robot/LedStrip/LedStrip.X/converter.c
-12B2 text3 CODE >14:/home/robin/7Robot/LedStrip/LedStrip.X/converter.c
-12B6 text3 CODE >15:/home/robin/7Robot/LedStrip/LedStrip.X/converter.c
-12B8 text3 CODE >17:/home/robin/7Robot/LedStrip/LedStrip.X/converter.c
-12D6 text3 CODE >18:/home/robin/7Robot/LedStrip/LedStrip.X/converter.c
-12DA text3 CODE >19:/home/robin/7Robot/LedStrip/LedStrip.X/converter.c
-12DE text3 CODE >21:/home/robin/7Robot/LedStrip/LedStrip.X/converter.c
-12E0 text3 CODE >5:/home/robin/7Robot/LedStrip/LedStrip.X/converter.c
-12F6 text3 CODE >23:/home/robin/7Robot/LedStrip/LedStrip.X/converter.c
-12F8 text11 CODE >154:/home/robin/7Robot/LedStrip/LedStrip.X/main.c
-12FA text11 CODE >156:/home/robin/7Robot/LedStrip/LedStrip.X/main.c
-12FE text11 CODE >157:/home/robin/7Robot/LedStrip/LedStrip.X/main.c
-1300 text11 CODE >159:/home/robin/7Robot/LedStrip/LedStrip.X/main.c
-1300 text11 CODE >161:/home/robin/7Robot/LedStrip/LedStrip.X/main.c
-1304 text11 CODE >165:/home/robin/7Robot/LedStrip/LedStrip.X/main.c
-1304 text11 CODE >167:/home/robin/7Robot/LedStrip/LedStrip.X/main.c
-1306 text11 CODE >168:/home/robin/7Robot/LedStrip/LedStrip.X/main.c
-1308 text11 CODE >169:/home/robin/7Robot/LedStrip/LedStrip.X/main.c
-130A text11 CODE >171:/home/robin/7Robot/LedStrip/LedStrip.X/main.c
-130A text11 CODE >173:/home/robin/7Robot/LedStrip/LedStrip.X/main.c
-130C text11 CODE >174:/home/robin/7Robot/LedStrip/LedStrip.X/main.c
-130E text11 CODE >177:/home/robin/7Robot/LedStrip/LedStrip.X/main.c
-1310 text11 CODE >157:/home/robin/7Robot/LedStrip/LedStrip.X/main.c
-1326 text11 CODE >178:/home/robin/7Robot/LedStrip/LedStrip.X/main.c
-1336 text11 CODE >179:/home/robin/7Robot/LedStrip/LedStrip.X/main.c
-1338 text11 CODE >180:/home/robin/7Robot/LedStrip/LedStrip.X/main.c
-133E text11 CODE >182:/home/robin/7Robot/LedStrip/LedStrip.X/main.c
-1352 text11 CODE >183:/home/robin/7Robot/LedStrip/LedStrip.X/main.c
-1354 text17 CODE >24:/home/robin/7Robot/LedStrip/LedStrip.X/init.c
-1354 text17 CODE >29:/home/robin/7Robot/LedStrip/LedStrip.X/init.c
-1356 text17 CODE >33:/home/robin/7Robot/LedStrip/LedStrip.X/init.c
-135C text17 CODE >34:/home/robin/7Robot/LedStrip/LedStrip.X/init.c
-1362 text17 CODE >35:/home/robin/7Robot/LedStrip/LedStrip.X/init.c
-1368 text17 CODE >36:/home/robin/7Robot/LedStrip/LedStrip.X/init.c
-136C text17 CODE >37:/home/robin/7Robot/LedStrip/LedStrip.X/init.c
-1370 text17 CODE >38:/home/robin/7Robot/LedStrip/LedStrip.X/init.c
-1374 text17 CODE >39:/home/robin/7Robot/LedStrip/LedStrip.X/init.c
-1378 text17 CODE >40:/home/robin/7Robot/LedStrip/LedStrip.X/init.c
-137C text17 CODE >41:/home/robin/7Robot/LedStrip/LedStrip.X/init.c
-1380 text17 CODE >47:/home/robin/7Robot/LedStrip/LedStrip.X/init.c
-1386 text17 CODE >50:/home/robin/7Robot/LedStrip/LedStrip.X/init.c
-1388 text17 CODE >51:/home/robin/7Robot/LedStrip/LedStrip.X/init.c
-138A text17 CODE >54:/home/robin/7Robot/LedStrip/LedStrip.X/init.c
-138C text17 CODE >57:/home/robin/7Robot/LedStrip/LedStrip.X/init.c
-1390 text17 CODE >58:/home/robin/7Robot/LedStrip/LedStrip.X/init.c
-1394 text17 CODE >59:/home/robin/7Robot/LedStrip/LedStrip.X/init.c
-1398 text17 CODE >60:/home/robin/7Robot/LedStrip/LedStrip.X/init.c
-139C text17 CODE >61:/home/robin/7Robot/LedStrip/LedStrip.X/init.c
-13A0 text17 CODE >62:/home/robin/7Robot/LedStrip/LedStrip.X/init.c
-13A4 text17 CODE >63:/home/robin/7Robot/LedStrip/LedStrip.X/init.c
-13A6 cinit CODE >4995:/tmp/cgtyKyHcl
-13A6 cinit CODE >4997:/tmp/cgtyKyHcl
-13A6 cinit CODE >5000:/tmp/cgtyKyHcl
-13A6 cinit CODE >5051:/tmp/cgtyKyHcl
-13AA cinit CODE >5052:/tmp/cgtyKyHcl
-13AC cinit CODE >5053:/tmp/cgtyKyHcl
-13AC cinit CODE >5054:/tmp/cgtyKyHcl
-13AE cinit CODE >5055:/tmp/cgtyKyHcl
-13B0 cinit CODE >5056:/tmp/cgtyKyHcl
-13B2 cinit CODE >5059:/tmp/cgtyKyHcl
-13B6 cinit CODE >5060:/tmp/cgtyKyHcl
-13B8 cinit CODE >5061:/tmp/cgtyKyHcl
-13B8 cinit CODE >5062:/tmp/cgtyKyHcl
-13BA cinit CODE >5063:/tmp/cgtyKyHcl
-13BC cinit CODE >5064:/tmp/cgtyKyHcl
-13BE cinit CODE >5067:/tmp/cgtyKyHcl
-13C2 cinit CODE >5068:/tmp/cgtyKyHcl
-13C4 cinit CODE >5069:/tmp/cgtyKyHcl
-13C4 cinit CODE >5070:/tmp/cgtyKyHcl
-13C6 cinit CODE >5071:/tmp/cgtyKyHcl
-13C8 cinit CODE >5072:/tmp/cgtyKyHcl
-13CA cinit CODE >5075:/tmp/cgtyKyHcl
-13CE cinit CODE >5076:/tmp/cgtyKyHcl
-13D0 cinit CODE >5077:/tmp/cgtyKyHcl
-13D0 cinit CODE >5078:/tmp/cgtyKyHcl
-13D2 cinit CODE >5079:/tmp/cgtyKyHcl
-13D4 cinit CODE >5080:/tmp/cgtyKyHcl
-13D6 cinit CODE >5083:/tmp/cgtyKyHcl
-13DA cinit CODE >5084:/tmp/cgtyKyHcl
-13DC cinit CODE >5085:/tmp/cgtyKyHcl
-13DC cinit CODE >5086:/tmp/cgtyKyHcl
-13DE cinit CODE >5087:/tmp/cgtyKyHcl
-13E0 cinit CODE >5088:/tmp/cgtyKyHcl
-13E2 cinit CODE >5094:/tmp/cgtyKyHcl
-13E2 cinit CODE >5096:/tmp/cgtyKyHcl
-13E4 cinit CODE >5097:/tmp/cgtyKyHcl
-13E6 cinit CODE >5098:/tmp/cgtyKyHcl
-13E8 cinit CODE >5099:/tmp/cgtyKyHcl
+1264 text3 CODE >4:/home/robin/Github/LedStrip/LedStrip.X/converter.c
+1266 text3 CODE >5:/home/robin/Github/LedStrip/LedStrip.X/converter.c
+1268 text3 CODE >7:/home/robin/Github/LedStrip/LedStrip.X/converter.c
+1286 text3 CODE >8:/home/robin/Github/LedStrip/LedStrip.X/converter.c
+128A text3 CODE >9:/home/robin/Github/LedStrip/LedStrip.X/converter.c
+128E text3 CODE >10:/home/robin/Github/LedStrip/LedStrip.X/converter.c
+1290 text3 CODE >12:/home/robin/Github/LedStrip/LedStrip.X/converter.c
+12AE text3 CODE >13:/home/robin/Github/LedStrip/LedStrip.X/converter.c
+12B2 text3 CODE >14:/home/robin/Github/LedStrip/LedStrip.X/converter.c
+12B6 text3 CODE >15:/home/robin/Github/LedStrip/LedStrip.X/converter.c
+12B8 text3 CODE >17:/home/robin/Github/LedStrip/LedStrip.X/converter.c
+12D6 text3 CODE >18:/home/robin/Github/LedStrip/LedStrip.X/converter.c
+12DA text3 CODE >19:/home/robin/Github/LedStrip/LedStrip.X/converter.c
+12DE text3 CODE >21:/home/robin/Github/LedStrip/LedStrip.X/converter.c
+12E0 text3 CODE >5:/home/robin/Github/LedStrip/LedStrip.X/converter.c
+12F6 text3 CODE >23:/home/robin/Github/LedStrip/LedStrip.X/converter.c
+12F8 text11 CODE >154:/home/robin/Github/LedStrip/LedStrip.X/main.c
+12FA text11 CODE >156:/home/robin/Github/LedStrip/LedStrip.X/main.c
+12FE text11 CODE >157:/home/robin/Github/LedStrip/LedStrip.X/main.c
+1300 text11 CODE >159:/home/robin/Github/LedStrip/LedStrip.X/main.c
+1300 text11 CODE >161:/home/robin/Github/LedStrip/LedStrip.X/main.c
+1304 text11 CODE >165:/home/robin/Github/LedStrip/LedStrip.X/main.c
+1304 text11 CODE >167:/home/robin/Github/LedStrip/LedStrip.X/main.c
+1306 text11 CODE >168:/home/robin/Github/LedStrip/LedStrip.X/main.c
+1308 text11 CODE >169:/home/robin/Github/LedStrip/LedStrip.X/main.c
+130A text11 CODE >171:/home/robin/Github/LedStrip/LedStrip.X/main.c
+130A text11 CODE >173:/home/robin/Github/LedStrip/LedStrip.X/main.c
+130C text11 CODE >174:/home/robin/Github/LedStrip/LedStrip.X/main.c
+130E text11 CODE >177:/home/robin/Github/LedStrip/LedStrip.X/main.c
+1310 text11 CODE >157:/home/robin/Github/LedStrip/LedStrip.X/main.c
+1326 text11 CODE >178:/home/robin/Github/LedStrip/LedStrip.X/main.c
+1336 text11 CODE >179:/home/robin/Github/LedStrip/LedStrip.X/main.c
+1338 text11 CODE >180:/home/robin/Github/LedStrip/LedStrip.X/main.c
+133E text11 CODE >182:/home/robin/Github/LedStrip/LedStrip.X/main.c
+1352 text11 CODE >183:/home/robin/Github/LedStrip/LedStrip.X/main.c
+1354 text17 CODE >24:/home/robin/Github/LedStrip/LedStrip.X/init.c
+1354 text17 CODE >29:/home/robin/Github/LedStrip/LedStrip.X/init.c
+1356 text17 CODE >33:/home/robin/Github/LedStrip/LedStrip.X/init.c
+135C text17 CODE >34:/home/robin/Github/LedStrip/LedStrip.X/init.c
+1362 text17 CODE >35:/home/robin/Github/LedStrip/LedStrip.X/init.c
+1368 text17 CODE >36:/home/robin/Github/LedStrip/LedStrip.X/init.c
+136C text17 CODE >37:/home/robin/Github/LedStrip/LedStrip.X/init.c
+1370 text17 CODE >38:/home/robin/Github/LedStrip/LedStrip.X/init.c
+1374 text17 CODE >39:/home/robin/Github/LedStrip/LedStrip.X/init.c
+1378 text17 CODE >40:/home/robin/Github/LedStrip/LedStrip.X/init.c
+137C text17 CODE >41:/home/robin/Github/LedStrip/LedStrip.X/init.c
+1380 text17 CODE >47:/home/robin/Github/LedStrip/LedStrip.X/init.c
+1386 text17 CODE >50:/home/robin/Github/LedStrip/LedStrip.X/init.c
+1388 text17 CODE >51:/home/robin/Github/LedStrip/LedStrip.X/init.c
+138A text17 CODE >54:/home/robin/Github/LedStrip/LedStrip.X/init.c
+138C text17 CODE >57:/home/robin/Github/LedStrip/LedStrip.X/init.c
+1390 text17 CODE >58:/home/robin/Github/LedStrip/LedStrip.X/init.c
+1394 text17 CODE >59:/home/robin/Github/LedStrip/LedStrip.X/init.c
+1398 text17 CODE >60:/home/robin/Github/LedStrip/LedStrip.X/init.c
+139C text17 CODE >61:/home/robin/Github/LedStrip/LedStrip.X/init.c
+13A0 text17 CODE >62:/home/robin/Github/LedStrip/LedStrip.X/init.c
+13A4 text17 CODE >63:/home/robin/Github/LedStrip/LedStrip.X/init.c
+13A6 cinit CODE >4995:/tmp/cgtQfomZk
+13A6 cinit CODE >4997:/tmp/cgtQfomZk
+13A6 cinit CODE >5000:/tmp/cgtQfomZk
+13A6 cinit CODE >5051:/tmp/cgtQfomZk
+13AA cinit CODE >5052:/tmp/cgtQfomZk
+13AC cinit CODE >5053:/tmp/cgtQfomZk
+13AC cinit CODE >5054:/tmp/cgtQfomZk
+13AE cinit CODE >5055:/tmp/cgtQfomZk
+13B0 cinit CODE >5056:/tmp/cgtQfomZk
+13B2 cinit CODE >5059:/tmp/cgtQfomZk
+13B6 cinit CODE >5060:/tmp/cgtQfomZk
+13B8 cinit CODE >5061:/tmp/cgtQfomZk
+13B8 cinit CODE >5062:/tmp/cgtQfomZk
+13BA cinit CODE >5063:/tmp/cgtQfomZk
+13BC cinit CODE >5064:/tmp/cgtQfomZk
+13BE cinit CODE >5067:/tmp/cgtQfomZk
+13C2 cinit CODE >5068:/tmp/cgtQfomZk
+13C4 cinit CODE >5069:/tmp/cgtQfomZk
+13C4 cinit CODE >5070:/tmp/cgtQfomZk
+13C6 cinit CODE >5071:/tmp/cgtQfomZk
+13C8 cinit CODE >5072:/tmp/cgtQfomZk
+13CA cinit CODE >5075:/tmp/cgtQfomZk
+13CE cinit CODE >5076:/tmp/cgtQfomZk
+13D0 cinit CODE >5077:/tmp/cgtQfomZk
+13D0 cinit CODE >5078:/tmp/cgtQfomZk
+13D2 cinit CODE >5079:/tmp/cgtQfomZk
+13D4 cinit CODE >5080:/tmp/cgtQfomZk
+13D6 cinit CODE >5083:/tmp/cgtQfomZk
+13DA cinit CODE >5084:/tmp/cgtQfomZk
+13DC cinit CODE >5085:/tmp/cgtQfomZk
+13DC cinit CODE >5086:/tmp/cgtQfomZk
+13DE cinit CODE >5087:/tmp/cgtQfomZk
+13E0 cinit CODE >5088:/tmp/cgtQfomZk
+13E2 cinit CODE >5094:/tmp/cgtQfomZk
+13E2 cinit CODE >5096:/tmp/cgtQfomZk
+13E4 cinit CODE >5097:/tmp/cgtQfomZk
+13E6 cinit CODE >5098:/tmp/cgtQfomZk
+13E8 cinit CODE >5099:/tmp/cgtQfomZk
 13EC text6 CODE >15:/opt/microchip/xc8/v1.34/sources/common/ftneg.c
 13EC text6 CODE >17:/opt/microchip/xc8/v1.34/sources/common/ftneg.c
 13FC text6 CODE >18:/opt/microchip/xc8/v1.34/sources/common/ftneg.c
 140E text6 CODE >19:/opt/microchip/xc8/v1.34/sources/common/ftneg.c
 141A text6 CODE >20:/opt/microchip/xc8/v1.34/sources/common/ftneg.c
-141C text2 CODE >9:/home/robin/7Robot/LedStrip/LedStrip.X/functions.c
-141C text2 CODE >11:/home/robin/7Robot/LedStrip/LedStrip.X/functions.c
-142A text2 CODE >12:/home/robin/7Robot/LedStrip/LedStrip.X/functions.c
-1438 text2 CODE >13:/home/robin/7Robot/LedStrip/LedStrip.X/functions.c
-1446 text2 CODE >14:/home/robin/7Robot/LedStrip/LedStrip.X/functions.c
+141C text2 CODE >9:/home/robin/Github/LedStrip/LedStrip.X/functions.c
+141C text2 CODE >11:/home/robin/Github/LedStrip/LedStrip.X/functions.c
+142A text2 CODE >12:/home/robin/Github/LedStrip/LedStrip.X/functions.c
+1438 text2 CODE >13:/home/robin/Github/LedStrip/LedStrip.X/functions.c
+1446 text2 CODE >14:/home/robin/Github/LedStrip/LedStrip.X/functions.c
 1448 text12 CODE >28:/opt/microchip/xc8/v1.34/sources/common/lwtoft.c
 1448 text12 CODE >30:/opt/microchip/xc8/v1.34/sources/common/lwtoft.c
 1472 text12 CODE >31:/opt/microchip/xc8/v1.34/sources/common/lwtoft.c
-1474 text18 CODE >66:/home/robin/7Robot/LedStrip/LedStrip.X/init.c
-1474 text18 CODE >68:/home/robin/7Robot/LedStrip/LedStrip.X/init.c
-1476 text18 CODE >69:/home/robin/7Robot/LedStrip/LedStrip.X/init.c
-1478 text18 CODE >72:/home/robin/7Robot/LedStrip/LedStrip.X/init.c
-147A text18 CODE >73:/home/robin/7Robot/LedStrip/LedStrip.X/init.c
-147C text18 CODE >74:/home/robin/7Robot/LedStrip/LedStrip.X/init.c
-1480 text18 CODE >75:/home/robin/7Robot/LedStrip/LedStrip.X/init.c
-1484 text18 CODE >76:/home/robin/7Robot/LedStrip/LedStrip.X/init.c
-1488 text18 CODE >80:/home/robin/7Robot/LedStrip/LedStrip.X/init.c
-148A text18 CODE >81:/home/robin/7Robot/LedStrip/LedStrip.X/init.c
-148C text18 CODE >82:/home/robin/7Robot/LedStrip/LedStrip.X/init.c
-148E text18 CODE >85:/home/robin/7Robot/LedStrip/LedStrip.X/init.c
-1490 text18 CODE >86:/home/robin/7Robot/LedStrip/LedStrip.X/init.c
-1492 text18 CODE >87:/home/robin/7Robot/LedStrip/LedStrip.X/init.c
-1494 text18 CODE >88:/home/robin/7Robot/LedStrip/LedStrip.X/init.c
-1496 text18 CODE >89:/home/robin/7Robot/LedStrip/LedStrip.X/init.c
-1498 text18 CODE >91:/home/robin/7Robot/LedStrip/LedStrip.X/init.c
-149A text18 CODE >92:/home/robin/7Robot/LedStrip/LedStrip.X/init.c
+1474 text18 CODE >66:/home/robin/Github/LedStrip/LedStrip.X/init.c
+1474 text18 CODE >68:/home/robin/Github/LedStrip/LedStrip.X/init.c
+1476 text18 CODE >69:/home/robin/Github/LedStrip/LedStrip.X/init.c
+1478 text18 CODE >72:/home/robin/Github/LedStrip/LedStrip.X/init.c
+147A text18 CODE >73:/home/robin/Github/LedStrip/LedStrip.X/init.c
+147C text18 CODE >74:/home/robin/Github/LedStrip/LedStrip.X/init.c
+1480 text18 CODE >75:/home/robin/Github/LedStrip/LedStrip.X/init.c
+1484 text18 CODE >76:/home/robin/Github/LedStrip/LedStrip.X/init.c
+1488 text18 CODE >80:/home/robin/Github/LedStrip/LedStrip.X/init.c
+148A text18 CODE >81:/home/robin/Github/LedStrip/LedStrip.X/init.c
+148C text18 CODE >82:/home/robin/Github/LedStrip/LedStrip.X/init.c
+148E text18 CODE >85:/home/robin/Github/LedStrip/LedStrip.X/init.c
+1490 text18 CODE >86:/home/robin/Github/LedStrip/LedStrip.X/init.c
+1492 text18 CODE >87:/home/robin/Github/LedStrip/LedStrip.X/init.c
+1494 text18 CODE >88:/home/robin/Github/LedStrip/LedStrip.X/init.c
+1496 text18 CODE >89:/home/robin/Github/LedStrip/LedStrip.X/init.c
+1498 text18 CODE >91:/home/robin/Github/LedStrip/LedStrip.X/init.c
+149A text18 CODE >92:/home/robin/Github/LedStrip/LedStrip.X/init.c
 149C text25 CODE >15:/opt/microchip/xc8/v1.34/sources/common/Umul16.c
 149C text25 CODE >37:/opt/microchip/xc8/v1.34/sources/common/Umul16.c
 14A8 text25 CODE >38:/opt/microchip/xc8/v1.34/sources/common/Umul16.c
@@ -537,36 +537,36 @@ FEE text9 CODE >33:/opt/microchip/xc8/v1.34/sources/common/almod.c
 14C4 text24 CODE >8:/opt/microchip/xc8/v1.34/sources/common/isdigit.c
 14C6 text24 CODE >14:/opt/microchip/xc8/v1.34/sources/common/isdigit.c
 14E4 text24 CODE >15:/opt/microchip/xc8/v1.34/sources/common/isdigit.c
-14E6 text19 CODE >94:/home/robin/7Robot/LedStrip/LedStrip.X/init.c
-14E6 text19 CODE >96:/home/robin/7Robot/LedStrip/LedStrip.X/init.c
-14E8 text19 CODE >97:/home/robin/7Robot/LedStrip/LedStrip.X/init.c
-14EA text19 CODE >99:/home/robin/7Robot/LedStrip/LedStrip.X/init.c
-14EC text19 CODE >100:/home/robin/7Robot/LedStrip/LedStrip.X/init.c
-14EE text19 CODE >101:/home/robin/7Robot/LedStrip/LedStrip.X/init.c
-14F0 text19 CODE >105:/home/robin/7Robot/LedStrip/LedStrip.X/init.c
-14F4 text19 CODE >106:/home/robin/7Robot/LedStrip/LedStrip.X/init.c
-14F8 text19 CODE >107:/home/robin/7Robot/LedStrip/LedStrip.X/init.c
-14FC text19 CODE >109:/home/robin/7Robot/LedStrip/LedStrip.X/init.c
-14FE text19 CODE >111:/home/robin/7Robot/LedStrip/LedStrip.X/init.c
-1500 text19 CODE >112:/home/robin/7Robot/LedStrip/LedStrip.X/init.c
-1502 text16 CODE >114:/home/robin/7Robot/LedStrip/LedStrip.X/init.c
-1502 text16 CODE >117:/home/robin/7Robot/LedStrip/LedStrip.X/init.c
-1504 text16 CODE >118:/home/robin/7Robot/LedStrip/LedStrip.X/init.c
-1506 text16 CODE >119:/home/robin/7Robot/LedStrip/LedStrip.X/init.c
-1508 text16 CODE >120:/home/robin/7Robot/LedStrip/LedStrip.X/init.c
-150A text16 CODE >121:/home/robin/7Robot/LedStrip/LedStrip.X/init.c
-150C text16 CODE >122:/home/robin/7Robot/LedStrip/LedStrip.X/init.c
-150E text16 CODE >123:/home/robin/7Robot/LedStrip/LedStrip.X/init.c
-1510 text16 CODE >124:/home/robin/7Robot/LedStrip/LedStrip.X/init.c
-1512 text16 CODE >125:/home/robin/7Robot/LedStrip/LedStrip.X/init.c
-1514 text16 CODE >126:/home/robin/7Robot/LedStrip/LedStrip.X/init.c
-1516 text16 CODE >129:/home/robin/7Robot/LedStrip/LedStrip.X/init.c
-1518 text15 CODE >3:/home/robin/7Robot/LedStrip/LedStrip.X/init.c
-1518 text15 CODE >7:/home/robin/7Robot/LedStrip/LedStrip.X/init.c
-151C text15 CODE >11:/home/robin/7Robot/LedStrip/LedStrip.X/init.c
-1520 text15 CODE >15:/home/robin/7Robot/LedStrip/LedStrip.X/init.c
-1524 text15 CODE >19:/home/robin/7Robot/LedStrip/LedStrip.X/init.c
-1528 text15 CODE >21:/home/robin/7Robot/LedStrip/LedStrip.X/init.c
+14E6 text19 CODE >94:/home/robin/Github/LedStrip/LedStrip.X/init.c
+14E6 text19 CODE >96:/home/robin/Github/LedStrip/LedStrip.X/init.c
+14E8 text19 CODE >97:/home/robin/Github/LedStrip/LedStrip.X/init.c
+14EA text19 CODE >99:/home/robin/Github/LedStrip/LedStrip.X/init.c
+14EC text19 CODE >100:/home/robin/Github/LedStrip/LedStrip.X/init.c
+14EE text19 CODE >101:/home/robin/Github/LedStrip/LedStrip.X/init.c
+14F0 text19 CODE >105:/home/robin/Github/LedStrip/LedStrip.X/init.c
+14F4 text19 CODE >106:/home/robin/Github/LedStrip/LedStrip.X/init.c
+14F8 text19 CODE >107:/home/robin/Github/LedStrip/LedStrip.X/init.c
+14FC text19 CODE >109:/home/robin/Github/LedStrip/LedStrip.X/init.c
+14FE text19 CODE >111:/home/robin/Github/LedStrip/LedStrip.X/init.c
+1500 text19 CODE >112:/home/robin/Github/LedStrip/LedStrip.X/init.c
+1502 text16 CODE >114:/home/robin/Github/LedStrip/LedStrip.X/init.c
+1502 text16 CODE >117:/home/robin/Github/LedStrip/LedStrip.X/init.c
+1504 text16 CODE >118:/home/robin/Github/LedStrip/LedStrip.X/init.c
+1506 text16 CODE >119:/home/robin/Github/LedStrip/LedStrip.X/init.c
+1508 text16 CODE >120:/home/robin/Github/LedStrip/LedStrip.X/init.c
+150A text16 CODE >121:/home/robin/Github/LedStrip/LedStrip.X/init.c
+150C text16 CODE >122:/home/robin/Github/LedStrip/LedStrip.X/init.c
+150E text16 CODE >123:/home/robin/Github/LedStrip/LedStrip.X/init.c
+1510 text16 CODE >124:/home/robin/Github/LedStrip/LedStrip.X/init.c
+1512 text16 CODE >125:/home/robin/Github/LedStrip/LedStrip.X/init.c
+1514 text16 CODE >126:/home/robin/Github/LedStrip/LedStrip.X/init.c
+1516 text16 CODE >129:/home/robin/Github/LedStrip/LedStrip.X/init.c
+1518 text15 CODE >3:/home/robin/Github/LedStrip/LedStrip.X/init.c
+1518 text15 CODE >7:/home/robin/Github/LedStrip/LedStrip.X/init.c
+151C text15 CODE >11:/home/robin/Github/LedStrip/LedStrip.X/init.c
+1520 text15 CODE >15:/home/robin/Github/LedStrip/LedStrip.X/init.c
+1524 text15 CODE >19:/home/robin/Github/LedStrip/LedStrip.X/init.c
+1528 text15 CODE >21:/home/robin/Github/LedStrip/LedStrip.X/init.c
 # %SYMTAB Section
 # An enumeration of all symbols in the program.
 # The beginning of the section is indicated by %SYMTAB.
@@ -591,7 +591,7 @@ __CFG_IESO$OFF 0 0 ABS 0 - dist/default/production/LedStrip.X.production.obj
 __end_of_readADC 1354 0 CODE 0 text11 dist/default/production/LedStrip.X.production.obj
 ___ftdiv@exp 2B 0 COMRAM 1 cstackCOMRAM dist/default/production/LedStrip.X.production.obj
 __Hibigdata 0 0 CODE 0 ibigdata dist/default/production/LedStrip.X.production.obj
-__mediumconst 0 0 MEDIUMCONST 0 mediumconst /tmp/cgtmT1Aow.obj
+__mediumconst 0 0 MEDIUMCONST 0 mediumconst /tmp/cgtoEOmfe.obj
 __Heeprom_data 0 0 EEDATA 0 eeprom_data dist/default/production/LedStrip.X.production.obj
 _TRIGSEL0 7E0E 0 ABS 0 - dist/default/production/LedStrip.X.production.obj
 _TRIGSEL1 7E0F 0 ABS 0 - dist/default/production/LedStrip.X.production.obj
@@ -604,13 +604,13 @@ _T0CS 7EAD 0 ABS 0 - dist/default/production/LedStrip.X.production.obj
 _T0IE 7F95 0 ABS 0 - dist/default/production/LedStrip.X.production.obj
 _T0IF 7F92 0 ABS 0 - dist/default/production/LedStrip.X.production.obj
 _TMR0 FD6 0 ABS 0 - dist/default/production/LedStrip.X.production.obj
-___sp 0 0 STACK 2 stack /tmp/cgtmT1Aow.obj
+___sp 0 0 STACK 2 stack /tmp/cgtoEOmfe.obj
 _atoi 1016 0 CODE 0 text23 dist/default/production/LedStrip.X.production.obj
 _main 62E 0 CODE 0 text0 dist/default/production/LedStrip.X.production.obj
 _mode CA 0 BANK0 1 bssBANK0 dist/default/production/LedStrip.X.production.obj
 ___ftadd@f1 82 0 BANK0 1 cstackBANK0 dist/default/production/LedStrip.X.production.obj
 ___ftadd@f2 85 0 BANK0 1 cstackBANK0 dist/default/production/LedStrip.X.production.obj
-start C2 0 CODE 0 init /tmp/cgtmT1Aow.obj
+start C2 0 CODE 0 init /tmp/cgtoEOmfe.obj
 setRGB@b A1 0 BANK0 1 cstackBANK0 dist/default/production/LedStrip.X.production.obj
 setRGB@g 9F 0 BANK0 1 cstackBANK0 dist/default/production/LedStrip.X.production.obj
 setRGB@r 9D 0 BANK0 1 cstackBANK0 dist/default/production/LedStrip.X.production.obj
@@ -640,11 +640,11 @@ RX2_ISR@beginB 2F 0 COMRAM 1 bssCOMRAM dist/default/production/LedStrip.X.produc
 RX2_ISR@beginG 30 0 COMRAM 1 bssCOMRAM dist/default/production/LedStrip.X.production.obj
 RX2_ISR@beginR 31 0 COMRAM 1 bssCOMRAM dist/default/production/LedStrip.X.production.obj
 RX2_ISR@buffer 33 0 COMRAM 1 bssCOMRAM dist/default/production/LedStrip.X.production.obj
-__accesstop 60 0 ABS 0 - /tmp/cgtmT1Aow.obj
-intlevel0 0 0 CODE 0 text /tmp/cgtmT1Aow.obj
-intlevel1 0 0 CODE 0 text /tmp/cgtmT1Aow.obj
-intlevel2 0 0 CODE 0 text /tmp/cgtmT1Aow.obj
-intlevel3 0 0 CODE 0 text /tmp/cgtmT1Aow.obj
+__accesstop 60 0 ABS 0 - /tmp/cgtoEOmfe.obj
+intlevel0 0 0 CODE 0 text /tmp/cgtoEOmfe.obj
+intlevel1 0 0 CODE 0 text /tmp/cgtoEOmfe.obj
+intlevel2 0 0 CODE 0 text /tmp/cgtoEOmfe.obj
+intlevel3 0 0 CODE 0 text /tmp/cgtoEOmfe.obj
 __LbssCOMRAM 0 0 ABS 0 bssCOMRAM dist/default/production/LedStrip.X.production.obj
 __size_of_initTimer0 0 0 ABS 0 - dist/default/production/LedStrip.X.production.obj
 __LnvFARRAM 0 0 FARRAM 0 nvFARRAM dist/default/production/LedStrip.X.production.obj
@@ -668,8 +668,8 @@ _ANSEL1 7AE9 0 ABS 0 - dist/default/production/LedStrip.X.production.obj
 _ANSEL2 7AEA 0 ABS 0 - dist/default/production/LedStrip.X.production.obj
 _ANSEL3 7AEB 0 ABS 0 - dist/default/production/LedStrip.X.production.obj
 ___awdiv@dividend 71 0 BANK0 1 cstackBANK0 dist/default/production/LedStrip.X.production.obj
-___inthi_sp 0 0 STACK 2 stack /tmp/cgtmT1Aow.obj
-___intlo_sp 0 0 STACK 2 stack /tmp/cgtmT1Aow.obj
+___inthi_sp 0 0 STACK 2 stack /tmp/cgtoEOmfe.obj
+___intlo_sp 0 0 STACK 2 stack /tmp/cgtoEOmfe.obj
 _CCP2M2 7A82 0 ABS 0 - dist/default/production/LedStrip.X.production.obj
 _CCP2M3 7A83 0 ABS 0 - dist/default/production/LedStrip.X.production.obj
 _CCP3M2 7A6A 0 ABS 0 - dist/default/production/LedStrip.X.production.obj
@@ -777,7 +777,7 @@ __Hbank13 0 0 ABS 0 bank13 dist/default/production/LedStrip.X.production.obj
 __Hbank14 0 0 ABS 0 bank14 dist/default/production/LedStrip.X.production.obj
 __Hbigbss 0 0 BIGRAM 1 bigbss dist/default/production/LedStrip.X.production.obj
 __Hbigram 0 0 ABS 0 bigram dist/default/production/LedStrip.X.production.obj
-__smallconst 0 0 SMALLCONST 0 smallconst /tmp/cgtmT1Aow.obj
+__smallconst 0 0 SMALLCONST 0 smallconst /tmp/cgtoEOmfe.obj
 _BAUDCON2 FB9 0 ABS 0 - dist/default/production/LedStrip.X.production.obj
 __CFG_FOSC$INTIO2 0 0 ABS 0 - dist/default/production/LedStrip.X.production.obj
 __Hcomram 0 0 ABS 0 comram dist/default/production/LedStrip.X.production.obj
@@ -934,8 +934,8 @@ _strobe C6 0 CODE 0 text1 dist/default/production/LedStrip.X.production.obj
 __Lfardata 0 0 FARRAM 0 fardata dist/default/production/LedStrip.X.production.obj
 __end_of_Timer0_ISR C2 0 CODE 0 intcodelo dist/default/production/LedStrip.X.production.obj
 ___lwtoft@c 76 0 BANK0 1 cstackBANK0 dist/default/production/LedStrip.X.production.obj
-stackhi E40 0 ABS 0 - /tmp/cgtmT1Aow.obj
-stacklo 3C8 0 ABS 0 - /tmp/cgtmT1Aow.obj
+stackhi E40 0 ABS 0 - /tmp/cgtoEOmfe.obj
+stacklo 3C8 0 ABS 0 - /tmp/cgtoEOmfe.obj
 __Lintcode 8 0 CODE 0 intcode dist/default/production/LedStrip.X.production.obj
 __Lintret 0 0 ABS 0 intret dist/default/production/LedStrip.X.production.obj
 __Lirdata 0 0 CODE 0 irdata dist/default/production/LedStrip.X.production.obj
@@ -1004,7 +1004,7 @@ __Ltext20 0 0 ABS 0 text20 dist/default/production/LedStrip.X.production.obj
 __Ltext23 0 0 ABS 0 text23 dist/default/production/LedStrip.X.production.obj
 __Ltext24 0 0 ABS 0 text24 dist/default/production/LedStrip.X.production.obj
 __Ltext25 0 0 ABS 0 text25 dist/default/production/LedStrip.X.production.obj
-__ramtop F00 0 RAM 0 ramtop /tmp/cgtmT1Aow.obj
+__ramtop F00 0 RAM 0 ramtop /tmp/cgtoEOmfe.obj
 __Lpowerup C2 0 CODE 0 powerup dist/default/production/LedStrip.X.production.obj
 __Leeprom_data 0 0 EEDATA 0 eeprom_data dist/default/production/LedStrip.X.production.obj
 _isdigit 14C4 0 CODE 0 text24 dist/default/production/LedStrip.X.production.obj
